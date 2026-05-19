@@ -1,128 +1,43 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="ko">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta
-			name="description"
-			content="김서영(Seoyeong Kim), Hamo의 개인 홈페이지입니다."
-		/>
-		<title>김서영 | Hamo</title>
-	</head>
-	<body>
-		<header class="site-header">
-			<a class="brand" href="/">Hamo</a>
-			<nav aria-label="Main navigation">
-				<a href="/" aria-current="page">Home</a>
-				<a href="/about/">About</a>
-				<a href="/projects/">Projects</a>
-				<a href="/posts/">Posts</a>
-			</nav>
-		</header>
+<BaseLayout>
+	<section class="hero">
+		<p class="eyebrow">Personal Homepage</p>
+		<p class="name">김서영 <span>Seoyeong Kim</span></p>
+		<h1>Hamo의 배움과 기록을 모으는 공간</h1>
+		<p class="intro">
+			더 쉽게, 더 깊게 읽는 Swift velog를 통해 배움의 행복을 전달하고
+			있습니다.
+		</p>
+		<div class="actions" aria-label="Planned sections">
+			<a href="/about/">About</a>
+			<a href="/projects/">Projects</a>
+			<a href="/posts/">Posts</a>
+		</div>
+	</section>
 
-		<main>
-			<section class="hero">
-				<p class="eyebrow">Personal Homepage</p>
-				<p class="name">김서영 <span>Seoyeong Kim</span></p>
-				<h1>Hamo의 배움과 기록을 모으는 공간</h1>
-				<p class="intro">
-					더 쉽게, 더 깊게 읽는 Swift velog를 통해 배움의 행복을 전달하고
-					있습니다.
-				</p>
-				<div class="actions" aria-label="Planned sections">
-					<a href="/about/">About</a>
-					<a href="/projects/">Projects</a>
-					<a href="/posts/">Posts</a>
-				</div>
-			</section>
-
-			<section class="next-steps" aria-labelledby="next-steps-title">
-				<h2 id="next-steps-title">앞으로 채워갈 섹션</h2>
-				<div class="section-grid">
-					<article>
-						<h3>About</h3>
-						<p>김서영이라는 사람, Hamo라는 닉네임, 배우고 기록하는 방식을 소개합니다.</p>
-					</article>
-					<article>
-						<h3>Projects</h3>
-						<p>Swift와 웹, 개인 프로젝트를 정리하고 과정에서 배운 점을 남깁니다.</p>
-					</article>
-					<article>
-						<h3>Posts</h3>
-						<p>velog 글과 새롭게 쓰는 노트를 모아 오래 꺼내 읽을 수 있게 정리합니다.</p>
-					</article>
-				</div>
-			</section>
-		</main>
-	</body>
-</html>
+	<section class="next-steps" aria-labelledby="next-steps-title">
+		<h2 id="next-steps-title">앞으로 채워갈 섹션</h2>
+		<div class="section-grid">
+			<article>
+				<h3>About</h3>
+				<p>김서영이라는 사람, Hamo라는 닉네임, 배우고 기록하는 방식을 소개합니다.</p>
+			</article>
+			<article>
+				<h3>Projects</h3>
+				<p>Swift와 웹, 개인 프로젝트를 정리하고 과정에서 배운 점을 남깁니다.</p>
+			</article>
+			<article>
+				<h3>Posts</h3>
+				<p>velog 글과 새롭게 쓰는 노트를 모아 오래 꺼내 읽을 수 있게 정리합니다.</p>
+			</article>
+		</div>
+	</section>
+</BaseLayout>
 
 <style>
-	:root {
-		color-scheme: light;
-		font-family:
-			"Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", Inter, ui-sans-serif,
-			system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-		color: #18191b;
-		background: #ffffff;
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-
-	body {
-		min-height: 100vh;
-		margin: 0;
-		background: #ffffff;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.site-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1.5rem;
-		width: min(100% - 2rem, 68rem);
-		margin: 0 auto;
-		padding: 1.5rem 0;
-	}
-
-	.brand {
-		font-size: 1rem;
-		font-weight: 800;
-	}
-
-	nav {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-		gap: 1rem;
-		color: #686f78;
-		font-size: 0.95rem;
-	}
-
-	nav a[aria-current="page"],
-	nav a:hover {
-		color: #202124;
-	}
-
-	main {
-		width: min(100% - 2rem, 68rem);
-		margin: 0 auto;
-		padding: clamp(4rem, 10vw, 8rem) 0 5rem;
-	}
-
 	.hero {
 		max-width: 46rem;
 	}
