@@ -1,0 +1,112 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	role: string;
+	tools: string[];
+	result: string;
+	slug: string;
+}
+
+const { title, description, role, tools, result, slug } = Astro.props;
+const projectUrl = `/projects/${slug}/`;
+---
+
+<article class="project-card">
+	<h2>
+		<a href={projectUrl}>{title}</a>
+	</h2>
+	<p class="description">{description}</p>
+	<dl>
+		<div>
+			<dt>역할</dt>
+			<dd>{role}</dd>
+		</div>
+		<div>
+			<dt>도구</dt>
+			<dd>{tools.join(', ')}</dd>
+		</div>
+		<div>
+			<dt>결과</dt>
+			<dd>{result}</dd>
+		</div>
+	</dl>
+	<a class="detail-link" href={projectUrl}>상세정보 보기</a>
+</article>
+
+<style>
+	.project-card {
+		border-top: 1px solid #e6e8eb;
+		padding: 1.5rem 0;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		line-height: 1.4;
+		word-break: keep-all;
+	}
+
+	h2 a {
+		color: #202124;
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.25em;
+	}
+
+	h2 a:hover {
+		color: #294e75;
+		text-decoration-color: currentColor;
+	}
+
+	.description {
+		max-width: 46rem;
+		margin: 0.85rem 0 0;
+		color: #4b535c;
+		line-height: 1.75;
+		word-break: keep-all;
+	}
+
+	dl {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+		margin: 1.25rem 0 0;
+	}
+
+	dl div {
+		min-width: 0;
+	}
+
+	dt {
+		color: #686f78;
+		font-size: 0.85rem;
+		font-weight: 700;
+	}
+
+	dd {
+		margin: 0.35rem 0 0;
+		color: #2f363d;
+		line-height: 1.6;
+	}
+
+	.detail-link {
+		display: inline-block;
+		margin-top: 1.25rem;
+		color: #294e75;
+		font-weight: 700;
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+
+	.detail-link:hover {
+		color: #202124;
+	}
+
+	@media (max-width: 640px) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0.85rem;
+		}
+	}
+</style>

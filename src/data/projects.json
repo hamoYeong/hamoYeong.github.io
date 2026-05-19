@@ -1,0 +1,20 @@
+[
+	{
+		"title": "탁구 동아리 경기 결과 기록 플랫폼 (Notion)",
+		"description": "탁구 동아리에서 부원 간의 경기 결과를 기록하고 적극적인 활동을 도울 수 있는 Notion 플랫폼을 만들고 관리했습니다.",
+		"role": "제작자, 관리자",
+		"tools": ["Notion"],
+		"result": "게시",
+		"detail": "탁구 동아리에서 경기 결과를 한곳에 기록하기 위해 Notion 기반 플랫폼을 만들었습니다. 부원들이 기록을 확인하고 활동을 이어갈 수 있도록 관리했습니다. 작은 운영 도구라도 실제로 쓰이는 흐름에 맞춰 정리하는 과정이 중요하다는 점을 배웠습니다.",
+		"slug": "table-tennis-club-notion"
+	},
+	{
+		"title": "탁구 동아리 경기 결과 기록 웹 서비스",
+		"description": "Notion 플랫폼에서 발전하여 웹 서비스를 배포하고 관리했습니다.",
+		"role": "제작자, 관리자",
+		"tools": ["FlaskAPI", "Python", "PostgreSQL"],
+		"result": "배포 (현 중단)",
+		"detail": "Notion 플랫폼에서 시작한 기록 방식을 웹 서비스로 확장했습니다. FlaskAPI, Python, PostgreSQL을 사용해 서비스를 배포하고 관리했습니다. 현재는 운영을 중단했지만, 데이터를 저장하고 실제 서비스로 연결하는 과정을 경험했습니다.",
+		"slug": "table-tennis-club-web-service"
+	}
+]

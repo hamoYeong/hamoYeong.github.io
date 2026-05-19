@@ -1,10 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import projects from '../data/projects.json';
 ---
 
 <BaseLayout title="Projects | Hamo" description="Hamo의 프로젝트 목록 페이지입니다.">
 	<section class="page-intro">
 		<h1>Projects</h1>
-		<p>비슷한 형식의 프로젝트 카드와 상세 정보를 반복해서 보여주는 페이지입니다.</p>
+		<p>
+			직접 만들고 관리한 프로젝트를 정리합니다. 카드에 들어가는 항목은 이번
+			수업을 위한 기준이며, 나중에 프로젝트 성격에 맞게 바꿀 수 있습니다.
+		</p>
+	</section>
+
+	<section class="project-list" aria-label="Project list">
+		{projects.map((project) => <ProjectCard {...project} />)}
 	</section>
 </BaseLayout>
+
+<style>
+	.project-list {
+		margin-top: clamp(3rem, 7vw, 5rem);
+	}
+</style>
