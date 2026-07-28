@@ -1,0 +1,181 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+	formatDate,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../../i18n/config';
+import { getUi } from '../../../i18n/ui';
+import {
+	findTranslation,
+	getPosts,
+} from '../../../lib/content';
+
+interface Props {
+	post: CollectionEntry<'posts'>;
+}
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+
+	return posts.map((post) => ({
+		params: {
+			locale: post.data.locale,
+			slug: post.data.slug,
+		},
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const locale = post.data.locale;
+const t = getUi(locale);
+const { Content } = await render(post);
+const allPosts = await getPosts();
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => {
+		const translation = findTranslation(
+			allPosts,
+			post.data.translationKey,
+			targetLocale,
+		);
+		const path = translation
+			? localizedPath(targetLocale, `posts/${translation.data.slug}`)
+			: localizedPath(targetLocale, 'posts');
+
+		return [targetLocale, path];
+	}),
+) as LocalePaths;
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${post.data.title} | Hamo`}
+	description={post.data.description}
+	alternatePaths={alternatePaths}
+>
+	<a class="back" href={localizedPath(locale, 'posts')}>← {t.posts.back}</a>
+
+	<article class="post">
+		<header>
+			<p class="eyebrow">{t.posts.eyebrow}</p>
+			<h1>{post.data.title}</h1>
+			<p class="description">{post.data.description}</p>
+			<dl>
+				<div>
+					<dt>{t.posts.publishedAt}</dt>
+					<dd>{formatDate(post.data.publishedAt, locale)}</dd>
+				</div>
+				{
+					post.data.updatedAt && (
+						<div>
+							<dt>{t.posts.updatedAt}</dt>
+							<dd>{formatDate(post.data.updatedAt, locale)}</dd>
+						</div>
+					)
+				}
+			</dl>
+			<ul class="tags" aria-label={t.posts.tags}>
+				{post.data.tags.map((tag) => <li>{tag}</li>)}
+			</ul>
+		</header>
+
+		<div class="content">
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.back {
+		color: #294e75;
+		font-weight: 700;
+	}
+
+	.post {
+		max-width: 46rem;
+		margin-top: 2.5rem;
+	}
+
+	.eyebrow {
+		margin: 0 0 1rem;
+		color: #4d6f92;
+		font-size: 0.85rem;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(2.5rem, 7vw, 4.5rem);
+		line-height: 1.1;
+		word-break: keep-all;
+	}
+
+	.description {
+		margin: 1.25rem 0 0;
+		color: #4b535c;
+		font-size: 1.15rem;
+		line-height: 1.7;
+	}
+
+	dl {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		margin: 2rem 0 0;
+		font-size: 0.9rem;
+	}
+
+	dl div {
+		display: flex;
+		gap: 0.5rem;
+	}
+
+	dt {
+		font-weight: 800;
+	}
+
+	dd {
+		margin: 0;
+		color: #59616b;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tags li {
+		border-radius: 999px;
+		padding: 0.3rem 0.6rem;
+		background: #f1f3f5;
+		font-size: 0.8rem;
+	}
+
+	.content {
+		margin-top: 3rem;
+		border-top: 1px solid #e0e3e7;
+		padding-top: 2rem;
+	}
+
+	.content :global(h2) {
+		margin-top: 2.75rem;
+		font-size: 1.5rem;
+	}
+
+	.content :global(p),
+	.content :global(li) {
+		line-height: 1.8;
+	}
+
+	.content :global(p) {
+		color: #343a40;
+	}
+</style>

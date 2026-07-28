@@ -1,0 +1,88 @@
+---
+import {
+	languageLabels,
+	locales,
+	localizedPath,
+	type Locale,
+	type LocalePaths,
+} from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
+interface Props {
+	locale: Locale;
+	paths?: Partial<LocalePaths>;
+}
+
+const { locale, paths = {} } = Astro.props;
+const t = getUi(locale);
+---
+
+<nav class="language-switcher" aria-label={t.language.label}>
+	{
+		locales.map((targetLocale) => (
+			<a
+				href={paths[targetLocale] ?? localizedPath(targetLocale)}
+				hreflang={targetLocale}
+				lang={targetLocale}
+				aria-current={targetLocale === locale ? 'page' : undefined}
+				data-locale-selection={targetLocale}
+			>
+				{languageLabels[targetLocale]}
+			</a>
+		))
+	}
+</nav>
+
+<script>
+	import { localeStorageKey } from '../i18n/config';
+
+	document.querySelectorAll('[data-locale-selection]').forEach((element) => {
+		element.addEventListener('click', (event) => {
+			const selectedLocale = (event.currentTarget as HTMLElement).dataset
+				.localeSelection;
+
+			if (!selectedLocale) return;
+
+			try {
+				window.localStorage.setItem(localeStorageKey, selectedLocale);
+			} catch {
+				// Navigation still works when storage is unavailable.
+			}
+		});
+	});
+</script>
+
+<style>
+	.language-switcher {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		border-left: 1px solid #d9dde2;
+		padding-left: 0.75rem;
+		font-size: 0.8rem;
+	}
+
+	a {
+		border-radius: 999px;
+		padding: 0.35rem 0.55rem;
+		color: #686f78;
+		white-space: nowrap;
+	}
+
+	a[aria-current='page'] {
+		background: #eef2f6;
+		color: #202124;
+		font-weight: 800;
+	}
+
+	a:hover {
+		color: #202124;
+	}
+
+	@media (max-width: 640px) {
+		.language-switcher {
+			border-left: 0;
+			padding-left: 0;
+		}
+	}
+</style>
