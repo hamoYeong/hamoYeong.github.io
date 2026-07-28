@@ -1,0 +1,102 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { localizedPath, type Locale, type LocalePaths } from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
+interface NavigationItem {
+	href: string;
+	label: string;
+}
+
+interface Props {
+	locale: Locale;
+	items: NavigationItem[];
+	currentPath: string;
+	alternatePaths?: Partial<LocalePaths>;
+}
+
+const { locale, items, currentPath, alternatePaths } = Astro.props;
+const t = getUi(locale);
+const normalizedPath = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+const isCurrent = (href: string) => {
+	return href === localizedPath(locale)
+		? normalizedPath === href
+		: normalizedPath.startsWith(href);
+};
+---
+
+<details class="mobile-navigation">
+	<summary>{t.nav.menu}</summary>
+	<div class="mobile-navigation__panel">
+		<nav aria-label={t.nav.label}>
+			{
+				items.map((item) => (
+					<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+		<LanguageSwitcher locale={locale} paths={alternatePaths} />
+	</div>
+</details>
+
+<style>
+	.mobile-navigation {
+		display: none;
+	}
+
+	summary {
+		min-width: 3rem;
+		min-height: 2.75rem;
+		border: var(--border-default);
+		border-radius: var(--radius-pill);
+		padding: 0.45rem var(--space-4);
+		cursor: pointer;
+		color: var(--color-text);
+		font-size: var(--text-sm);
+		font-weight: 800;
+		list-style: none;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.mobile-navigation__panel {
+		position: absolute;
+		top: calc(100% + 1px);
+		right: 0;
+		left: 0;
+		display: grid;
+		gap: var(--space-6);
+		border-bottom: var(--border-default);
+		padding: var(--space-5) var(--gutter) var(--space-6);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-card);
+	}
+
+	nav {
+		display: grid;
+	}
+
+	nav a {
+		display: flex;
+		min-height: 3rem;
+		align-items: center;
+		border-bottom: var(--border-default);
+		color: var(--color-text-soft);
+		font-weight: 800;
+		text-decoration: none;
+	}
+
+	nav a[aria-current='page'] {
+		color: var(--color-accent-strong);
+	}
+
+	@media (max-width: 760px) {
+		.mobile-navigation {
+			display: block;
+		}
+	}
+</style>
