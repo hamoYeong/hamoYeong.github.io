@@ -20,38 +20,73 @@ export const ui = {
 			label: '언어 선택',
 		},
 		home: {
-			eyebrow: 'Personal Homepage',
+			eyebrow: 'iOS Developer · Problem Solver',
 			name: '김서영',
 			alias: 'Hamo',
-			title: 'Swift를 배우고 기록하는 Hamo입니다.',
+			title: '복잡한 문제를 구조로 풀고, 이해할 수 있는 언어로 연결합니다.',
 			intro:
-				'더 쉽게, 더 깊게 읽는 Swift 기록을 통해 배움의 행복을 전달하고 있습니다.',
+				'사용자의 실제 문제에서 시작해 데이터와 책임의 경계를 설계하는 iOS 개발자입니다. 구현을 끝내는 데서 멈추지 않고, 팀이 함께 이해하고 다음 판단을 내릴 수 있는 구조를 만듭니다.',
 			aboutAction: 'About에서 더 알아보기',
-			projectsAction: 'Projects 보기',
-			postsAction: 'Posts 읽기',
-			interestsTitle: '관심 분야',
-			interests: 'iOS, Swift, 교육, 배움을 중심으로 공부하고 기록합니다.',
-			guideTitle: '어디로 이동하면 좋을까요?',
-			guides: [
+			projectsAction: '프로젝트 살펴보기',
+			careEyebrow: 'What I Care About',
+			careTitle: '기능보다 먼저 생각하는 것',
+			careIntro:
+				'코드를 쓰기 전에 문제와 데이터, 함께 일하는 사람의 이해를 먼저 확인합니다.',
+			carePoints: [
 				{
-					title: 'About',
-					description: '처음 방문했다면 김서영과 Hamo를 먼저 알아보세요.',
-					action: 'About 페이지로 이동',
-					path: 'about',
+					title: 'Problem Framing',
+					description: '사용자가 바라는 변화를 기능 이름보다 먼저 정의합니다.',
 				},
 				{
-					title: 'Projects',
-					description: '문제를 발견하고 해결한 과정과 배운 점을 정리합니다.',
-					action: 'Projects 페이지로 이동',
-					path: 'projects',
+					title: 'Architecture',
+					description: '화면보다 데이터의 원본과 각 계층의 책임을 먼저 나눕니다.',
 				},
 				{
-					title: 'Posts',
-					description: 'Swift와 제품 개발을 배우며 정리한 글을 모았습니다.',
-					action: 'Posts 페이지로 이동',
-					path: 'posts',
+					title: 'Shared Understanding',
+					description: '완성된 답을 전달하기보다 팀이 판단 기준을 함께 이해하도록 돕습니다.',
+				},
+				{
+					title: 'Computational Thinking',
+					description: 'AI는 구현을 돕게 하되 문제를 나누고 결과를 판단하는 일은 직접 합니다.',
 				},
 			],
+			featuredEyebrow: 'Featured Projects',
+			featuredTitle: '문제와 사람 사이에서 만든 것',
+			featuredIntro:
+				'공개 근거가 확인된 프로젝트 중 서로 다른 문제 해결 방식을 보여주는 세 가지를 골랐습니다.',
+			journeyEyebrow: 'Current Journey',
+			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
+			journeyDescription:
+				'iOS 제품을 만들며 화면보다 데이터 흐름과 책임의 경계를 먼저 설명하는 연습을 하고 있습니다. C4에서는 Record 서비스의 계약과 Preview·실제 구현을 나누고, 팀이 같은 구조를 이해하도록 흐름을 함께 정리했습니다.',
+			journeyAction: '성장 과정 보기',
+			learningsEyebrow: 'Selected Learnings',
+			learningsTitle: '경험 뒤에 남은 판단 기준',
+			learnings: [
+				{
+					title: '구조는 설명할 수 있어야 합니다.',
+					description:
+						'좋은 아키텍처는 계층이 많은 구조가 아니라, 데이터가 어디에서 오고 누가 바꿀 수 있는지 팀이 함께 설명할 수 있는 구조였습니다.',
+				},
+				{
+					title: 'AI의 답보다 전제를 먼저 봅니다.',
+					description:
+						'AI가 만든 구현을 평가하려면 문제, 실패 조건과 데이터의 책임을 먼저 제 언어로 정해야 했습니다.',
+				},
+				{
+					title: '규칙은 사람의 자율성을 남겨야 합니다.',
+					description:
+						'SCUTTA 운영 도구에서는 상대를 강제하기보다 새로운 사람과 경기할 이유를 설계했습니다.',
+				},
+			],
+			postsEyebrow: 'Latest Posts',
+			postsTitle: '최근에 정리한 생각',
+			postsIntro: '구현 방법뿐 아니라 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
+			postsAction: '모든 글 보기',
+			contactEyebrow: 'Contact',
+			contactTitle: '함께 풀고 싶은 문제가 있다면',
+			contactDescription:
+				'공개 프로젝트와 현재 학습 과정은 GitHub에서 확인할 수 있습니다.',
+			githubAction: 'GitHub에서 보기',
 		},
 		about: {
 			eyebrow: 'About',
@@ -117,38 +152,74 @@ export const ui = {
 			label: 'Choose language',
 		},
 		home: {
-			eyebrow: 'Personal Homepage',
+			eyebrow: 'iOS Developer · Problem Solver',
 			name: 'Seoyeong Kim',
 			alias: 'Hamo',
-			title: "I'm Hamo, learning Swift and sharing the journey.",
+			title: 'I turn complex problems into structures people can understand.',
 			intro:
-				'I share the joy of learning through approachable, in-depth notes on Swift.',
-			aboutAction: 'Learn more about me',
-			projectsAction: 'View projects',
-			postsAction: 'Read posts',
-			interestsTitle: 'Interests',
-			interests: 'I study and write about iOS, Swift, education, and learning.',
-			guideTitle: 'Where would you like to go?',
-			guides: [
+				"I'm an iOS developer who starts with real user problems and defines the boundaries of data and responsibility. I aim beyond finishing an implementation: I build structures a team can understand and use for its next decision.",
+			aboutAction: 'Learn more in About',
+			projectsAction: 'Explore projects',
+			careEyebrow: 'What I Care About',
+			careTitle: 'What comes before features',
+			careIntro:
+				'Before writing code, I clarify the problem, the data, and what the people working together need to understand.',
+			carePoints: [
 				{
-					title: 'About',
-					description: 'Start here to learn more about Seoyeong and Hamo.',
-					action: 'Go to About',
-					path: 'about',
+					title: 'Problem Framing',
+					description: 'Define the change the user needs before naming a feature.',
 				},
 				{
-					title: 'Projects',
-					description: 'Explore the problems I found, the decisions I made, and what I learned.',
-					action: 'Go to Projects',
-					path: 'projects',
+					title: 'Architecture',
+					description: 'Separate sources of truth and layer responsibilities before polishing screens.',
 				},
 				{
-					title: 'Posts',
-					description: 'Read notes from learning Swift and building products.',
-					action: 'Go to Posts',
-					path: 'posts',
+					title: 'Shared Understanding',
+					description: 'Help a team understand the criteria behind a decision instead of handing over a finished answer.',
+				},
+				{
+					title: 'Computational Thinking',
+					description: 'Use AI to support implementation while retaining responsibility for decomposition and judgment.',
 				},
 			],
+			featuredEyebrow: 'Featured Projects',
+			featuredTitle: 'Built between problems and people',
+			featuredIntro:
+				'Three projects with verifiable public evidence, selected to show different approaches to problem solving.',
+			journeyEyebrow: 'Current Journey',
+			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
+			journeyDescription:
+				"I'm building iOS products while practicing how to explain data flow and responsibility before screens. During C4, I separated the Record service contract from preview and production implementations, then worked with the team to build a shared understanding of the flow.",
+			journeyAction: 'View my journey',
+			learningsEyebrow: 'Selected Learnings',
+			learningsTitle: 'Principles that remained after the work',
+			learnings: [
+				{
+					title: 'A structure should be explainable.',
+					description:
+						'Good architecture was not the one with more layers, but the one where the team could explain where data came from and who could change it.',
+				},
+				{
+					title: 'Question the premise before the AI answer.',
+					description:
+						'Evaluating AI-generated work required me to define the problem, failure conditions, and data ownership in my own words first.',
+				},
+				{
+					title: 'Rules should preserve agency.',
+					description:
+						'In the SCUTTA operations tool, I designed reasons to meet new opponents instead of forcing a match.',
+				},
+			],
+			postsEyebrow: 'Latest Posts',
+			postsTitle: 'Recent notes',
+			postsIntro:
+				'I document not only implementation methods, but why a choice was made and what remains for the next decision.',
+			postsAction: 'View all posts',
+			contactEyebrow: 'Contact',
+			contactTitle: "Let's talk about a problem worth solving",
+			contactDescription:
+				'My public projects and current learning journey are available on GitHub.',
+			githubAction: 'View GitHub',
 		},
 		about: {
 			eyebrow: 'About',
