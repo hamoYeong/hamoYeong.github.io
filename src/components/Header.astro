@@ -1,0 +1,143 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import MobileNavigation from './MobileNavigation.astro';
+import { localizedPath, type Locale, type LocalePaths } from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
+interface Props {
+	locale: Locale;
+	currentPath: string;
+	alternatePaths?: Partial<LocalePaths>;
+}
+
+const { locale, currentPath, alternatePaths } = Astro.props;
+const t = getUi(locale);
+const navItems = [
+	{ href: localizedPath(locale), label: t.nav.home },
+	{ href: localizedPath(locale, 'about'), label: t.nav.about },
+	{ href: localizedPath(locale, 'projects'), label: t.nav.projects },
+	{ href: localizedPath(locale, 'posts'), label: t.nav.posts },
+];
+
+const normalizedPath = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+const isCurrent = (href: string) => {
+	return href === localizedPath(locale)
+		? normalizedPath === href
+		: normalizedPath.startsWith(href);
+};
+---
+
+<header class="site-header">
+	<div class="site-header__inner">
+		<a class="brand" href={localizedPath(locale)} aria-label={`Hamo · ${t.nav.home}`}>
+			<span aria-hidden="true">H</span>
+			<strong>Hamo</strong>
+		</a>
+
+		<div class="desktop-navigation">
+			<nav class="main-navigation" aria-label={t.nav.label}>
+				{
+					navItems.map((item) => (
+						<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+							{item.label}
+						</a>
+					))
+				}
+			</nav>
+			<LanguageSwitcher locale={locale} paths={alternatePaths} />
+		</div>
+
+		<MobileNavigation
+			locale={locale}
+			items={navItems}
+			currentPath={currentPath}
+			alternatePaths={alternatePaths}
+		/>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: relative;
+		z-index: 20;
+		border-bottom: var(--border-default);
+		background: color-mix(in srgb, var(--color-canvas) 94%, transparent);
+	}
+
+	.site-header__inner {
+		display: flex;
+		width: min(calc(100% - (var(--gutter) * 2)), var(--width-content));
+		min-height: 4.75rem;
+		margin-inline: auto;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-6);
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-3);
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	.brand span {
+		display: grid;
+		width: 2rem;
+		height: 2rem;
+		place-items: center;
+		border-radius: 50%;
+		background: var(--color-accent);
+		color: var(--color-on-accent);
+		font-size: var(--text-sm);
+		font-weight: 900;
+	}
+
+	.brand strong {
+		font-size: 1.05rem;
+		letter-spacing: -0.01em;
+	}
+
+	.desktop-navigation,
+	.main-navigation {
+		display: flex;
+		align-items: center;
+	}
+
+	.desktop-navigation {
+		gap: var(--space-5);
+	}
+
+	.main-navigation {
+		gap: var(--space-2);
+	}
+
+	.main-navigation a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		border-radius: var(--radius-pill);
+		padding-inline: var(--space-4);
+		color: var(--color-text-soft);
+		font-size: var(--text-sm);
+		font-weight: 750;
+		text-decoration: none;
+	}
+
+	.main-navigation a:hover,
+	.main-navigation a[aria-current='page'] {
+		background: var(--color-surface-muted);
+		color: var(--color-text);
+	}
+
+	@media (max-width: 760px) {
+		.site-header__inner {
+			min-height: 4.25rem;
+		}
+
+		.desktop-navigation {
+			display: none;
+		}
+	}
+</style>

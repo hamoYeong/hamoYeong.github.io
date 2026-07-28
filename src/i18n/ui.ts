@@ -6,9 +6,11 @@ export const ui = {
 			defaultTitle: '김서영 | Hamo',
 			defaultDescription: '김서영(Seoyeong Kim), Hamo의 개인 홈페이지입니다.',
 			footer: '배우고 기록하는 Hamo의 개인 홈페이지',
+			skipLink: '본문으로 건너뛰기',
 		},
 		nav: {
 			label: '주요 메뉴',
+			menu: '메뉴',
 			home: 'Home',
 			about: 'About',
 			projects: 'Projects',
@@ -80,6 +82,8 @@ export const ui = {
 			technologies: '사용 도구',
 			outcomes: '결과',
 			learnings: '배운 점',
+			repository: '저장소 보기',
+			demo: '데모 보기',
 		},
 		posts: {
 			eyebrow: 'Posts',
@@ -99,9 +103,11 @@ export const ui = {
 			defaultDescription:
 				'The personal website of Seoyeong Kim, also known as Hamo.',
 			footer: "Hamo's personal space for learning and sharing",
+			skipLink: 'Skip to content',
 		},
 		nav: {
 			label: 'Main navigation',
+			menu: 'Menu',
 			home: 'Home',
 			about: 'About',
 			projects: 'Projects',
@@ -174,6 +180,8 @@ export const ui = {
 			technologies: 'Tools',
 			outcomes: 'Outcomes',
 			learnings: 'Learnings',
+			repository: 'View repository',
+			demo: 'View demo',
 		},
 		posts: {
 			eyebrow: 'Posts',

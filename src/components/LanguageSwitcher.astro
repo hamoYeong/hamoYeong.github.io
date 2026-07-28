@@ -56,30 +56,34 @@ const t = getUi(locale);
 	.language-switcher {
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
-		border-left: 1px solid #d9dde2;
-		padding-left: 0.75rem;
-		font-size: 0.8rem;
+		gap: var(--space-1);
+		border-left: var(--border-default);
+		padding-left: var(--space-4);
+		font-size: var(--text-xs);
 	}
 
 	a {
-		border-radius: 999px;
-		padding: 0.35rem 0.55rem;
-		color: #686f78;
+		display: inline-flex;
+		min-height: 2.5rem;
+		align-items: center;
+		border-radius: var(--radius-pill);
+		padding: 0.35rem var(--space-3);
+		color: var(--color-text-soft);
+		text-decoration: none;
 		white-space: nowrap;
 	}
 
 	a[aria-current='page'] {
-		background: #eef2f6;
-		color: #202124;
+		background: var(--color-surface-muted);
+		color: var(--color-text);
 		font-weight: 800;
 	}
 
 	a:hover {
-		color: #202124;
+		color: var(--color-accent-strong);
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 760px) {
 		.language-switcher {
 			border-left: 0;
 			padding-left: 0;
