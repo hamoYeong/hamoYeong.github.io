@@ -39,7 +39,7 @@ src/
     └── content.ts
 ```
 
-locale 디렉터리는 콘텐츠 파일이 생길 때 추가한다. 현재 샘플은 한국어 원문만 있으며 영어 파일은 번역이 준비된 뒤 추가한다.
+locale 디렉터리는 콘텐츠 파일이 생길 때 추가한다. 영어 파일은 한국어 원문이 완성되고 번역이 준비된 뒤 추가한다.
 
 ## 3. 파일 이름과 식별자
 
@@ -60,7 +60,24 @@ translationKey: scutta-notion-system
 - `locale`: `ko` 또는 `en`
 - `translationKey`: 서로 번역 관계인 콘텐츠가 공유하는 값
 
-한국어와 영어 제목이 달라도 `translationKey`는 같아야 한다. 번역본이 없으면 파일을 만들지 않는다. Ticket 03의 언어 전환에서는 같은 `translationKey`의 반대 locale을 찾고, 없으면 해당 언어의 목록 페이지로 이동한다.
+한국어와 영어 제목이 달라도 `translationKey`는 같아야 한다. 번역본이 없으면 파일을 만들지 않는다. 언어 전환에서는 같은 `translationKey`의 반대 locale을 찾고, 없으면 해당 언어의 목록 페이지로 이동한다.
+
+locale과 지원 언어는 `src/i18n/config.ts`에서 관리한다. 언어를 추가할 때는 이 파일의 `locales`, 언어 이름, 날짜 locale과 `src/i18n/ui.ts`의 UI 사전을 함께 추가하고 Astro의 `i18n.locales` 설정도 맞춘다.
+
+공개 URL은 다음 구조를 사용한다.
+
+```text
+/ko/
+/ko/about/
+/ko/projects/{slug}/
+/ko/posts/{slug}/
+/en/
+/en/about/
+/en/projects/{slug}/
+/en/posts/{slug}/
+```
+
+루트 `/`는 저장된 언어 선택을 먼저 확인하고, 없으면 브라우저 언어를 사용한다. 사용자가 Header에서 선택한 언어는 브라우저 저장소에 보관된다.
 
 ## 4. 공통 작성 원칙
 
