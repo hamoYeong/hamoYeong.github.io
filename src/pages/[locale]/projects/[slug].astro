@@ -1,0 +1,206 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../../i18n/config';
+import { getUi } from '../../../i18n/ui';
+import {
+	findTranslation,
+	getProjects,
+} from '../../../lib/content';
+
+interface Props {
+	project: CollectionEntry<'projects'>;
+}
+
+export async function getStaticPaths() {
+	const projects = await getProjects();
+
+	return projects.map((project) => ({
+		params: {
+			locale: project.data.locale,
+			slug: project.data.slug,
+		},
+		props: { project },
+	}));
+}
+
+const { project } = Astro.props;
+const locale = project.data.locale;
+const t = getUi(locale);
+const { Content } = await render(project);
+const allProjects = await getProjects();
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => {
+		const translation = findTranslation(
+			allProjects,
+			project.data.translationKey,
+			targetLocale,
+		);
+		const path = translation
+			? localizedPath(targetLocale, `projects/${translation.data.slug}`)
+			: localizedPath(targetLocale, 'projects');
+
+		return [targetLocale, path];
+	}),
+) as LocalePaths;
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${project.data.title} | Hamo`}
+	description={project.data.summary}
+	alternatePaths={alternatePaths}
+>
+	<a class="back" href={localizedPath(locale, 'projects')}>← {t.projects.back}</a>
+
+	<article class="project">
+		<header>
+			<p class="eyebrow">{t.projects.eyebrow}</p>
+			<h1>{project.data.title}</h1>
+			<p class="summary">{project.data.summary}</p>
+		</header>
+
+		<dl>
+			<div>
+				<dt>{t.projects.period}</dt>
+				<dd>{project.data.period.label}</dd>
+			</div>
+			<div>
+				<dt>{t.projects.role}</dt>
+				<dd>{project.data.role.join(', ')}</dd>
+			</div>
+			<div>
+				<dt>{t.projects.team}</dt>
+				<dd>{project.data.team.description}</dd>
+			</div>
+		</dl>
+
+		<div class="facts">
+			<section>
+				<h2>{t.projects.problem}</h2>
+				<p>{project.data.problem}</p>
+			</section>
+			<section>
+				<h2>{t.projects.contributions}</h2>
+				<ul>
+					{project.data.contributions.map((item) => <li>{item}</li>)}
+				</ul>
+			</section>
+			<section>
+				<h2>{t.projects.outcomes}</h2>
+				<ul>
+					{project.data.outcomes.map((item) => <li>{item}</li>)}
+				</ul>
+			</section>
+			<section>
+				<h2>{t.projects.learnings}</h2>
+				<ul>
+					{project.data.learnings.map((item) => <li>{item}</li>)}
+				</ul>
+			</section>
+		</div>
+
+		<div class="content">
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.back {
+		color: #294e75;
+		font-weight: 700;
+	}
+
+	.project {
+		max-width: 48rem;
+		margin-top: 2.5rem;
+	}
+
+	.eyebrow {
+		margin: 0 0 1rem;
+		color: #4d6f92;
+		font-size: 0.85rem;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(2.5rem, 7vw, 4.5rem);
+		line-height: 1.1;
+		word-break: keep-all;
+	}
+
+	.summary {
+		margin: 1.25rem 0 0;
+		color: #4b535c;
+		font-size: 1.15rem;
+		line-height: 1.7;
+	}
+
+	dl {
+		display: grid;
+		gap: 1rem;
+		margin: 2.5rem 0 0;
+		border-block: 1px solid #e0e3e7;
+		padding: 1.5rem 0;
+	}
+
+	dl div {
+		display: grid;
+		grid-template-columns: 6rem 1fr;
+		gap: 1rem;
+	}
+
+	dt {
+		font-weight: 800;
+	}
+
+	dd {
+		margin: 0;
+		color: #59616b;
+		line-height: 1.6;
+	}
+
+	.facts,
+	.content {
+		margin-top: 3rem;
+	}
+
+	.facts {
+		display: grid;
+		gap: 2rem;
+	}
+
+	h2 {
+		font-size: 1.25rem;
+	}
+
+	p,
+	li,
+	.content :global(p),
+	.content :global(li) {
+		line-height: 1.75;
+	}
+
+	.content {
+		border-top: 1px solid #e0e3e7;
+		padding-top: 2rem;
+	}
+
+	.content :global(h2) {
+		margin-top: 2.5rem;
+	}
+
+	@media (max-width: 640px) {
+		dl div {
+			grid-template-columns: 1fr;
+			gap: 0.25rem;
+		}
+	}
+</style>

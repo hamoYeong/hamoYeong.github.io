@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+	getLocaleStaticPaths,
+	isLocale,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../i18n/config';
+import { getUi } from '../../i18n/ui';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam;
+const t = getUi(locale);
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => [targetLocale, localizedPath(targetLocale)]),
+) as LocalePaths;
+---
+
+<BaseLayout locale={locale} alternatePaths={alternatePaths}>
+	<section class="hero">
+		<p class="eyebrow">{t.home.eyebrow}</p>
+		<p class="name">{t.home.name} <span>{t.home.alias}</span></p>
+		<h1>{t.home.title}</h1>
+		<p class="intro">{t.home.intro}</p>
+		<div class="actions">
+			<a class="primary-link" href={localizedPath(locale, 'about')}>
+				{t.home.aboutAction}
+			</a>
+			<a href={localizedPath(locale, 'projects')}>{t.home.projectsAction}</a>
+			<a href={localizedPath(locale, 'posts')}>{t.home.postsAction}</a>
+		</div>
+	</section>
+
+	<section class="interests" aria-labelledby="interests-title">
+		<h2 id="interests-title">{t.home.interestsTitle}</h2>
+		<p>{t.home.interests}</p>
+	</section>
+
+	<section class="site-guide" aria-labelledby="site-guide-title">
+		<h2 id="site-guide-title">{t.home.guideTitle}</h2>
+		<div class="section-grid">
+			{
+				t.home.guides.map((guide) => (
+					<article>
+						<h3>{guide.title}</h3>
+						<p>{guide.description}</p>
+						<a href={localizedPath(locale, guide.path)}>{guide.action}</a>
+					</article>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.hero {
+		max-width: 46rem;
+	}
+
+	.eyebrow {
+		margin: 0 0 1.25rem;
+		color: #4d6f92;
+		font-size: 0.85rem;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	.name {
+		margin: 0 0 1.25rem;
+		color: #2a2d31;
+		font-size: 1.1rem;
+		font-weight: 800;
+	}
+
+	.name span {
+		margin-left: 0.5rem;
+		color: #717982;
+		font-weight: 600;
+	}
+
+	h1 {
+		max-width: 15ch;
+		margin: 0;
+		font-size: clamp(3.25rem, 7vw, 6rem);
+		line-height: 1.05;
+		word-break: keep-all;
+	}
+
+	.intro {
+		max-width: 37rem;
+		margin: 1.75rem 0 0;
+		color: #4b535c;
+		font-size: clamp(1.05rem, 2vw, 1.25rem);
+		line-height: 1.75;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 2.25rem;
+	}
+
+	.actions a {
+		border: 1px solid #d9dde2;
+		border-radius: 8px;
+		padding: 0.75rem 1rem;
+		color: #2f363d;
+		font-weight: 700;
+	}
+
+	.actions a:hover {
+		border-color: #4d6f92;
+		color: #294e75;
+	}
+
+	.actions .primary-link {
+		border-color: #2f363d;
+		background: #202124;
+		color: #fff;
+	}
+
+	.interests,
+	.site-guide {
+		margin-top: clamp(4rem, 8vw, 7rem);
+		border-top: 1px solid #e6e8eb;
+		padding-top: 2rem;
+	}
+
+	h2 {
+		margin: 0 0 1.25rem;
+		font-size: 1.15rem;
+	}
+
+	.interests p,
+	article p {
+		color: #59616b;
+		line-height: 1.7;
+	}
+
+	.interests p {
+		max-width: 38rem;
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.section-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	article {
+		border-top: 1px solid #e6e8eb;
+		padding-top: 1rem;
+	}
+
+	h3,
+	article p {
+		margin: 0;
+	}
+
+	article p {
+		margin-top: 0.75rem;
+	}
+
+	article a {
+		display: inline-block;
+		margin-top: 1rem;
+		color: #294e75;
+		font-weight: 700;
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+
+	@media (max-width: 640px) {
+		h1 {
+			font-size: clamp(2.75rem, 14vw, 4rem);
+		}
+
+		.section-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+	}
+</style>

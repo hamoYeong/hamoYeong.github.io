@@ -1,35 +1,49 @@
 ---
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import {
+	defaultLocale,
+	localizedPath,
+	type Locale,
+	type LocalePaths,
+} from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
 interface Props {
 	title?: string;
 	description?: string;
+	locale?: Locale;
+	alternatePaths?: Partial<LocalePaths>;
 }
 
 const {
-	title = '김서영 | Hamo',
-	description = '김서영(Seoyeong Kim), Hamo의 개인 홈페이지입니다.',
+	locale = defaultLocale,
+	alternatePaths,
 } = Astro.props;
+const t = getUi(locale);
+const title = Astro.props.title ?? t.site.defaultTitle;
+const description = Astro.props.description ?? t.site.defaultDescription;
 
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-	{ href: '/', label: 'Home' },
-	{ href: '/about/', label: 'About' },
-	{ href: '/projects/', label: 'Projects' },
-	{ href: '/posts/', label: 'Posts' },
+	{ href: localizedPath(locale), label: t.nav.home },
+	{ href: localizedPath(locale, 'about'), label: t.nav.about },
+	{ href: localizedPath(locale, 'projects'), label: t.nav.projects },
+	{ href: localizedPath(locale, 'posts'), label: t.nav.posts },
 ];
 
 const isCurrent = (href: string) => {
 	const normalizedPath = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
 
-	if (href === '/') {
-		return currentPath === '/';
+	if (href === localizedPath(locale)) {
+		return normalizedPath === href;
 	}
 
 	return normalizedPath.startsWith(href);
 };
 ---
 
-<html lang="ko">
+<html lang={locale}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -41,16 +55,22 @@ const isCurrent = (href: string) => {
 	</head>
 	<body>
 		<header class="site-header">
-			<a class="brand" href="/">Hamo</a>
-			<nav aria-label="Main navigation">
-				{
-					navItems.map((item) => (
-						<a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
-							{item.label}
-						</a>
-					))
-				}
-			</nav>
+			<a class="brand" href={localizedPath(locale)}>Hamo</a>
+			<div class="header-tools">
+				<nav class="main-navigation" aria-label={t.nav.label}>
+					{
+						navItems.map((item) => (
+							<a
+								href={item.href}
+								aria-current={isCurrent(item.href) ? 'page' : undefined}
+							>
+								{item.label}
+							</a>
+						))
+					}
+				</nav>
+				<LanguageSwitcher locale={locale} paths={alternatePaths} />
+			</div>
 		</header>
 
 		<main>
@@ -58,7 +78,7 @@ const isCurrent = (href: string) => {
 		</main>
 
 		<footer class="site-footer">
-			<p>© Hamo</p>
+			<p>© Hamo · {t.site.footer}</p>
 		</footer>
 	</body>
 </html>
@@ -108,8 +128,18 @@ const isCurrent = (href: string) => {
 		font-weight: 800;
 	}
 
-	nav {
+	.header-tools,
+	.main-navigation {
 		display: flex;
+		align-items: center;
+	}
+
+	.header-tools {
+		justify-content: flex-end;
+		gap: 0.75rem;
+	}
+
+	.main-navigation {
 		flex-wrap: wrap;
 		justify-content: flex-end;
 		gap: 1rem;
@@ -117,14 +147,14 @@ const isCurrent = (href: string) => {
 		font-size: 0.95rem;
 	}
 
-	nav a {
+	.main-navigation a {
 		text-decoration: underline;
 		text-decoration-color: transparent;
 		text-underline-offset: 0.25em;
 	}
 
-	nav a[aria-current="page"],
-	nav a:hover {
+	.main-navigation a[aria-current="page"],
+	.main-navigation a:hover {
 		color: #202124;
 		text-decoration-color: currentColor;
 	}
@@ -169,7 +199,13 @@ const isCurrent = (href: string) => {
 			flex-direction: column;
 		}
 
-		nav {
+		.header-tools {
+			width: 100%;
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.main-navigation {
 			justify-content: flex-start;
 		}
 	}

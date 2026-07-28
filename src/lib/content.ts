@@ -3,9 +3,7 @@ import {
 	type CollectionEntry,
 	type CollectionKey,
 } from 'astro:content';
-
-export const locales = ['ko', 'en'] as const;
-export type Locale = (typeof locales)[number];
+import type { Locale } from '../i18n/config';
 
 interface LocalizedEntry {
 	data: {

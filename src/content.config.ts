@@ -1,8 +1,9 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { locales } from './i18n/config';
 
-const localeSchema = z.enum(['ko', 'en']);
+const localeSchema = z.enum(locales);
 const slugSchema = z
 	.string()
 	.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use a lowercase kebab-case slug.');
@@ -17,6 +18,10 @@ const localizedFields = {
 	slug: slugSchema,
 	locale: localeSchema,
 	translationKey: translationKeySchema,
+};
+
+const generateLocalizedId = ({ entry }: { entry: string }) => {
+	return entry.replace(/\.[^/.]+$/, '');
 };
 
 const periodSchema = z.object({
@@ -40,6 +45,7 @@ const projects = defineCollection({
 	loader: glob({
 		base: './src/content/projects',
 		pattern: '**/[^_]*.md',
+		generateId: generateLocalizedId,
 	}),
 	schema: z.object({
 		...localizedFields,
@@ -69,6 +75,7 @@ const posts = defineCollection({
 	loader: glob({
 		base: './src/content/posts',
 		pattern: '**/[^_]*.md',
+		generateId: generateLocalizedId,
 	}),
 	schema: z.object({
 		...localizedFields,
@@ -88,6 +95,7 @@ const experiences = defineCollection({
 	loader: glob({
 		base: './src/content/experiences',
 		pattern: '**/[^_]*.md',
+		generateId: generateLocalizedId,
 	}),
 	schema: z.object({
 		...localizedFields,
@@ -106,6 +114,7 @@ const challenges = defineCollection({
 	loader: glob({
 		base: './src/content/challenges',
 		pattern: '**/[^_]*.md',
+		generateId: generateLocalizedId,
 	}),
 	schema: z.object({
 		...localizedFields,

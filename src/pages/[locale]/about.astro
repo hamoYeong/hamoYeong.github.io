@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+	getLocaleStaticPaths,
+	isLocale,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../i18n/config';
+import { getUi } from '../../i18n/ui';
+import { getExperiences } from '../../lib/content';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam;
+const t = getUi(locale);
+const experiences = await getExperiences({ locale });
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => [
+		targetLocale,
+		localizedPath(targetLocale, 'about'),
+	]),
+) as LocalePaths;
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${t.nav.about} | Hamo`}
+	description={t.about.intro}
+	alternatePaths={alternatePaths}
+>
+	<section class="page-intro">
+		<p class="eyebrow">{t.about.eyebrow}</p>
+		<h1>{t.about.title}</h1>
+		<p>{t.about.intro}</p>
+	</section>
+
+	<section class="section" aria-labelledby="principles-title">
+		<h2 id="principles-title">{t.about.principlesTitle}</h2>
+		<ul>
+			{t.about.principles.map((principle) => <li>{principle}</li>)}
+		</ul>
+	</section>
+
+	<section class="section" aria-labelledby="experience-title">
+		<h2 id="experience-title">{t.about.experienceTitle}</h2>
+		{
+			experiences.length > 0 ? (
+				<div class="experience-list">
+					{experiences.map((experience) => (
+						<article>
+							<p class="period">{experience.data.period.label}</p>
+							<h3>{experience.data.title}</h3>
+							<p class="organization">{experience.data.organization}</p>
+							<p>{experience.data.summary}</p>
+						</article>
+					))}
+				</div>
+			) : (
+				<p class="empty">{t.about.experienceEmpty}</p>
+			)
+		}
+	</section>
+</BaseLayout>
+
+<style>
+	.eyebrow {
+		margin: 0 0 1rem;
+		color: #4d6f92;
+		font-size: 0.85rem;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	.section {
+		margin-top: clamp(3.5rem, 8vw, 6rem);
+		border-top: 1px solid #e6e8eb;
+		padding-top: 2rem;
+	}
+
+	h2 {
+		margin: 0 0 1.5rem;
+		font-size: 1.35rem;
+	}
+
+	ul {
+		display: grid;
+		gap: 0.75rem;
+		max-width: 48rem;
+		margin: 0;
+		padding-left: 1.25rem;
+		color: #4b535c;
+		line-height: 1.7;
+	}
+
+	.experience-list {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	article {
+		max-width: 48rem;
+		border-left: 2px solid #d9dde2;
+		padding-left: 1.25rem;
+	}
+
+	article p {
+		margin: 0.5rem 0 0;
+		color: #59616b;
+		line-height: 1.7;
+	}
+
+	article h3 {
+		margin: 0.25rem 0 0;
+		font-size: 1.15rem;
+	}
+
+	.period,
+	.organization {
+		font-size: 0.9rem;
+	}
+
+	.empty {
+		color: #686f78;
+	}
+</style>
