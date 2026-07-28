@@ -1,0 +1,79 @@
+---
+import Tag from './Tag.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	date: string;
+	href: string;
+	tags: string[];
+	actionLabel: string;
+}
+
+const { title, description, date, href, tags, actionLabel } = Astro.props;
+---
+
+<article class="post-card">
+	<p class="post-card__date">{date}</p>
+	<h2><a href={href}>{title}</a></h2>
+	<p class="post-card__description">{description}</p>
+	<div class="post-card__tags">
+		{tags.map((tag) => <Tag label={tag} />)}
+	</div>
+	<a class="post-card__action" href={href}>{actionLabel} <span aria-hidden="true">→</span></a>
+</article>
+
+<style>
+	.post-card {
+		max-width: var(--width-reading);
+		border-top: var(--border-default);
+		padding-top: var(--space-6);
+	}
+
+	.post-card__date {
+		margin: 0;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+	}
+
+	h2 {
+		margin: var(--space-2) 0 0;
+		font-size: var(--text-lg);
+		letter-spacing: -0.015em;
+		word-break: keep-all;
+	}
+
+	h2 a {
+		color: var(--color-text);
+		text-decoration: none;
+	}
+
+	h2 a:hover {
+		color: var(--color-accent-strong);
+		text-decoration: underline;
+	}
+
+	.post-card__description {
+		margin: var(--space-3) 0 0;
+		color: var(--color-text-soft);
+		line-height: var(--leading-body);
+	}
+
+	.post-card__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-4);
+	}
+
+	.post-card__action {
+		display: inline-flex;
+		min-height: 2.75rem;
+		margin-top: var(--space-4);
+		align-items: center;
+		gap: var(--space-2);
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+		font-weight: 850;
+	}
+</style>

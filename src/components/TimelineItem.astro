@@ -1,0 +1,66 @@
+---
+interface Props {
+	period: string;
+	title: string;
+	organization?: string;
+	summary?: string;
+}
+
+const { period, title, organization, summary } = Astro.props;
+---
+
+<article class="timeline-item">
+	<div class="timeline-item__marker" aria-hidden="true"></div>
+	<p class="timeline-item__period">{period}</p>
+	<h3>{title}</h3>
+	{organization && <p class="timeline-item__organization">{organization}</p>}
+	{summary && <p class="timeline-item__summary">{summary}</p>}
+</article>
+
+<style>
+	.timeline-item {
+		position: relative;
+		max-width: var(--width-reading);
+		border-left: 2px solid var(--color-border);
+		padding: 0 0 var(--space-8) var(--space-6);
+	}
+
+	.timeline-item__marker {
+		position: absolute;
+		top: 0.4rem;
+		left: -0.43rem;
+		width: 0.75rem;
+		height: 0.75rem;
+		border: 2px solid var(--color-surface);
+		border-radius: 50%;
+		background: var(--color-accent);
+		box-shadow: 0 0 0 1px var(--color-accent);
+	}
+
+	p,
+	h3 {
+		margin: 0;
+	}
+
+	.timeline-item__period,
+	.timeline-item__organization {
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+	}
+
+	h3 {
+		margin-top: var(--space-1);
+		font-size: 1.125rem;
+		word-break: keep-all;
+	}
+
+	.timeline-item__organization {
+		margin-top: var(--space-1);
+	}
+
+	.timeline-item__summary {
+		margin-top: var(--space-3);
+		color: var(--color-text-soft);
+		line-height: var(--leading-body);
+	}
+</style>
