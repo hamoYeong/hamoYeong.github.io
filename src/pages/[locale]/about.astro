@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
 import {
 	getLocaleStaticPaths,
 	isLocale,
@@ -34,98 +36,60 @@ const alternatePaths = Object.fromEntries(
 	description={t.about.intro}
 	alternatePaths={alternatePaths}
 >
-	<section class="page-intro">
-		<p class="eyebrow">{t.about.eyebrow}</p>
-		<h1>{t.about.title}</h1>
-		<p>{t.about.intro}</p>
-	</section>
+	<SectionHeading
+		level="h1"
+		eyebrow={t.about.eyebrow}
+		title={t.about.title}
+		description={t.about.intro}
+	/>
 
-	<section class="section" aria-labelledby="principles-title">
-		<h2 id="principles-title">{t.about.principlesTitle}</h2>
-		<ul>
+	<section class="content-section" aria-labelledby="principles-title">
+		<SectionHeading
+			id="principles-title"
+			title={t.about.principlesTitle}
+		/>
+		<ul class="principles">
 			{t.about.principles.map((principle) => <li>{principle}</li>)}
 		</ul>
 	</section>
 
-	<section class="section" aria-labelledby="experience-title">
-		<h2 id="experience-title">{t.about.experienceTitle}</h2>
+	<section class="content-section" aria-labelledby="experience-title">
+		<SectionHeading
+			id="experience-title"
+			title={t.about.experienceTitle}
+		/>
 		{
 			experiences.length > 0 ? (
-				<div class="experience-list">
+				<div class="timeline-list">
 					{experiences.map((experience) => (
-						<article>
-							<p class="period">{experience.data.period.label}</p>
-							<h3>{experience.data.title}</h3>
-							<p class="organization">{experience.data.organization}</p>
-							<p>{experience.data.summary}</p>
-						</article>
+						<TimelineItem
+							period={experience.data.period.label}
+							title={experience.data.title}
+							organization={experience.data.organization}
+							summary={experience.data.summary}
+						/>
 					))}
 				</div>
 			) : (
-				<p class="empty">{t.about.experienceEmpty}</p>
+				<p class="empty-state">{t.about.experienceEmpty}</p>
 			)
 		}
 	</section>
 </BaseLayout>
 
 <style>
-	.eyebrow {
-		margin: 0 0 1rem;
-		color: #4d6f92;
-		font-size: 0.85rem;
-		font-weight: 800;
-		text-transform: uppercase;
-	}
-
-	.section {
-		margin-top: clamp(3.5rem, 8vw, 6rem);
-		border-top: 1px solid #e6e8eb;
-		padding-top: 2rem;
-	}
-
-	h2 {
-		margin: 0 0 1.5rem;
-		font-size: 1.35rem;
-	}
-
-	ul {
+	.principles {
 		display: grid;
-		gap: 0.75rem;
-		max-width: 48rem;
-		margin: 0;
-		padding-left: 1.25rem;
-		color: #4b535c;
-		line-height: 1.7;
+		gap: var(--space-3);
+		max-width: var(--width-reading);
+		margin: var(--space-6) 0 0;
+		padding-left: var(--space-6);
+		color: var(--color-text-soft);
+		line-height: var(--leading-body);
 	}
 
-	.experience-list {
+	.timeline-list {
 		display: grid;
-		gap: 1.25rem;
-	}
-
-	article {
-		max-width: 48rem;
-		border-left: 2px solid #d9dde2;
-		padding-left: 1.25rem;
-	}
-
-	article p {
-		margin: 0.5rem 0 0;
-		color: #59616b;
-		line-height: 1.7;
-	}
-
-	article h3 {
-		margin: 0.25rem 0 0;
-		font-size: 1.15rem;
-	}
-
-	.period,
-	.organization {
-		font-size: 0.9rem;
-	}
-
-	.empty {
-		color: #686f78;
+		margin-top: var(--space-8);
 	}
 </style>

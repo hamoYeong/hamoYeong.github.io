@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
 import {
 	getLocaleStaticPaths,
 	isLocale,
@@ -34,107 +36,29 @@ const alternatePaths = Object.fromEntries(
 	description={t.projects.intro}
 	alternatePaths={alternatePaths}
 >
-	<section class="page-intro">
-		<p class="eyebrow">{t.projects.eyebrow}</p>
-		<h1>{t.projects.title}</h1>
-		<p>{t.projects.intro}</p>
-	</section>
+	<SectionHeading
+		level="h1"
+		eyebrow={t.projects.eyebrow}
+		title={t.projects.title}
+		description={t.projects.intro}
+	/>
 
 	{
 		projects.length > 0 ? (
-			<div class="project-list">
+			<div class="card-grid">
 				{projects.map((project) => (
-					<article>
-						<p class="meta">{project.data.period.label}</p>
-						<h2>{project.data.title}</h2>
-						<p>{project.data.summary}</p>
-						<ul aria-label={t.projects.technologies}>
-							{project.data.technologies.map((technology) => (
-								<li>{technology}</li>
-							))}
-						</ul>
-						<a href={localizedPath(locale, `projects/${project.data.slug}`)}>
-							{t.projects.readMore}
-						</a>
-					</article>
+					<ProjectCard
+						title={project.data.title}
+						summary={project.data.summary}
+						meta={project.data.period.label}
+						tags={project.data.technologies}
+						href={localizedPath(locale, `projects/${project.data.slug}`)}
+						actionLabel={t.projects.readMore}
+					/>
 				))}
 			</div>
 		) : (
-			<p class="empty">{t.projects.empty}</p>
+			<p class="empty-state">{t.projects.empty}</p>
 		)
 	}
 </BaseLayout>
-
-<style>
-	.eyebrow {
-		margin: 0 0 1rem;
-		color: #4d6f92;
-		font-size: 0.85rem;
-		font-weight: 800;
-		text-transform: uppercase;
-	}
-
-	.project-list {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 1rem;
-		margin-top: 3.5rem;
-	}
-
-	article {
-		border: 1px solid #e0e3e7;
-		border-radius: 12px;
-		padding: 1.5rem;
-	}
-
-	h2 {
-		margin: 0.5rem 0 0;
-		font-size: 1.35rem;
-	}
-
-	article p {
-		color: #59616b;
-		line-height: 1.65;
-	}
-
-	.meta {
-		margin: 0;
-		font-size: 0.85rem;
-	}
-
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-		margin: 1.25rem 0 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	li {
-		border-radius: 999px;
-		padding: 0.3rem 0.6rem;
-		background: #f1f3f5;
-		font-size: 0.8rem;
-	}
-
-	article a {
-		display: inline-block;
-		margin-top: 1.25rem;
-		color: #294e75;
-		font-weight: 800;
-		text-decoration: underline;
-		text-underline-offset: 0.25em;
-	}
-
-	.empty {
-		margin-top: 3rem;
-		color: #686f78;
-	}
-
-	@media (max-width: 640px) {
-		.project-list {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>
