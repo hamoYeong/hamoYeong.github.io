@@ -42,7 +42,12 @@ export async function getProjects(options: CollectionOptions = {}) {
 	});
 
 	return entries.sort((left, right) => {
-		return Number(right.data.featured) - Number(left.data.featured);
+		const featuredOrder =
+			Number(right.data.featured) - Number(left.data.featured);
+
+		if (featuredOrder !== 0) return featuredOrder;
+
+		return right.data.period.start.localeCompare(left.data.period.start);
 	});
 }
 
