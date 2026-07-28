@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+import PostCard from '../../components/PostCard.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import {
+	formatDate,
 	getLocaleStaticPaths,
 	isLocale,
 	locales,
@@ -8,6 +13,7 @@ import {
 	type LocalePaths,
 } from '../../i18n/config';
 import { getUi } from '../../i18n/ui';
+import { getPosts, getProjects } from '../../lib/content';
 
 export const getStaticPaths = getLocaleStaticPaths;
 
@@ -21,47 +27,167 @@ const t = getUi(locale);
 const alternatePaths = Object.fromEntries(
 	locales.map((targetLocale) => [targetLocale, localizedPath(targetLocale)]),
 ) as LocalePaths;
+const [projects, posts] = await Promise.all([
+	getProjects({ locale }),
+	getPosts({ locale }),
+]);
+const featuredProjects = projects
+	.filter((project) => project.data.featured)
+	.slice(0, 3);
+const latestPosts = posts.slice(0, 3);
+const githubUrl = 'https://github.com/hamoYeong';
 ---
 
 <BaseLayout locale={locale} alternatePaths={alternatePaths}>
 	<section class="hero">
-		<p class="eyebrow">{t.home.eyebrow}</p>
-		<p class="name">{t.home.name} <span>{t.home.alias}</span></p>
-		<h1>{t.home.title}</h1>
-		<p class="intro">{t.home.intro}</p>
-		<div class="actions">
-			<a class="primary-link" href={localizedPath(locale, 'about')}>
-				{t.home.aboutAction}
-			</a>
-			<a href={localizedPath(locale, 'projects')}>{t.home.projectsAction}</a>
-			<a href={localizedPath(locale, 'posts')}>{t.home.postsAction}</a>
+		<div class="hero__content">
+			<p class="eyebrow">{t.home.eyebrow}</p>
+			<p class="name">{t.home.name} <span>{t.home.alias}</span></p>
+			<h1>{t.home.title}</h1>
+			<p class="intro">{t.home.intro}</p>
+			<div class="actions">
+				<a class="primary-link" href={localizedPath(locale, 'projects')}>
+					{t.home.projectsAction}
+				</a>
+				<a href={localizedPath(locale, 'about')}>{t.home.aboutAction}</a>
+			</div>
+		</div>
+		<div class="hero__visual" aria-hidden="true">
+			<span>Problem</span>
+			<span>Structure</span>
+			<span>Understanding</span>
 		</div>
 	</section>
 
-	<section class="interests" aria-labelledby="interests-title">
-		<h2 id="interests-title">{t.home.interestsTitle}</h2>
-		<p>{t.home.interests}</p>
-	</section>
-
-	<section class="site-guide" aria-labelledby="site-guide-title">
-		<h2 id="site-guide-title">{t.home.guideTitle}</h2>
-		<div class="section-grid">
+	<section class="content-section" aria-labelledby="care-title">
+		<SectionHeading
+			id="care-title"
+			eyebrow={t.home.careEyebrow}
+			title={t.home.careTitle}
+			description={t.home.careIntro}
+		/>
+		<div class="care-grid">
 			{
-				t.home.guides.map((guide) => (
-					<article>
-						<h3>{guide.title}</h3>
-						<p>{guide.description}</p>
-						<a href={localizedPath(locale, guide.path)}>{guide.action}</a>
+				t.home.carePoints.map((point, index) => (
+					<article class="care-card">
+						<p class="care-card__index" aria-hidden="true">
+							{String(index + 1).padStart(2, '0')}
+						</p>
+						<h3>{point.title}</h3>
+						<p>{point.description}</p>
 					</article>
 				))
 			}
 		</div>
 	</section>
+
+	<section class="content-section" aria-labelledby="featured-title">
+		<SectionHeading
+			id="featured-title"
+			eyebrow={t.home.featuredEyebrow}
+			title={t.home.featuredTitle}
+			description={t.home.featuredIntro}
+		/>
+		<div class="featured-grid">
+			{
+				featuredProjects.map((project) => (
+					<ProjectCard
+						title={project.data.title}
+						summary={project.data.summary}
+						meta={project.data.period.label}
+						tags={project.data.technologies.slice(0, 3)}
+						href={localizedPath(locale, `projects/${project.data.slug}`)}
+						facts={[
+							{ label: t.projects.problem, value: project.data.problem },
+							{ label: t.projects.role, value: project.data.role.join(', ') },
+							{ label: t.projects.outcomes, value: project.data.outcomes[0] },
+						]}
+						actionLabel={t.projects.readMore}
+					/>
+				))
+			}
+		</div>
+		<a class="section-action" href={localizedPath(locale, 'projects')}>
+			{t.home.projectsAction} <span aria-hidden="true">→</span>
+		</a>
+	</section>
+
+	<section class="journey" aria-labelledby="journey-title">
+		<div>
+			<p class="eyebrow">{t.home.journeyEyebrow}</p>
+			<h2 id="journey-title">{t.home.journeyTitle}</h2>
+		</div>
+		<div class="journey__body">
+			<p>{t.home.journeyDescription}</p>
+			<a href={localizedPath(locale, 'about')}>{t.home.journeyAction} →</a>
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="learnings-title">
+		<SectionHeading
+			id="learnings-title"
+			eyebrow={t.home.learningsEyebrow}
+			title={t.home.learningsTitle}
+		/>
+		<div class="learning-grid">
+			{
+				t.home.learnings.map((learning) => (
+					<article>
+						<h3>{learning.title}</h3>
+						<p>{learning.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="posts-title">
+		<div class="section-with-action">
+			<SectionHeading
+				id="posts-title"
+				eyebrow={t.home.postsEyebrow}
+				title={t.home.postsTitle}
+				description={t.home.postsIntro}
+			/>
+			<a href={localizedPath(locale, 'posts')}>{t.home.postsAction} →</a>
+		</div>
+		<div class="stack-list">
+			{
+				latestPosts.map((post) => (
+					<PostCard
+						title={post.data.title}
+						description={post.data.description}
+						date={formatDate(post.data.publishedAt, locale)}
+						tags={post.data.tags}
+						href={localizedPath(locale, `posts/${post.data.slug}`)}
+						actionLabel={t.posts.readMore}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="contact" aria-labelledby="contact-title">
+		<div>
+			<p class="eyebrow">{t.home.contactEyebrow}</p>
+			<h2 id="contact-title">{t.home.contactTitle}</h2>
+			<p>{t.home.contactDescription}</p>
+		</div>
+		<ExternalLink href={githubUrl}>{t.home.githubAction}</ExternalLink>
+	</section>
 </BaseLayout>
 
 <style>
 	.hero {
-		max-width: 46rem;
+		display: grid;
+		min-height: min(42rem, calc(100vh - 9rem));
+		grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.55fr);
+		gap: clamp(var(--space-8), 7vw, var(--space-20));
+		align-items: center;
+	}
+
+	.hero__content {
+		max-width: 54rem;
 	}
 
 	.eyebrow {
@@ -82,7 +208,7 @@ const alternatePaths = Object.fromEntries(
 	}
 
 	h1 {
-		max-width: 15ch;
+		max-width: 17ch;
 		margin: 0;
 		font-size: var(--text-display);
 		line-height: var(--leading-tight);
@@ -91,7 +217,7 @@ const alternatePaths = Object.fromEntries(
 	}
 
 	.intro {
-		max-width: var(--width-reading);
+		max-width: 50rem;
 		margin: var(--space-8) 0 0;
 		color: var(--color-text-soft);
 		font-size: var(--text-md);
@@ -130,69 +256,206 @@ const alternatePaths = Object.fromEntries(
 		color: var(--color-on-accent);
 	}
 
-	.interests,
-	.site-guide {
-		margin-top: clamp(var(--space-16), 8vw, 7rem);
-		border-top: var(--border-default);
-		padding-top: var(--space-8);
+	.hero__visual {
+		position: relative;
+		display: grid;
+		min-height: 22rem;
+		align-content: center;
+		gap: var(--space-4);
+		border: var(--border-default);
+		border-radius: 12rem 12rem var(--radius-lg) var(--radius-lg);
+		padding: var(--space-8);
+		background: var(--color-surface-accent);
+		box-shadow: var(--shadow-card);
 	}
 
-	h2 {
-		margin: 0 0 var(--space-5);
-		font-size: 1.2rem;
+	.hero__visual::before {
+		position: absolute;
+		inset: var(--space-5);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+		border-radius: inherit;
+		content: '';
 	}
 
-	.interests p,
-	article p {
+	.hero__visual span {
+		position: relative;
+		border-bottom: var(--border-default);
+		padding-bottom: var(--space-3);
+		color: var(--color-accent-strong);
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 800;
+		text-align: center;
+	}
+
+	.care-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-10);
+	}
+
+	.care-card {
+		border-top: 3px solid var(--color-accent);
+		padding-top: var(--space-5);
+	}
+
+	.care-card__index {
+		margin: 0;
+		color: var(--color-text-faint);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+	}
+
+	.care-card h3,
+	.learning-grid h3 {
+		margin: var(--space-3) 0 0;
+		font-size: 1.05rem;
+	}
+
+	.care-card > p:last-child,
+	.learning-grid p {
+		margin: var(--space-3) 0 0;
 		color: var(--color-text-soft);
 		line-height: var(--leading-body);
 	}
 
-	.interests p {
-		max-width: var(--width-reading);
-		margin: 0;
-		font-size: var(--text-md);
-	}
-
-	.section-grid {
+	.featured-grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--space-5);
+		margin-top: var(--space-10);
 	}
 
-	article {
+	.section-action,
+	.section-with-action > a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+		font-weight: 850;
+	}
+
+	.section-action {
+		margin-top: var(--space-6);
+	}
+
+	.journey {
+		display: grid;
+		margin-top: clamp(var(--space-16), 9vw, 8rem);
+		grid-template-columns: minmax(14rem, 0.7fr) minmax(0, 1.3fr);
+		gap: var(--space-10);
+		border-radius: var(--radius-lg);
+		padding: clamp(var(--space-8), 6vw, var(--space-16));
+		background: var(--color-text);
+		color: var(--color-on-accent);
+	}
+
+	.journey .eyebrow {
+		color: var(--color-on-dark-accent);
+	}
+
+	.journey h2 {
+		margin: 0;
+		font-size: var(--text-xl);
+	}
+
+	.journey__body p {
+		margin: 0;
+		color: var(--color-on-dark-soft);
+		font-size: var(--text-md);
+		line-height: var(--leading-body);
+	}
+
+	.journey__body a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		margin-top: var(--space-6);
+		align-items: center;
+		color: var(--color-on-accent);
+		font-size: var(--text-sm);
+		font-weight: 850;
+	}
+
+	.learning-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-5);
+		margin-top: var(--space-10);
+	}
+
+	.learning-grid article {
 		border: var(--border-default);
 		border-radius: var(--radius-md);
-		padding: var(--space-5);
+		padding: var(--space-6);
 		background: var(--color-surface);
 	}
 
-	h3,
-	article p {
+	.learning-grid h3 {
+		margin-top: 0;
+	}
+
+	.section-with-action {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: var(--space-8);
+	}
+
+	.contact {
+		display: flex;
+		margin-top: clamp(var(--space-16), 9vw, 8rem);
+		align-items: end;
+		justify-content: space-between;
+		gap: var(--space-8);
+		border-top: var(--border-default);
+		padding-top: var(--space-10);
+	}
+
+	.contact h2 {
+		max-width: 24ch;
 		margin: 0;
+		font-size: var(--text-xl);
 	}
 
-	article p {
-		margin-top: var(--space-3);
+	.contact p:last-child {
+		max-width: var(--width-reading);
+		margin: var(--space-4) 0 0;
+		color: var(--color-text-soft);
 	}
 
-	article a {
-		display: inline-flex;
-		min-height: 2.75rem;
-		margin-top: var(--space-4);
-		align-items: center;
-		color: var(--color-accent-strong);
-		font-weight: 700;
+	@media (max-width: 960px) {
+		.hero {
+			grid-template-columns: 1fr;
+		}
+
+		.hero__visual {
+			display: none;
+		}
+
+		.care-grid,
+		.featured-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 680px) {
 		h1 {
 			font-size: clamp(2.75rem, 14vw, 4rem);
 		}
 
-		.section-grid {
+		.care-grid,
+		.featured-grid,
+		.learning-grid,
+		.journey {
 			grid-template-columns: 1fr;
-			gap: 1.5rem;
+		}
+
+		.section-with-action,
+		.contact {
+			align-items: flex-start;
+			flex-direction: column;
 		}
 	}
 </style>
