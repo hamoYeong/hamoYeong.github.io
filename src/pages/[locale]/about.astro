@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Callout from '../../components/Callout.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
+import Tag from '../../components/Tag.astro';
 import TimelineItem from '../../components/TimelineItem.astro';
 import {
 	getLocaleStaticPaths,
@@ -10,7 +14,12 @@ import {
 	type LocalePaths,
 } from '../../i18n/config';
 import { getUi } from '../../i18n/ui';
-import { getExperiences } from '../../lib/content';
+import {
+	getChallenges,
+	getExperiences,
+	getPosts,
+	getProjects,
+} from '../../lib/content';
 
 export const getStaticPaths = getLocaleStaticPaths;
 
@@ -21,13 +30,33 @@ if (!isLocale(localeParam)) {
 
 const locale = localeParam;
 const t = getUi(locale);
-const experiences = await getExperiences({ locale });
+const [experiences, challenges, projects, posts] = await Promise.all([
+	getExperiences({ locale }),
+	getChallenges({ locale }),
+	getProjects({ locale }),
+	getPosts({ locale }),
+]);
+const cvProjectKeys = new Set(['scutta-notion-system', 'scutta-web-service']);
+const cvProjects = projects.filter((project) =>
+	cvProjectKeys.has(project.data.translationKey),
+);
+const projectByTranslationKey = new Map(
+	projects.map((project) => [project.data.translationKey, project]),
+);
+const postByTranslationKey = new Map(
+	posts.map((post) => [post.data.translationKey, post]),
+);
 const alternatePaths = Object.fromEntries(
 	locales.map((targetLocale) => [
 		targetLocale,
 		localizedPath(targetLocale, 'about'),
 	]),
 ) as LocalePaths;
+const pdfLinks = [
+	{ label: t.about.downloadKo, href: '/cv/seoyeong-kim-cv-ko.pdf', lang: 'ko' },
+	{ label: t.about.downloadEn, href: '/cv/seoyeong-kim-cv-en.pdf', lang: 'en' },
+] as const;
+const githubUrl = 'https://github.com/hamoYeong';
 ---
 
 <BaseLayout
@@ -43,20 +72,52 @@ const alternatePaths = Object.fromEntries(
 		description={t.about.intro}
 	/>
 
+	<div class="about-actions">
+		<a class="primary-action" href="#web-cv">{t.about.cvTitle}</a>
+		<ExternalLink href={githubUrl}>{t.about.github}</ExternalLink>
+	</div>
+
+	<Callout title={t.about.sourceNoticeTitle}>
+		<p>{t.about.sourceNotice}</p>
+	</Callout>
+
 	<section class="content-section" aria-labelledby="principles-title">
-		<SectionHeading
-			id="principles-title"
-			title={t.about.principlesTitle}
-		/>
+		<SectionHeading id="principles-title" title={t.about.principlesTitle} />
 		<ul class="principles">
 			{t.about.principles.map((principle) => <li>{principle}</li>)}
 		</ul>
+	</section>
+
+	<section id="web-cv" class="content-section" aria-labelledby="cv-title">
+		<SectionHeading
+			id="cv-title"
+			eyebrow={t.about.cvEyebrow}
+			title={t.about.cvTitle}
+			description={t.about.cvIntro}
+		/>
+
+		<div class="pdf-grid">
+			{
+				pdfLinks.map((pdf) => (
+					<article lang={pdf.lang}>
+						<h3>{pdf.label}</h3>
+						<div>
+							<a href={pdf.href} target="_blank" rel="noreferrer">
+								{t.about.openPdf} ↗
+							</a>
+							<a href={pdf.href} download>{t.about.downloadPdf} ↓</a>
+						</div>
+					</article>
+				))
+			}
+		</div>
 	</section>
 
 	<section class="content-section" aria-labelledby="experience-title">
 		<SectionHeading
 			id="experience-title"
 			title={t.about.experienceTitle}
+			description={t.about.experienceIntro}
 		/>
 		{
 			experiences.length > 0 ? (
@@ -67,6 +128,7 @@ const alternatePaths = Object.fromEntries(
 							title={experience.data.title}
 							organization={experience.data.organization}
 							summary={experience.data.summary}
+							highlights={experience.data.highlights}
 						/>
 					))}
 				</div>
@@ -75,9 +137,179 @@ const alternatePaths = Object.fromEntries(
 			)
 		}
 	</section>
+
+	<section class="content-section" aria-labelledby="cv-projects-title">
+		<SectionHeading
+			id="cv-projects-title"
+			title={t.about.projectsTitle}
+			description={t.about.projectsIntro}
+		/>
+		<div class="card-grid">
+			{
+				cvProjects.map((project) => (
+					<ProjectCard
+						title={project.data.title}
+						summary={project.data.summary}
+						meta={project.data.period.label}
+						tags={project.data.technologies}
+						href={localizedPath(locale, `projects/${project.data.slug}`)}
+						actionLabel={t.projects.readMore}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="content-section academy" aria-labelledby="academy-title">
+		<SectionHeading
+			id="academy-title"
+			eyebrow={t.about.academyEyebrow}
+			title={t.about.academyTitle}
+			description={t.about.academyIntro}
+		/>
+
+		<div class="challenge-list">
+			{
+				challenges.map((challenge) => {
+					const relatedProject = challenge.data.relatedProject
+						? projectByTranslationKey.get(challenge.data.relatedProject)
+						: undefined;
+					const relatedPosts = challenge.data.relatedPosts
+						.map((key) => postByTranslationKey.get(key))
+						.filter((post) => post !== undefined);
+
+					return (
+						<article class="challenge">
+							<header>
+								<div>
+									<p class="challenge__sequence">{challenge.data.sequence}</p>
+									<p class="challenge__period">{challenge.data.period.label}</p>
+								</div>
+								<h3>{challenge.data.title}</h3>
+								<p>{challenge.data.summary}</p>
+							</header>
+
+							<div class="challenge__context">
+								<section>
+									<h4>{t.about.challenge.team}</h4>
+									<p>{challenge.data.team.description}</p>
+								</section>
+								<section>
+									<h4>{t.about.challenge.problem}</h4>
+									<p>{challenge.data.problem}</p>
+								</section>
+								<section>
+									<h4>{t.about.challenge.role}</h4>
+									<ul>
+										{challenge.data.role.map((item) => <li>{item}</li>)}
+									</ul>
+								</section>
+							</div>
+
+							<div class="challenge__growth">
+								<section>
+									<h4>{t.about.challenge.tried}</h4>
+									<ul>
+										{challenge.data.whatITried.map((item) => <li>{item}</li>)}
+									</ul>
+								</section>
+								<section>
+									<h4>{t.about.challenge.changed}</h4>
+									<ul>
+										{challenge.data.whatChanged.map((item) => <li>{item}</li>)}
+									</ul>
+								</section>
+								<section>
+									<h4>{t.about.challenge.learning}</h4>
+									<ul>
+										{challenge.data.learnings.map((item) => <li>{item}</li>)}
+									</ul>
+								</section>
+							</div>
+
+							{(challenge.data.repository || relatedProject || relatedPosts.length > 0) && (
+								<footer>
+									<strong>{t.about.challenge.related}</strong>
+									<div>
+										{challenge.data.repository && (
+											<ExternalLink href={challenge.data.repository}>
+												{t.about.challenge.repository}
+											</ExternalLink>
+										)}
+										{relatedProject && (
+											<a href={localizedPath(locale, `projects/${relatedProject.data.slug}`)}>
+												{relatedProject.data.title}
+											</a>
+										)}
+										{relatedPosts.map((post) => (
+											<a href={localizedPath(locale, `posts/${post.data.slug}`)}>
+												{post.data.title}
+											</a>
+										))}
+									</div>
+								</footer>
+							)}
+						</article>
+					);
+				})
+			}
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="skills-title">
+		<SectionHeading
+			id="skills-title"
+			title={t.about.skillsTitle}
+			description={t.about.skillsIntro}
+		/>
+		<div class="skill-grid">
+			{
+				t.about.skillGroups.map((group) => (
+					<article>
+						<h3>{group.title}</h3>
+						<div>
+							{group.items.map((item) => <Tag label={item} />)}
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="contact" aria-labelledby="contact-title">
+		<div>
+			<h2 id="contact-title">{t.about.contactTitle}</h2>
+			<p>{t.about.contactIntro}</p>
+		</div>
+		<ExternalLink href={githubUrl}>{t.about.github}</ExternalLink>
+	</section>
 </BaseLayout>
 
 <style>
+	.about-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-8);
+	}
+
+	.primary-action,
+	.pdf-grid a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		border-radius: var(--radius-pill);
+		padding-inline: var(--space-5);
+		font-size: var(--text-sm);
+		font-weight: 850;
+		text-decoration: none;
+	}
+
+	.primary-action {
+		background: var(--color-accent);
+		color: var(--color-on-accent);
+	}
+
 	.principles {
 		display: grid;
 		gap: var(--space-3);
@@ -88,8 +320,226 @@ const alternatePaths = Object.fromEntries(
 		line-height: var(--leading-body);
 	}
 
-	.timeline-list {
+	.pdf-grid {
 		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
 		margin-top: var(--space-8);
+	}
+
+	.pdf-grid article {
+		border: var(--border-default);
+		border-radius: var(--radius-md);
+		padding: var(--space-6);
+		background: var(--color-surface);
+	}
+
+	.pdf-grid h3 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+
+	.pdf-grid article div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-5);
+	}
+
+	.pdf-grid a {
+		border: var(--border-default);
+		padding-inline: var(--space-4);
+		color: var(--color-accent-strong);
+	}
+
+	.timeline-list,
+	.challenge-list {
+		display: grid;
+		margin-top: var(--space-10);
+	}
+
+	.challenge-list {
+		gap: var(--space-8);
+	}
+
+	.challenge {
+		overflow: hidden;
+		border: var(--border-default);
+		border-radius: var(--radius-lg);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-card);
+	}
+
+	.challenge > header {
+		padding: var(--space-8);
+		background: var(--color-surface-accent);
+	}
+
+	.challenge > header > div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+	}
+
+	.challenge__sequence,
+	.challenge__period {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+	}
+
+	.challenge__sequence {
+		color: var(--color-accent-strong);
+		font-weight: 900;
+	}
+
+	.challenge__period {
+		color: var(--color-text-faint);
+	}
+
+	.challenge h3 {
+		margin: var(--space-5) 0 0;
+		font-size: var(--text-xl);
+	}
+
+	.challenge > header > p:last-child {
+		max-width: var(--width-reading);
+		margin: var(--space-4) 0 0;
+		color: var(--color-text-soft);
+	}
+
+	.challenge__context,
+	.challenge__growth {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-5);
+		padding: var(--space-8);
+	}
+
+	.challenge__growth {
+		border-top: var(--border-default);
+		background: var(--color-canvas);
+	}
+
+	.challenge h4 {
+		margin: 0;
+		color: var(--color-accent-strong);
+		font-size: var(--text-xs);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.challenge section p,
+	.challenge section li {
+		color: var(--color-text-soft);
+		font-size: var(--text-sm);
+		line-height: 1.7;
+	}
+
+	.challenge section p {
+		margin: var(--space-3) 0 0;
+	}
+
+	.challenge section ul {
+		margin: var(--space-3) 0 0;
+		padding-left: var(--space-5);
+	}
+
+	.challenge footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-5);
+		border-top: var(--border-default);
+		padding: var(--space-5) var(--space-8);
+	}
+
+	.challenge footer > div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		align-items: center;
+	}
+
+	.challenge footer a:not(.external-link) {
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+		font-weight: 800;
+	}
+
+	.skill-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-8);
+	}
+
+	.skill-grid article {
+		border-top: 3px solid var(--color-accent);
+		padding-top: var(--space-5);
+	}
+
+	.skill-grid h3 {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.skill-grid article div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-4);
+	}
+
+	.contact {
+		display: flex;
+		margin-top: clamp(var(--space-16), 9vw, 8rem);
+		align-items: end;
+		justify-content: space-between;
+		gap: var(--space-8);
+		border-top: var(--border-default);
+		padding-top: var(--space-10);
+	}
+
+	.contact h2,
+	.contact p {
+		margin: 0;
+	}
+
+	.contact h2 {
+		font-size: var(--text-xl);
+	}
+
+	.contact p {
+		max-width: var(--width-reading);
+		margin-top: var(--space-3);
+		color: var(--color-text-soft);
+	}
+
+	@media (max-width: 800px) {
+		.challenge__context,
+		.challenge__growth,
+		.skill-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.pdf-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.challenge > header,
+		.challenge__context,
+		.challenge__growth {
+			padding: var(--space-6);
+		}
+
+		.challenge footer,
+		.contact {
+			align-items: flex-start;
+			flex-direction: column;
+		}
 	}
 </style>
