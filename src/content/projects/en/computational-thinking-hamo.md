@@ -5,9 +5,9 @@ translationKey: computational-thinking-hamo
 title: HamoCom
 summary: A macOS learning tool that helps coding beginners read data and flow, then discuss them together instead of simply following AI-generated results.
 period:
-  start: '2026'
+  start: '2026-06'
   end: present
-  label: 2026-present
+  label: Jun 2026-present
 status: in-progress
 role:
   - Designed the learning flow
@@ -22,13 +22,13 @@ whyItMattered: As AI accelerates implementation, learners need more practice jud
 context: I designed it for a computational thinking class at Apple Developer Academy. Classroom use and participant responses are not yet presented as verified outcomes.
 user: It is intended for coding beginners who need to practice reading data and flow rather than following completed code.
 contributions:
-  - Built a read-only TextKit code viewer with line numbers and range comments.
-  - Implemented an unlock flow and split view for comparing two code structures step by step.
-  - Kept SwiftData as the source of truth and limited MultipeerConnectivity to sharing and resynchronization within a class session.
+  - Built a read-only TextKit code viewer with line numbers, current-file search, and line or range comments.
+  - Persisted comments, replies, and staged unlock state in SwiftData, then implemented a split comparison flow for two code structures.
+  - Used MultipeerConnectivity to share and resynchronize comments and replies within the same class session.
 process:
   - Defined the sequence in which a learner reads code and leaves questions before choosing features.
-  - Implemented a staged flow from reading one code sample to comparing two structures.
-  - Separated local comment persistence from nearby sharing and verified the flows in a final check document.
+  - Built the lesson code loader, read-only workspace, and comment persistence before extending the flow from one code sample to two-structure comparison.
+  - Separated local persistence from nearby sharing and checked the end-to-end flow through a feature-level manual verification document.
 research: []
 keyDecisions:
   - title: Focus on reading and dialogue, not editing
@@ -38,12 +38,14 @@ keyDecisions:
   - title: Reveal differences progressively
     description: Learners discover structural differences in sequence instead of receiving a finished explanation immediately.
 technicalStructure:
-  - An AppKit TextKit read-only code viewer is integrated into SwiftUI.
-  - SwiftData owns comments and replies as the source of truth.
-  - MultipeerConnectivity handles sharing and resynchronization inside a class session.
+  - LessonCodeLoader reads lesson files, while CodeSearchController handles search within the current file.
+  - An AppKit TextKit read-only code viewer is integrated into the SwiftUI workspace.
+  - SwiftData owns comments, replies, and unlock state as the source of truth.
+  - ClassroomSessionController and CommentSyncService handle sharing and resynchronization inside a class session.
 challenges:
   - Text ranges and line numbers from TextKit needed to remain consistent inside SwiftUI screens.
-  - Sharing comments across devices could not dilute the ownership of locally persisted data.
+  - Saved comments needed to remain intact across differing local-network permissions and connection states.
+  - Cross-device changes use `updatedAt`-based last-write-wins, which still leaves semantic conflicts under simultaneous edits.
 technologies:
   - SwiftUI
   - AppKit TextKit
@@ -52,10 +54,11 @@ technologies:
   - MVVM
 outcomes:
   - Implemented working flows for loading, searching, commenting on, comparing, and sharing code nearby.
+  - The repository has no automated test target yet, so the current verification scope is recorded in a feature-level manual check document.
   - Classroom use and participant feedback will only be published after verification.
 whatIWouldChange:
   - Define observation criteria for each learning objective and the boundaries of anonymous feedback before classroom use.
-  - Add more explicit tests for conflict handling when nearby sharing disconnects and recovers.
+  - Add automated tests for search, comment-range conversion, unlock state, and synchronization conflict policy.
 learnings:
   - The order in which a learner is encouraged to think matters more than the number of features in a learning tool.
   - Evaluating an AI-generated answer starts with explaining data and responsibilities in your own words.
