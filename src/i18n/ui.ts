@@ -90,17 +90,69 @@ export const ui = {
 		},
 		about: {
 			eyebrow: 'About',
-			title: '사람이 배우고 참여하기 쉬운 환경을 만듭니다.',
+			title: '배움의 구조를 만들고, 함께 이해하는 과정을 돕습니다.',
 			intro:
-				'저는 김서영, Hamo입니다. iOS와 Swift를 공부하며 복잡한 내용을 더 쉽게 이해하고 함께 성장할 수 있는 방법을 기록합니다.',
+				'저는 김서영, Hamo입니다. 화학공학과 커뮤니티 운영 경험에서 출발해 iOS 개발을 배우고 있습니다. 사용자의 실제 문제를 데이터와 책임으로 나누고, 팀이 그 구조를 자기 언어로 이해하도록 돕는 일에 관심이 있습니다.',
 			principlesTitle: '일하는 기준',
 			principles: [
 				'기능보다 먼저 사용자가 실제로 겪는 문제를 정의합니다.',
 				'결과뿐 아니라 선택의 근거와 배운 점을 기록합니다.',
-				'혼자 빠르게 끝내는 것보다 함께 지속할 수 있는 구조를 고민합니다.',
+				'완성된 답을 전달하기보다 함께 판단할 수 있는 구조를 설명합니다.',
 			],
-			experienceTitle: 'Experience',
+			sourceNoticeTitle: '웹 정보가 최신입니다',
+			sourceNotice:
+				'다운로드용 CV는 공개 가능한 정보만 담은 요약본입니다. Academy 경험과 진행 중인 프로젝트는 이 웹 페이지의 내용을 우선해 주세요.',
+			cvEyebrow: 'Web CV',
+			cvTitle: '경험과 역할의 흐름',
+			cvIntro:
+				'직함만 나열하지 않고 어떤 환경에서 무엇을 맡았으며 다음 선택에 무엇이 남았는지 정리했습니다.',
+			downloadKo: '한국어 CV PDF',
+			downloadEn: 'English CV PDF',
+			openPdf: '새 탭에서 열기',
+			downloadPdf: '다운로드',
+			experienceTitle: 'Experience Timeline',
+			experienceIntro:
+				'최근의 iOS 학습부터 커뮤니티 운영, 연구와 교육 경험까지 시간의 흐름으로 볼 수 있습니다.',
 			experienceEmpty: '현재 이 언어로 공개된 경험 기록이 없습니다.',
+			projectsTitle: 'CV Projects',
+			projectsIntro:
+				'원본 CV에 수록된 SCUTTA 운영 도구를 현재 공개 기준에 맞춰 연결합니다.',
+			academyEyebrow: 'Apple Developer Academy',
+			academyTitle: 'C1에서 C4까지, 달라진 질문',
+			academyIntro:
+				'프로젝트명보다 각 챌린지에서 문제를 바라보는 방식과 팀에 기여하는 방식이 어떻게 달라졌는지 기록합니다.',
+			challenge: {
+				context: 'Challenge Context',
+				team: 'Team',
+				problem: 'Problem',
+				role: 'My Role',
+				tried: 'What I Tried',
+				changed: 'What Changed',
+				learning: 'What I Learned',
+				related: 'Related',
+				repository: '공개 저장소 보기',
+			},
+			skillsTitle: 'Skills & Interests',
+			skillsIntro:
+				'도구 이름보다 현재 프로젝트에서 실제로 사용하거나 탐구하는 영역을 중심으로 정리했습니다.',
+			skillGroups: [
+				{
+					title: 'iOS & Apple Platforms',
+					items: ['Swift', 'SwiftUI', 'SwiftData', 'App Intents', 'WidgetKit'],
+				},
+				{
+					title: 'Architecture & Data',
+					items: ['데이터 모델링', 'Service 계약', '상태 흐름', '실패 fallback'],
+				},
+				{
+					title: 'Learning & Collaboration',
+					items: ['컴퓨팅 사고력', '교육', '문서화', 'AI 보조 문제 해결'],
+				},
+			],
+			contactTitle: 'Public Contact',
+			contactIntro:
+				'개인 전화번호와 주소는 공개하지 않습니다. 공개 프로젝트와 활동은 GitHub에서 확인할 수 있습니다.',
+			github: 'GitHub 프로필',
 		},
 		projects: {
 			eyebrow: 'Projects',
@@ -223,17 +275,69 @@ export const ui = {
 		},
 		about: {
 			eyebrow: 'About',
-			title: 'I create environments where people can learn and take part.',
+			title: 'I build structures for learning and help teams understand them together.',
 			intro:
-				"I'm Seoyeong Kim, also known as Hamo. I study iOS and Swift, and document ways to make complex ideas easier to understand and learn together.",
+				"I'm Seoyeong Kim, also known as Hamo. My path to iOS development began with chemical engineering and community operations. I care about turning real user problems into data and responsibilities, then helping a team understand that structure in its own language.",
 			principlesTitle: 'How I work',
 			principles: [
 				'Define the real user problem before choosing features.',
 				'Document the reasoning and learning behind each result.',
-				'Build structures that help a team continue, not just finish quickly alone.',
+				'Explain structures that support shared judgment instead of handing over finished answers.',
 			],
-			experienceTitle: 'Experience',
+			sourceNoticeTitle: 'The web version is current',
+			sourceNotice:
+				'The downloadable CV is a public-safe summary. For Academy work and projects in progress, please treat this web page as the current source.',
+			cvEyebrow: 'Web CV',
+			cvTitle: 'A timeline of roles and learning',
+			cvIntro:
+				'Rather than listing titles alone, this timeline records the environment, my responsibility, and what influenced the next decision.',
+			downloadKo: 'Korean CV PDF',
+			downloadEn: 'English CV PDF',
+			openPdf: 'Open in a new tab',
+			downloadPdf: 'Download',
+			experienceTitle: 'Experience Timeline',
+			experienceIntro:
+				'Follow the path from current iOS learning through community operations, research, and education.',
 			experienceEmpty: 'No experience entries are available in this language yet.',
+			projectsTitle: 'CV Projects',
+			projectsIntro:
+				'SCUTTA operations tools from the source CV, connected under the current public disclosure policy.',
+			academyEyebrow: 'Apple Developer Academy',
+			academyTitle: 'How my questions changed from C1 to C4',
+			academyIntro:
+				'The focus is not only what each challenge built, but how my approach to problems and contribution to a team changed.',
+			challenge: {
+				context: 'Challenge Context',
+				team: 'Team',
+				problem: 'Problem',
+				role: 'My Role',
+				tried: 'What I Tried',
+				changed: 'What Changed',
+				learning: 'What I Learned',
+				related: 'Related',
+				repository: 'View public repository',
+			},
+			skillsTitle: 'Skills & Interests',
+			skillsIntro:
+				'Focused on areas I currently use or explore in real projects, rather than a long list of tool names.',
+			skillGroups: [
+				{
+					title: 'iOS & Apple Platforms',
+					items: ['Swift', 'SwiftUI', 'SwiftData', 'App Intents', 'WidgetKit'],
+				},
+				{
+					title: 'Architecture & Data',
+					items: ['Data modeling', 'Service contracts', 'State flow', 'Failure fallbacks'],
+				},
+				{
+					title: 'Learning & Collaboration',
+					items: ['Computational thinking', 'Education', 'Documentation', 'AI-assisted problem solving'],
+				},
+			],
+			contactTitle: 'Public Contact',
+			contactIntro:
+				'Personal phone numbers and addresses remain private. Public projects and activity are available on GitHub.',
+			github: 'GitHub profile',
 		},
 		projects: {
 			eyebrow: 'Projects',

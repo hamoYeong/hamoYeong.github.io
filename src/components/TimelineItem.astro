@@ -4,9 +4,16 @@ interface Props {
 	title: string;
 	organization?: string;
 	summary?: string;
+	highlights?: string[];
 }
 
-const { period, title, organization, summary } = Astro.props;
+const {
+	period,
+	title,
+	organization,
+	summary,
+	highlights = [],
+} = Astro.props;
 ---
 
 <article class="timeline-item">
@@ -15,6 +22,15 @@ const { period, title, organization, summary } = Astro.props;
 	<h3>{title}</h3>
 	{organization && <p class="timeline-item__organization">{organization}</p>}
 	{summary && <p class="timeline-item__summary">{summary}</p>}
+	{
+		highlights.length > 0 && (
+			<ul>
+				{highlights.map((highlight) => (
+					<li>{highlight}</li>
+				))}
+			</ul>
+		)
+	}
 </article>
 
 <style>
@@ -62,5 +78,15 @@ const { period, title, organization, summary } = Astro.props;
 		margin-top: var(--space-3);
 		color: var(--color-text-soft);
 		line-height: var(--leading-body);
+	}
+
+	ul {
+		display: grid;
+		gap: var(--space-2);
+		margin: var(--space-4) 0 0;
+		padding-left: var(--space-5);
+		color: var(--color-text-soft);
+		font-size: var(--text-sm);
+		line-height: 1.65;
 	}
 </style>
