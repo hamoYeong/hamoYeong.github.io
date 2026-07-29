@@ -23,12 +23,12 @@ context: This is a personal iOS project for validating product principles, data 
 user: The intended user wants to record plans and actual activity while reflecting on the difference without labeling the day a success or failure.
 contributions:
   - Designed plans and actual records as independent models.
-  - Built optional CloudKit, App Intents, Widget, and Live Activity flows around SwiftData.
-  - Captured time zones, daylight saving time, midnight crossings, and interval overlaps in tests.
+  - Imported EventKit events and HealthKit sleep intervals as material people can use to compose plans and actual records.
+  - Built optional CloudKit, App Intents, Widget, and Live Activity flows around SwiftData, with time-boundary behavior captured in tests.
 process:
   - Defined the distinct meanings of plans and actual records as product principles.
-  - Implemented independent data models and a local-first persistence flow.
-  - Connected CloudKit, App Intents, Widgets, and Live Activities as projections, then verified time-boundary conditions.
+  - Implemented plans, actual activity, distractions, sleep, and reflection as independent SwiftData models and stores.
+  - Connected EventKit, HealthKit, App Intents, Widgets, and Live Activities as inputs or projections, then verified time-boundary conditions.
 research: []
 keyDecisions:
   - title: Separate plans from actual records
@@ -38,21 +38,25 @@ keyDecisions:
   - title: Keep extensions as projections
     description: Widgets and Live Activities receive only the state they need instead of becoming additional sources of truth.
 technicalStructure:
-  - SwiftData owns local plan, actual-record, and reflection data.
+  - A versioned SwiftData schema owns local plans, actual activity, distractions, sleep, and reflection data.
+  - Feature stores handle model queries and mutations, while EventKit and HealthKit adapters translate external data into app models.
   - CloudKit synchronization is optional and preserves local-only behavior on failure.
   - App Intents, WidgetKit, and ActivityKit consume limited data projections.
 challenges:
   - Time zones, daylight saving changes, and intervals crossing midnight needed consistent meaning.
-  - Multiple Apple platform extensions could not be allowed to split ownership of the core data.
+  - Local-only recording needed to continue in environments that could not satisfy CloudKit compatibility requirements.
+  - Multiple Apple platform integrations and extensions could not be allowed to split ownership of the core data.
 technologies:
   - SwiftUI
   - SwiftData
   - CloudKit
+  - EventKit
+  - HealthKit
   - App Intents
   - WidgetKit
   - ActivityKit
 outcomes:
-  - Recorded feature-level builds and unit and UI test evidence in the public repository documentation.
+  - Verified interval calculations, stores, CloudKit fallback, calendar and sleep integrations, App Intents, Widgets, and Live Activities through unit and UI tests.
   - Final integration, on-device verification, and release are still in progress.
 whatIWouldChange:
   - Limit scope earlier and verify the core record-and-reflection loop on a device before expanding platform integrations.
