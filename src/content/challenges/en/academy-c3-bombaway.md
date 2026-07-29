@@ -25,6 +25,7 @@ whatChanged:
   - Expanded from managing one screen's state to keeping state consistent across several devices.
 learnings:
   - A real-time experience needs game rules that absorb latency and differences in sensor quality, not just successful communication.
+relatedProject: bombaway
 relatedPosts: []
 visibility: private-summary
 draft: false

@@ -21,6 +21,7 @@ whatITried:
   - 탐색과 보관함 흐름을 ViewModel과 SwiftData로 연결했습니다.
 whatChanged:
   - 단순한 화면 목록에서 상태를 저장하고 다시 탐색할 수 있는 데이터 중심 구조로 확장했습니다.
+  - 공개 commit 기록에서 TestFlight 배포까지 진행한 사실을 확인했습니다.
 learnings:
   - MV와 MVVM 같은 이름보다 상태를 누가 소유하고 변경하는지 설명하는 일이 먼저입니다.
 relatedPosts: []

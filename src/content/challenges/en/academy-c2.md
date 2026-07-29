@@ -21,6 +21,7 @@ whatITried:
   - Connected discovery and saved-item flows through view models and SwiftData.
 whatChanged:
   - Expanded a simple screen list into a data-centered structure where state could be saved and explored again.
+  - The public commit history confirms that the prototype reached a TestFlight build.
 learnings:
   - Explaining who owns and changes state comes before choosing a label such as MV or MVVM.
 relatedPosts: []
