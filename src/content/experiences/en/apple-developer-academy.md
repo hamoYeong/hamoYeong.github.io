@@ -4,18 +4,19 @@ locale: en
 translationKey: apple-developer-academy
 title: Learner
 organization: Apple Developer Academy @ POSTECH
-summary: Learning to build iOS products through user problem framing, data structure, shared team understanding, and computational thinking.
+summary: Expanding from finding problems through CBL and implementing responses in Swift toward designing user experience and shared team understanding.
 period:
   start: '2026'
   end: present
   label: 2026-present
 category: education
 highlights:
-  - Built SwiftUI prototypes that structured Academy life information during C1 and C2.
-  - Implemented game state, sensor, and communication flows for a nearby multiplayer game during C3.
-  - Worked on the record service structure and helped the team understand its data flow during C4.
+  - Experienced CBL and Swift fundamentals together through team planning and individual implementation in C1.
+  - Recognized an unvalidated user need in C2 and turned the project into an architecture-learning exercise.
+  - Built a nearby multiplayer game in C3 and connected Apple technologies to a hands-on final booth.
+  - Combined user research, accessibility, model design, and shared team understanding in C4 Ssukssuk.
 order: 10
 draft: false
 ---
 
-Across the challenges, my focus expanded from making screens quickly to explaining data responsibilities and helping a team share the same decision criteria.
+Across the challenges, my focus expanded from making screens quickly to changing a problem through research, explaining data responsibilities, and helping a team share the same decision criteria.

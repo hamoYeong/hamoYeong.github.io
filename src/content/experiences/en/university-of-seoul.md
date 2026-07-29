@@ -7,12 +7,12 @@ organization: University of Seoul
 summary: Studied chemical engineering and experienced research and data analysis before expanding that learning toward structuring problems through software.
 period:
   start: '2022-03'
-  end: '2026-02'
-  label: Mar 2022-Feb 2026 (per source CV)
+  end: '2027'
+  label: Mar 2022-Class of 2027
 category: education
 highlights:
   - Completed chemical engineering coursework and a CCMD laboratory internship.
-  - The source CV records enrollment through Feb 2026; this site does not infer a later academic status.
+  - Expected to graduate in 2027.
 order: 70
 draft: false
 ---

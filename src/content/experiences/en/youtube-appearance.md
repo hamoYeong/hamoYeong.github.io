@@ -13,8 +13,15 @@ category: community
 highlights:
   - Shared practical ways a university student used an iPad.
   - Explained a workflow for using Notion to organize thoughts and activity records.
+  - The iPad video had 890,000 views as of Jul 29, 2026.
+  - The Notion video had 320,000 views as of Jul 29, 2026.
+links:
+  - label: Watch the iPad note-taking video
+    href: https://youtu.be/Yt5l9woL2I4
+  - label: Watch the Notion smart-notes video
+    href: https://youtu.be/hzDwmZsRtfo
 order: 45
 draft: false
 ---
 
-Metrics that change over time, such as views, are intentionally omitted until they can be verified again.
+The videos were published on Aug 25 and Sep 1, 2024. View counts are presented with their verification date.

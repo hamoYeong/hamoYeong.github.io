@@ -41,6 +41,11 @@ const coverImageSchema = z.object({
 	alt: z.string().min(1),
 });
 
+const externalLinkSchema = z.object({
+	label: z.string().min(1),
+	href: z.url(),
+});
+
 const projectDecisionSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(1),
@@ -120,6 +125,7 @@ const experiences = defineCollection({
 		period: periodSchema,
 		category: z.enum(['education', 'work', 'leadership', 'community', 'research']),
 		highlights: z.array(z.string().min(1)).default([]),
+		links: z.array(externalLinkSchema).default([]),
 		order: z.number().int(),
 		draft: z.boolean().default(true),
 	}),
