@@ -25,6 +25,7 @@ whatChanged:
   - 한 화면의 상태를 만드는 관점에서 여러 기기의 상태를 일관되게 맞추는 관점으로 확장했습니다.
 learnings:
   - 실시간 경험에서는 통신 성공뿐 아니라 지연과 센서 품질 차이를 게임 규칙이 흡수해야 합니다.
+relatedProject: bombaway
 relatedPosts: []
 visibility: private-summary
 draft: false
