@@ -11,7 +11,10 @@ tags:
   - Architecture
 draft: false
 featured: true
-relatedProjects: []
+relatedProjects:
+  - computational-thinking-hamo
+  - dayflow
+  - leaf
 ---
 
 Before asking AI to write code, the most important question is not how long the prompt is. It is how clearly I understand the problem.
