@@ -19,7 +19,7 @@ SwiftUI projects often separate a `Protocol`, a `PreviewService`, and a producti
 
 While implementing a record flow in a team project, I changed the order in which I approached the structure. Instead of building persistence first and extracting a protocol later, I described the actions the screen needed as a contract, checked that contract through preview states, and only then connected production persistence.
 
-> The code in this post is a simplified example for explaining data flow. It is not copied from the private team repository.
+> This post rebuilds the flow used in the project with a smaller example model.
 
 ## A protocol is a question before it is a replacement mechanism
 

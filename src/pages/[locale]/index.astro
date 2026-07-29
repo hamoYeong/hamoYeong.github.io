@@ -34,8 +34,16 @@ const [projects, posts] = await Promise.all([
 const featuredProjects = projects
 	.filter((project) => project.data.featured)
 	.slice(0, 3);
+const journeyProject = projects.find(
+	(project) => project.data.translationKey === 'leaf',
+);
+const journeyHref = journeyProject
+	? localizedPath(locale, `projects/${journeyProject.data.slug}`)
+	: localizedPath(locale, 'projects');
 const latestPosts = posts.slice(0, 3);
 const githubUrl = 'https://github.com/hamoYeong';
+const linkedinUrl = 'https://www.linkedin.com/in/seoyeong-kim-hamoyeong';
+const publicEmail = 'rlatjdud6573@naver.com';
 ---
 
 <BaseLayout locale={locale} alternatePaths={alternatePaths}>
@@ -119,7 +127,7 @@ const githubUrl = 'https://github.com/hamoYeong';
 		</div>
 		<div class="journey__body">
 			<p>{t.home.journeyDescription}</p>
-			<a href={localizedPath(locale, 'about')}>{t.home.journeyAction} →</a>
+			<a href={journeyHref}>{t.home.journeyAction} →</a>
 		</div>
 	</section>
 
@@ -173,7 +181,13 @@ const githubUrl = 'https://github.com/hamoYeong';
 			<h2 id="contact-title">{t.home.contactTitle}</h2>
 			<p>{t.home.contactDescription}</p>
 		</div>
-		<ExternalLink href={githubUrl}>{t.home.githubAction}</ExternalLink>
+		<div class="contact__links">
+			<a class="contact__email" href={`mailto:${publicEmail}`}>
+				{t.about.email}
+			</a>
+			<ExternalLink href={linkedinUrl}>{t.about.linkedin}</ExternalLink>
+			<ExternalLink href={githubUrl}>{t.home.githubAction}</ExternalLink>
+		</div>
 	</section>
 </BaseLayout>
 
@@ -425,7 +439,33 @@ const githubUrl = 'https://github.com/hamoYeong';
 		color: var(--color-text-soft);
 	}
 
-	@media (max-width: 960px) {
+	.contact__links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: var(--space-2);
+	}
+
+	.contact__email {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		border: var(--border-default);
+		border-radius: var(--radius-pill);
+		padding-inline: var(--space-4);
+		background: var(--color-surface);
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+		font-weight: 850;
+		text-decoration: none;
+	}
+
+	.contact__email:hover {
+		border-color: var(--color-accent);
+		background: var(--color-surface-accent);
+	}
+
+	@media (max-width: 1280px) {
 		.hero {
 			grid-template-columns: 1fr;
 		}
@@ -456,6 +496,10 @@ const githubUrl = 'https://github.com/hamoYeong';
 		.contact {
 			align-items: flex-start;
 			flex-direction: column;
+		}
+
+		.contact__links {
+			justify-content: flex-start;
 		}
 	}
 </style>
