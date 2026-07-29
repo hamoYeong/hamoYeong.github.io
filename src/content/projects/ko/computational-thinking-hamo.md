@@ -3,24 +3,24 @@ slug: computational-thinking-hamo
 locale: ko
 translationKey: computational-thinking-hamo
 title: 하모컴
-summary: 코딩 초보자가 AI의 결과를 따라가기보다 데이터와 흐름을 먼저 읽고 함께 이야기하도록 돕는 macOS 교육 도구입니다.
+summary: 컴퓨팅 사고력 세션을 들은 뒤 소규모 세션을 직접 열어보기 위해 만들다가, 명확한 학습자 필요와 커리큘럼 없이 중단한 macOS 프로토타입입니다.
 period:
   start: '2026-06'
-  end: present
-  label: 2026.06-현재
-status: in-progress
+  end: '2026-06'
+  label: '2026.06'
+status: archived
 role:
   - 수업 구조 설계
   - 제품 구조 설계
   - macOS 앱 구현
 team:
   type: personal
-  description: Apple Developer Academy의 컴퓨팅 사고력 수업을 위해 개인으로 설계하고 구현했습니다.
-overview: 코드를 직접 편집하는 도구보다 코드를 읽고 질문하며 두 구조를 비교하는 학습 순서에 집중한 macOS 앱입니다.
-problem: 코딩 초보자가 AI가 만든 완성 코드만 따라가면 화면보다 먼저 데이터와 흐름을 생각하는 연습을 놓칠 수 있습니다.
-whyItMattered: AI가 구현 속도를 높일수록 학습자가 결과를 판단하고 수정할 수 있는 컴퓨팅 사고 과정은 더 중요해집니다.
-context: Apple Developer Academy의 컴퓨팅 사고력 수업을 위해 설계했습니다. 실제 수업 사용 여부와 참여자 반응은 아직 공개 성과로 확정하지 않습니다.
-user: 완성 코드를 따라가기보다 데이터와 흐름을 읽는 연습이 필요한 코딩 초보 학습자를 대상으로 합니다.
+  description: 컴퓨팅 사고력에 관한 소규모 세션을 상상하며 개인으로 설계하고 구현했습니다.
+overview: 코드를 직접 편집하기보다 코드를 읽고 질문하며 두 구조를 비교하는 학습 순서를 탐색한 macOS 앱 프로토타입입니다.
+problem: 코딩 초보자가 AI가 만든 완성 코드만 따라가면 데이터와 흐름을 스스로 설명하고 결과를 판단하는 연습을 놓칠 수 있다는 가설에서 시작했습니다.
+whyItMattered: 다만 명확한 학습자 필요와 커리큘럼 없이 도구부터 만들면 기능이 실제 배움으로 이어지는지 판단하기 어렵습니다.
+context: 컴퓨팅 사고력 세션을 들은 뒤 나도 소규모 세션을 열어보고 싶어 시작했지만, 구체적인 니즈 없이 앱을 먼저 만들고 있다는 점을 깨닫고 중단했습니다.
+user: 학습자와 수업 맥락을 구체적으로 검증하지 않은 초기 가설 단계였습니다.
 contributions:
   - 읽기 전용 TextKit 코드 뷰어에 줄 번호, 현재 파일 검색과 줄·범위 코멘트를 구현했습니다.
   - 코멘트와 댓글, 단계별 unlock 상태를 SwiftData에 저장하고 두 코드 구조의 분할 비교 흐름을 구현했습니다.
@@ -55,18 +55,19 @@ technologies:
 outcomes:
   - 코드 로딩, 검색, 코멘트, 구조 비교, 근거리 공유 흐름을 작동 가능한 앱으로 구현했습니다.
   - 현재 저장소에는 자동화 테스트 target이 없어 기능별 수동 점검 문서로 검증 범위를 기록했습니다.
-  - 실제 수업 사용 여부와 참여자 피드백은 확인 후 공개할 예정입니다.
+  - 실제 수업에는 사용하지 않았고, 명확한 니즈와 커리큘럼 없이 만든 프로토타입이라는 판단에서 개발을 멈췄습니다.
 whatIWouldChange:
-  - 실제 수업에 사용하기 전 학습 목표별 관찰 기준과 익명 피드백 수집 범위를 먼저 정의하겠습니다.
-  - 검색, 코멘트 범위 변환, unlock과 동기화 충돌 정책을 자동화 테스트로 고정하겠습니다.
+  - 다음에는 앱보다 먼저 어떤 학습자가 어떤 사고 과정을 반복해서 연습해야 하는지 정의하고 작은 세션으로 검증하겠습니다.
+  - 컴퓨팅 사고력 멘토와 대화하며 커리큘럼의 역할을 정리한 뒤 새로운 프로젝트의 범위를 잡겠습니다.
 learnings:
-  - 교육 도구는 기능 수보다 학습자가 어떤 순서로 생각하게 하는지가 중요합니다.
+  - 교육 도구는 기능 수보다 학습자가 어떤 순서로 생각하고 필요할 때 다시 꺼낼 수 있는 체계를 만드는지가 중요합니다.
+  - C4에서 팀원과 1:1로 함께 구현하며 일회성 설명의 재미와 한계를 모두 느꼈고, 명확한 커리큘럼을 만들고 싶은 동기가 다시 생겼습니다.
   - AI가 만든 답을 평가하려면 먼저 데이터와 책임을 자신의 언어로 설명할 수 있어야 합니다.
 categories:
   - macOS
   - Education
   - Computational Thinking
-featured: true
+featured: false
 draft: false
 repository: https://github.com/hamoYeong/ComputationalThinkingHamo
 visibility: public
