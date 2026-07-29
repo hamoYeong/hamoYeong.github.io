@@ -23,9 +23,9 @@ export const ui = {
 			eyebrow: 'iOS Developer',
 			name: '김서영',
 			alias: 'Hamo',
-			title: '사용하며 생긴 질문을 앱과 서비스로 만들어봅니다.',
+			title: '사용자의 문제를 구조로 풀고, 함께 이해할 수 있게 만듭니다.',
 			intro:
-				'서울시립대학교에서 화학공학을 공부했고, 탁구 동아리 운영을 위한 웹 서비스를 만든 경험을 계기로 Apple Developer Academy @ POSTECH에서 iOS 개발을 배우고 있습니다.',
+				'사용자의 실제 문제에서 출발해 데이터와 책임의 경계를 설계합니다. 구현하는 데서 멈추지 않고, 팀이 구조를 함께 이해하고 다음 판단을 이어갈 수 있도록 설명하고 기록합니다.',
 			aboutAction: 'About에서 더 알아보기',
 			projectsAction: '프로젝트 살펴보기',
 			careEyebrow: 'What I Care About',
@@ -90,9 +90,9 @@ export const ui = {
 		},
 		about: {
 			eyebrow: 'About',
-			title: 'iOS 개발자 김서영입니다.',
+			title: '배움을 구조화하고, 함께 이해하는 과정을 만듭니다.',
 			intro:
-				'서울시립대학교에서 화학공학을 공부했고, 커뮤니티 운영과 웹 서비스 개발을 거쳐 Apple Developer Academy @ POSTECH에서 iOS 제품을 만들고 있습니다.',
+				'저는 김서영, Hamo입니다. 사용자와 팀원에게 배우며 복잡한 개념과 데이터 흐름을 각자의 이해 단계에 맞게 설명하는 일에 관심이 있습니다. 한 번의 답을 건네기보다 필요할 때 다시 꺼내 쓸 수 있는 배움의 구조를 만들고 싶습니다.',
 			downloadKo: '한국어 CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: '새 탭에서 열기',
@@ -233,9 +233,9 @@ export const ui = {
 			eyebrow: 'iOS Developer',
 			name: 'Seoyeong Kim',
 			alias: 'Hamo',
-			title: 'I turn questions from real use into apps and services.',
+			title: 'I turn user problems into structures people can understand together.',
 			intro:
-				'I studied chemical engineering at the University of Seoul. Building a web service for my table-tennis club led me to Apple Developer Academy @ POSTECH, where I now study iOS development.',
+				'I start with real user problems and define clear boundaries for data and responsibility. I go beyond implementation by explaining and documenting the structure so the team can understand it and carry the next decision forward.',
 			aboutAction: 'Learn more in About',
 			projectsAction: 'Explore projects',
 			careEyebrow: 'What I Care About',
@@ -301,9 +301,9 @@ export const ui = {
 		},
 		about: {
 			eyebrow: 'About',
-			title: "I'm Seoyeong Kim, an iOS developer.",
+			title: 'I structure learning and create ways to understand together.',
 			intro:
-				'I studied chemical engineering at the University of Seoul, built a web service while running a student community, and now create iOS products at Apple Developer Academy @ POSTECH.',
+				"I'm Seoyeong Kim, also known as Hamo. I learn from users and teammates, and I care about explaining complex concepts and data flows at each person's current level of understanding. Rather than offering a one-time answer, I want to build learning structures people can return to when they need them.",
 			downloadKo: 'Korean CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: 'Open in a new tab',
