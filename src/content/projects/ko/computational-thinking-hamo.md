@@ -69,4 +69,5 @@ repository: https://github.com/hamoYeong/ComputationalThinkingHamo
 visibility: public
 relatedPosts:
   - ai-context-before-code
+  - thinking-together-before-code
 ---

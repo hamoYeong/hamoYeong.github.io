@@ -11,7 +11,10 @@ tags:
   - Architecture
 draft: false
 featured: true
-relatedProjects: []
+relatedProjects:
+  - computational-thinking-hamo
+  - dayflow
+  - leaf
 ---
 
 AI에게 코드를 요청하기 전에 먼저 확인해야 할 것은 프롬프트의 길이가 아니라 내가 문제를 얼마나 분명하게 이해하고 있는지입니다.
