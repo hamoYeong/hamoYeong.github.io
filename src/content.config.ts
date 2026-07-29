@@ -31,7 +31,7 @@ const periodSchema = z.object({
 });
 
 const teamSchema = z.object({
-	type: z.enum(['personal', 'team']),
+	type: z.enum(['personal', 'team', 'unspecified']),
 	size: z.number().int().positive().optional(),
 	description: z.string().min(1),
 });
@@ -130,6 +130,7 @@ const challenges = defineCollection({
 		learnings: z.array(z.string().min(1)).min(1),
 		relatedProject: translationKeySchema.optional(),
 		relatedPosts: z.array(translationKeySchema).default([]),
+		repository: z.url().optional(),
 		visibility: z.enum(['public', 'private-summary', 'unlisted']),
 		draft: z.boolean().default(true),
 	}),
