@@ -3,12 +3,12 @@ slug: academy-c4-leaf
 locale: en
 translationKey: academy-c4-leaf
 sequence: C4
-title: Leaf (working title) - Recording a Garden's Day
+title: Leaf - Recording a Garden's Day
 summary: Separated interface and persistence responsibilities and implemented record flows for a team project about caring for and observing a small garden.
 period:
-  start: '2026'
-  end: '2026'
-  label: 2026 C4
+  start: '2026-07'
+  end: present
+  label: Jul 2026-present
 team:
   type: team
   description: A private Apple Developer Academy C4 team project, summarized only through my publicly safe contributions.
@@ -27,6 +27,7 @@ whatChanged:
 learnings:
   - Designing a sound structure and helping a team understand it are both necessary.
   - Explaining data flow and layer responsibilities can be more useful than handing over finished code.
+relatedProject: leaf
 relatedPosts:
   - ai-context-before-code
 visibility: private-summary
@@ -35,6 +36,6 @@ draft: false
 
 ## Challenge context
 
-This entry summarizes the project goal and my contribution without reproducing code from the private team repository. The final public name and user research figures are not presented as confirmed outcomes.
+This entry summarizes the project goal and my contribution without reproducing code from the private team repository. User-research figures are not presented as confirmed outcomes until publishable evidence is verified.
 
 The private repository URL, internal issues and pull requests, teammate accounts, and raw research materials remain private.

@@ -3,12 +3,12 @@ slug: academy-c4-leaf
 locale: ko
 translationKey: academy-c4-leaf
 sequence: C4
-title: Leaf(작업명) - 텃밭의 오늘을 기록하는 앱
+title: Leaf - 텃밭의 오늘을 기록하는 앱
 summary: 작은 텃밭의 돌봄과 성장 과정을 기록하는 팀 프로젝트에서 화면과 저장 계층의 책임을 나누고 기록 흐름을 구현했습니다.
 period:
-  start: '2026'
-  end: '2026'
-  label: 2026 C4
+  start: '2026-07'
+  end: present
+  label: 2026.07-현재
 team:
   type: team
   description: Apple Developer Academy C4 private 팀 프로젝트이며 공개 가능한 본인 기여만 요약합니다.
@@ -27,6 +27,7 @@ whatChanged:
 learnings:
   - 좋은 구조를 만드는 일과 팀이 그 구조를 함께 이해하게 돕는 일은 모두 필요합니다.
   - 완성된 구현을 전달하기보다 데이터 흐름과 계층의 책임을 함께 설명하는 과정이 중요합니다.
+relatedProject: leaf
 relatedPosts:
   - ai-context-before-code
 visibility: private-summary
@@ -35,6 +36,6 @@ draft: false
 
 ## Challenge context
 
-이 문서는 private 팀 저장소의 코드를 옮기지 않고 공개 가능한 프로젝트 목적과 본인의 기여만 요약합니다. 최종 공개명과 사용자 조사 수치는 확인 전까지 확정된 성과로 표현하지 않습니다.
+이 문서는 private 팀 저장소의 코드를 옮기지 않고 공개 가능한 프로젝트 목적과 본인의 기여만 요약합니다. 사용자 조사 수치는 공개 근거를 확인하기 전까지 확정된 성과로 표현하지 않습니다.
 
 private 저장소 URL, 내부 이슈·PR, 팀원 계정과 원본 사용자 조사 자료는 공개하지 않습니다.
