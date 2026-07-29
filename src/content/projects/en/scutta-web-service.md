@@ -16,11 +16,35 @@ role:
 team:
   type: team
   description: I developed the service independently and collaborated with the club leadership team on operation and feedback.
+overview: A dedicated service that extended lessons from the Notion operation and brought match records, approval, and participation rules into one web product.
 problem: Manual calculations, mobile access, and synchronization delays in Notion created a need to operate match records and participation features in one service.
+whyItMattered: As records grew, manual calculation and synchronization delays affected not only the member experience but also operating cost and confidence in the data.
+context: I developed and deployed the service independently, while collaborating with the SCUTTA leadership team on operation and feedback.
+user: SCUTTA members submitted records and used participation features, while the leadership team reviewed and managed them.
 contributions:
   - Implemented HTML, CSS, and JavaScript interfaces with a Flask server.
   - Modeled players, matches, leagues, bets, and daily opponents in PostgreSQL.
   - Implemented match submission and approval, search, rankings, leagues, bets, and achievement flows.
+process:
+  - Used recurring mobile, calculation, and synchronization problems in Notion as the criteria for moving to a web service.
+  - Moved players, matches, and participation features into PostgreSQL models and separated submission from approval state.
+  - Applied member and leadership feedback to ranking, league, betting, and participation rules after deployment.
+research:
+  - Feedback from live operation informed feature and rule changes; original messages and user data remain private.
+keyDecisions:
+  - title: Move beyond extending Notion
+    description: Once record volume and calculation complexity grew, a separate service made mobile interfaces and server calculations independently manageable.
+  - title: Separate submission from approval
+    description: A member-submitted match and a leadership-reviewed record were not treated as the same state.
+  - title: Design motivation instead of control
+    description: Points, multiple rankings, and participation features gave people reasons to act without directly forcing behavior.
+technicalStructure:
+  - A Flask server handled match submission, approval, and participation rules.
+  - PostgreSQL modeled players, matches, leagues, bets, and daily opponents.
+  - HTML, CSS, and JavaScript provided the mobile web flow.
+challenges:
+  - Rules from rapidly added features became distributed across server logic and data models, increasing change cost.
+  - Operating real user data required input errors and approval state to remain safely distinguishable.
 technologies:
   - Flask
   - Python
@@ -30,6 +54,9 @@ outcomes:
   - 128 people had used the service as of the source CV publication date.
   - 785 cumulative match records had been structured as data as of the source CV publication date.
   - The service was deployed and operated, but is no longer active.
+whatIWouldChange:
+  - Separate match state transitions and participation rules into domain boundaries from the start.
+  - Design operator tools, error observation, and backup and recovery procedures alongside user-facing features.
 learnings:
   - Gained experience incorporating feedback from real users into product rules quickly.
   - After rapid implementation, data models and changeable rules need explicit boundaries.
@@ -42,11 +69,3 @@ repository: https://github.com/hamoYeong/scutta-2025-1
 visibility: public
 relatedPosts: []
 ---
-
-## From Notion to a web service
-
-The record system grew from Notion into a dedicated web service. This case separates my development work from collaborative operations and does not expose real player data, match records, or the retired deployment URL.
-
-## Current status
-
-The service is no longer active. User and record counts are labeled only as figures from the source CV publication date.

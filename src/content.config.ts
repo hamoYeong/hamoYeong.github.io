@@ -41,6 +41,11 @@ const coverImageSchema = z.object({
 	alt: z.string().min(1),
 });
 
+const projectDecisionSchema = z.object({
+	title: z.string().min(1),
+	description: z.string().min(1),
+});
+
 const projects = defineCollection({
 	loader: glob({
 		base: './src/content/projects',
@@ -55,10 +60,20 @@ const projects = defineCollection({
 		status: z.enum(['concept', 'in-progress', 'completed', 'archived']),
 		role: z.array(z.string().min(1)).min(1),
 		team: teamSchema,
+		overview: z.string().min(1),
 		problem: z.string().min(1),
+		whyItMattered: z.string().min(1),
+		context: z.string().min(1),
+		user: z.string().min(1),
 		contributions: z.array(z.string().min(1)).min(1),
+		process: z.array(z.string().min(1)).min(1),
+		research: z.array(z.string().min(1)).default([]),
+		keyDecisions: z.array(projectDecisionSchema).min(1),
+		technicalStructure: z.array(z.string().min(1)).min(1),
+		challenges: z.array(z.string().min(1)).min(1),
 		technologies: z.array(z.string().min(1)).min(1),
 		outcomes: z.array(z.string().min(1)).min(1),
+		whatIWouldChange: z.array(z.string().min(1)).min(1),
 		learnings: z.array(z.string().min(1)).min(1),
 		categories: z.array(z.string().min(1)).default([]),
 		featured: z.boolean().default(false),
