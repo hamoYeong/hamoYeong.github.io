@@ -5,9 +5,9 @@ translationKey: scutta-notion-system
 title: SCUTTA Match Record System in Notion
 summary: A club operations system that used match records and participation signals to help existing and new members interact more naturally.
 period:
-  start: '2024-06'
-  end: '2024-12'
-  label: Jun-Dec 2024
+  start: '2024-09'
+  end: '2025-02'
+  label: Sep 2024-Feb 2025
 status: completed
 role:
   - Proposed the concept
@@ -20,7 +20,7 @@ team:
 overview: A club operations system designed not as a simple leaderboard, but to use match records as a reason for members from different groups to meet more often.
 problem: Existing and new members rarely mixed naturally, and some members participated passively in regular activities.
 whyItMattered: A win-centered ranking could raise the participation barrier in a community with wide skill differences, so the operating rules needed to recognize multiple forms of participation.
-context: The system was operated with the leadership team during regular activities of SCUTTA, the University of Seoul table tennis club.
+context: The system was operated with the leadership team during regular SCUTTA activities from the fall 2024 semester through the winter break.
 user: SCUTTA members with different skill levels and joining dates used it alongside the leadership team managing match records.
 contributions:
   - Structured match records and multiple participation signals in a Notion database.
@@ -31,7 +31,7 @@ process:
   - Structured matches and several participation signals in Notion.
   - Reduced repetitive entry with Apple Shortcuts and the Notion API, then applied survey feedback to submission and discovery flows.
 research:
-  - Survey feedback collected during operation informed submission and interaction rules; raw responses remain private.
+  - Survey feedback collected during operation informed improvements to submission and interaction rules.
 keyDecisions:
   - title: Recognize participation beyond wins
     description: Losses and the number of unique opponents appeared alongside other signals so participation itself remained visible.
@@ -51,8 +51,8 @@ technologies:
   - Notion API
   - Apple Shortcuts
 outcomes:
-  - 84 members had used the system as of the CV publication date.
-  - 1,890 match records had been structured as data as of the CV publication date.
+  - 84 members used the system from Sep 2024 through Feb 2025.
+  - It structured 1,890 cumulative match records during the same operating period.
 whatIWouldChange:
   - Document validation rules and ownership of exceptional submissions before automating the entry flow.
   - Define anonymous observation criteria before launch to understand whether participation signals changed actual interaction.
@@ -62,7 +62,7 @@ learnings:
 categories:
   - Community
   - Automation
-featured: true
+featured: false
 draft: false
 visibility: public
 relatedPosts: []

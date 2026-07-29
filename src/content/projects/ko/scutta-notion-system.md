@@ -5,9 +5,9 @@ translationKey: scutta-notion-system
 title: SCUTTA 경기 기록 Notion 시스템
 summary: 경기 기록과 다양한 참여 지표를 활용해 기존 부원과 신입 부원이 자연스럽게 교류하도록 도운 동아리 운영 시스템입니다.
 period:
-  start: '2024-06'
-  end: '2024-12'
-  label: 2024.06-2024.12
+  start: '2024-09'
+  end: '2025-02'
+  label: 2024.09-2025.02
 status: completed
 role:
   - 아이디어 제안
@@ -20,7 +20,7 @@ team:
 overview: 단순한 순위표가 아니라 경기 기록을 계기로 서로 다른 부원이 더 자주 만나도록 만든 동아리 운영 시스템입니다.
 problem: 기존 부원과 신입 부원이 자연스럽게 섞이지 않았고, 정기 활동에서 일부 부원의 참여가 소극적이었습니다.
 whyItMattered: 승리 중심의 순위는 실력 차이가 큰 커뮤니티에서 오히려 참여 장벽을 높일 수 있어, 다양한 참여를 인정하는 운영 규칙이 필요했습니다.
-context: 서울시립대학교 중앙 탁구 동아리 SCUTTA의 정기 활동에서 임원진과 함께 운영했습니다.
+context: 2024년 2학기부터 겨울방학까지 서울시립대학교 중앙 탁구 동아리 SCUTTA의 정기 활동에서 임원진과 함께 운영했습니다.
 user: 실력과 가입 시기가 다른 SCUTTA 부원과 경기 기록을 확인·관리하는 운영진이 사용했습니다.
 contributions:
   - 경기 기록과 여러 참여 지표를 Notion 데이터베이스로 구조화했습니다.
@@ -31,7 +31,7 @@ process:
   - Notion 데이터베이스에 경기와 여러 참여 지표를 구조화했습니다.
   - Apple 단축어와 Notion API로 반복 입력을 줄이고, 운영 중 받은 설문 피드백을 제출·확인 흐름에 반영했습니다.
 research:
-  - 운영 중 수집한 설문 피드백을 제출 방식과 교류 유도 규칙 개선에 사용했으며 원문 응답은 공개하지 않습니다.
+  - 운영 중 수집한 설문 피드백을 제출 방식과 교류 유도 규칙 개선에 반영했습니다.
 keyDecisions:
   - title: 승리 이외의 참여를 함께 인정
     description: 패배 수와 서로 다른 경기 상대 수 등 여러 기준을 함께 보여주어 참여 자체를 드러냈습니다.
@@ -51,8 +51,8 @@ technologies:
   - Notion API
   - Apple Shortcuts
 outcomes:
-  - CV 작성 시점 기준 84명이 사용했습니다.
-  - CV 작성 시점 기준 1,890건의 경기 기록을 데이터화했습니다.
+  - 2024년 9월부터 2025년 2월까지 84명이 사용했습니다.
+  - 같은 운영 기간에 누적 경기 기록 1,890건을 데이터화했습니다.
 whatIWouldChange:
   - 자동화 전에 제출 데이터의 유효성 규칙과 예외 처리 책임을 더 명확히 문서화하겠습니다.
   - 참여 지표가 실제 교류에 미친 영향을 확인할 익명화된 관찰 기준을 운영 시작 전에 정하겠습니다.
@@ -62,7 +62,7 @@ learnings:
 categories:
   - Community
   - Automation
-featured: true
+featured: false
 draft: false
 visibility: public
 relatedPosts: []
