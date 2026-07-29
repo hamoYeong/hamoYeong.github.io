@@ -208,13 +208,21 @@ export const ui = {
 		posts: {
 			eyebrow: 'Posts',
 			title: '배우며 정리한 글',
-			intro: 'Swift, 제품 개발, 협업 과정에서 얻은 생각을 제 언어로 정리합니다.',
+			intro:
+				'구현 방법뿐 아니라 문제를 바라본 전제, 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
 			empty: '현재 이 언어로 공개된 글이 없습니다.',
 			readMore: '글 읽기',
 			back: 'Posts 목록으로',
+			filterLabel: '태그로 글 필터',
+			filterAll: '전체',
+			postCount: '개의 글',
 			publishedAt: '작성일',
 			updatedAt: '수정일',
 			tags: '태그',
+			onThisPage: '이 글의 내용',
+			relatedProjects: 'Related Projects',
+			relatedProjectsIntro:
+				'이 생각이 실제로 적용되거나 다시 질문하게 된 프로젝트입니다.',
 		},
 	},
 	en: {
@@ -427,13 +435,20 @@ export const ui = {
 			eyebrow: 'Posts',
 			title: 'Notes from learning',
 			intro:
-				'I put ideas from Swift, product development, and collaboration into my own words.',
+				'I record not only implementation, but the assumptions behind a problem, the reason for a choice, and what remains for the next decision.',
 			empty: 'No posts are available in this language yet.',
 			readMore: 'Read post',
 			back: 'Back to Posts',
+			filterLabel: 'Filter posts by tag',
+			filterAll: 'All',
+			postCount: ' posts',
 			publishedAt: 'Published',
 			updatedAt: 'Updated',
 			tags: 'Tags',
+			onThisPage: 'In this post',
+			relatedProjects: 'Related Projects',
+			relatedProjectsIntro:
+				'Projects where this idea was applied or raised another question.',
 		},
 	},
 } as const;
