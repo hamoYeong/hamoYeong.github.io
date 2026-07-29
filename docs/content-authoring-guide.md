@@ -159,6 +159,8 @@ relatedPosts: []
 
 ## 6. Post 작성법
 
+Post는 구현 순서만 나열하지 않고 문제를 바라본 전제, 선택의 이유, 실제 프로젝트에서 확인한 근거와 다음에 바꿀 점을 포함한다.
+
 ```yaml
 slug: example-post
 locale: ko
@@ -179,6 +181,50 @@ relatedProjects:
 - 공개 전까지 `draft: true`를 유지한다.
 - `relatedProjects`에는 프로젝트의 `translationKey`를 넣는다.
 - 번역본은 날짜를 별도로 관리할 수 있지만 같은 `translationKey`를 사용한다.
+- 번역본이 없는 글은 해당 locale 파일을 만들지 않는다. 언어 전환 시 반대 언어의 Posts 목록으로 안전하게 이동한다.
+
+### 본문 구조와 표현
+
+- 글 제목은 frontmatter의 `title`만 사용하고 본문은 `##`부터 시작한다.
+- `##` 제목은 상세 페이지의 목차에 자동으로 표시된다.
+- 한 섹션 안의 세부 내용은 `###`을 사용한다.
+- 코드 블록은 언어를 명시한 fenced code block을 사용한다.
+- 일반 인용 또는 독자에게 강조할 판단 기준은 Markdown blockquote를 사용한다. 상세 페이지에서는 callout 형태로 표시된다.
+- 이미지는 반드시 의미 있는 alt text를 작성한다. 장식용 이미지는 추가하지 않는다.
+- 이미지 파일은 `public/images/posts/{translationKey}/` 아래에 두고 `/images/posts/...` 절대 경로로 참조한다.
+- private 저장소의 원본 코드, 내부 문서, 팀원 계정과 사용자 데이터는 글에 옮기지 않는다. 설명용 코드는 공개 가능한 최소 예시로 다시 작성하고 그 사실을 밝힌다.
+
+````md
+## 선택의 이유
+
+기능보다 먼저 데이터의 책임을 정했습니다.
+
+> 이 예시는 흐름을 설명하기 위해 단순화한 공개용 코드입니다.
+
+```swift
+protocol ExampleService {
+    func load() async throws -> [Item]
+}
+```
+
+![데이터가 화면과 서비스 사이를 이동하는 공개용 흐름도](/images/posts/example-post/data-flow.png)
+````
+
+### 프로젝트와 상호 연결
+
+Post의 `relatedProjects`와 Project의 `relatedPosts`는 같은 `translationKey`를 서로 참조해야 한다.
+
+```yaml
+# Post
+relatedProjects:
+  - example-project
+
+# Project
+relatedPosts:
+  - example-post
+```
+
+한쪽 링크만 추가하면 상세 페이지 간 이동이 비대칭이 되므로 공개 전 두 방향을 확인한다.
 
 ## 7. Experience 작성법
 
@@ -278,8 +324,9 @@ const projects = await getProjects({ locale: 'ko' });
 3. schema의 필수 frontmatter를 작성한다.
 4. 본문을 작성하고 공개 범위를 확인한다.
 5. 초안은 `draft: true`로 둔다.
-6. 콘텐츠 타입을 동기화한다.
-7. production build로 schema와 draft 정책을 확인한다.
+6. 관련 Project 또는 Post의 반대쪽 연결도 갱신한다.
+7. 콘텐츠 타입을 동기화한다.
+8. production build로 schema, 링크, 번역 fallback과 draft 정책을 확인한다.
 
 ```sh
 npm run astro -- sync
