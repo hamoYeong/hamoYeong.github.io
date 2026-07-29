@@ -23,11 +23,11 @@ context: I developed and deployed the service independently, while collaborating
 user: SCUTTA members submitted records and used participation features, while the leadership team reviewed and managed them.
 contributions:
   - Implemented HTML, CSS, and JavaScript interfaces with a Flask server.
-  - Modeled players, matches, leagues, bets, and daily opponents in PostgreSQL.
+  - Modeled players, matches, leagues, bets, and daily opponents in PostgreSQL with SQLAlchemy and tracked schema changes with Alembic.
   - Implemented match submission and approval, search, rankings, leagues, bets, and achievement flows.
 process:
   - Used recurring mobile, calculation, and synchronization problems in Notion as the criteria for moving to a web service.
-  - Moved players, matches, and participation features into PostgreSQL models and separated submission from approval state.
+  - Moved players, matches, and participation features into SQLAlchemy models and separated submission from approval state for matches and bets.
   - Applied member and leadership feedback to ranking, league, betting, and participation rules after deployment.
 research:
   - Feedback from live operation informed feature and rule changes; original messages and user data remain private.
@@ -39,23 +39,27 @@ keyDecisions:
   - title: Design motivation instead of control
     description: Points, multiple rankings, and participation features gave people reasons to act without directly forcing behavior.
 technicalStructure:
-  - A Flask server handled match submission, approval, and participation rules.
-  - PostgreSQL modeled players, matches, leagues, bets, and daily opponents.
+  - Flask routes handled match submission and approval, search, rankings, and participation rules.
+  - SQLAlchemy models and Alembic migrations managed players, matches, leagues, bets, and daily opponents.
   - HTML, CSS, and JavaScript provided the mobile web flow.
 challenges:
-  - Rules from rapidly added features became distributed across server logic and data models, increasing change cost.
+  - Rules from rapidly added features accumulated in a large route module and the data models, increasing the scope and cost of verification.
   - Operating real user data required input errors and approval state to remain safely distinguishable.
+  - The public repository has no automated tests, making regression checks difficult to repeat systematically.
 technologies:
   - Flask
   - Python
+  - SQLAlchemy
+  - Alembic
   - PostgreSQL
   - JavaScript
 outcomes:
   - 128 people had used the service as of the source CV publication date.
   - 785 cumulative match records had been structured as data as of the source CV publication date.
-  - The service was deployed and operated, but is no longer active.
+  - The public repository verifies implementation history through March 2025; the source CV records operation through August 2025, after which the service became inactive.
 whatIWouldChange:
-  - Separate match state transitions and participation rules into domain boundaries from the start.
+  - Move match state transitions and participation rules out of routes into domain services from the start.
+  - Capture ranking calculations, submission and approval states, and migrations in automated tests.
   - Design operator tools, error observation, and backup and recovery procedures alongside user-facing features.
 learnings:
   - Gained experience incorporating feedback from real users into product rules quickly.
