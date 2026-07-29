@@ -16,11 +16,34 @@ role:
 team:
   type: personal
   description: 제품 원칙부터 구현과 검증까지 개인으로 진행하고 있습니다.
+overview: 계획을 오늘에 대한 가설로, 실제 기록을 살아낸 하루의 흔적으로 분리해 차이를 판단 없이 돌아보는 iOS 앱입니다.
 problem: 계획을 실제 행동에 맞춰 자동 보정하면 계획과 기록의 의미가 섞이고 하루를 성공 또는 실패로만 평가하기 쉽습니다.
+whyItMattered: 생산성 도구가 계획 달성률만 강조하면 예상과 달랐던 하루에서 배울 정보까지 실패로 취급할 수 있습니다.
+context: 개인 iOS 프로젝트로 제품 원칙, 데이터 모델, Apple 플랫폼 연동과 실패 시 동작을 함께 검증하고 있습니다.
+user: 계획과 실제 하루를 함께 기록하되 둘의 차이를 성공과 실패로 단정하지 않고 돌아보고 싶은 사용자를 상정합니다.
 contributions:
   - 계획과 실제 기록을 독립된 모델로 설계했습니다.
   - SwiftData를 중심으로 선택적 CloudKit, App Intents, Widget, Live Activity 흐름을 구현했습니다.
   - 시간대, 일광절약시간, 자정 통과와 구간 겹침 조건을 테스트로 고정했습니다.
+process:
+  - 계획과 실제 기록이 각각 무엇을 의미하는지 제품 원칙으로 먼저 정의했습니다.
+  - 독립된 데이터 모델과 로컬 우선 저장 흐름을 구현했습니다.
+  - CloudKit, App Intents, Widget과 Live Activity를 핵심 데이터의 projection으로 연결하고 시간 경계 조건을 검증했습니다.
+research: []
+keyDecisions:
+  - title: 계획과 실제 기록을 분리
+    description: 실제 행동이 계획을 덮어쓰지 않도록 두 데이터를 독립된 기록으로 유지했습니다.
+  - title: 로컬 핵심 흐름을 우선
+    description: CloudKit을 사용할 수 없어도 기록과 회고의 핵심 흐름이 계속 동작하도록 설계했습니다.
+  - title: 확장 화면은 projection으로 제한
+    description: Widget과 Live Activity가 별도 원본이 되지 않고 필요한 상태만 전달받도록 경계를 정했습니다.
+technicalStructure:
+  - SwiftData가 계획, 실제 기록과 회고 데이터의 로컬 원본을 담당합니다.
+  - CloudKit 동기화는 선택적이며 실패해도 local-only 흐름을 유지합니다.
+  - App Intents, WidgetKit과 ActivityKit은 제한된 데이터 projection을 소비합니다.
+challenges:
+  - 시간대, 일광절약시간과 자정을 넘는 구간이 같은 의미로 계산되어야 했습니다.
+  - 여러 Apple 플랫폼 확장이 원본 데이터의 소유권을 나눠 갖지 않도록 해야 했습니다.
 technologies:
   - SwiftUI
   - SwiftData
@@ -31,6 +54,9 @@ technologies:
 outcomes:
   - 기능별 build와 unit 및 UI test 기록을 공개 저장소 문서에 남겼습니다.
   - 최종 통합, 실기기 검증과 출시는 아직 진행 중입니다.
+whatIWouldChange:
+  - 기능 범위를 더 일찍 제한하고 하루 기록과 회고의 핵심 순환을 먼저 실기기에서 검증하겠습니다.
+  - 동기화 실패와 재시도 상태를 사용자가 이해할 수 있는 언어로 보여주는 정책을 보강하겠습니다.
 learnings:
   - 시간과 동기화가 있는 앱에서는 화면보다 데이터 계약과 실패 시 fallback을 먼저 정해야 합니다.
   - 계획과 기록처럼 의미가 다른 데이터는 편의를 위해 하나로 합치지 않아야 합니다.
@@ -45,17 +71,3 @@ visibility: public
 relatedPosts:
   - ai-context-before-code
 ---
-
-## Overview
-
-DayFlow에서 계획은 오늘에 대한 가설이고 실제 기록은 살아낸 하루의 흔적입니다. 둘을 자동으로 맞추기보다 차이를 그대로 돌아볼 수 있도록 분리했습니다.
-
-## Key decisions
-
-- 계획과 실제 기록을 독립된 데이터로 유지합니다.
-- CloudKit을 사용할 수 없는 상황에서도 local-only 핵심 흐름은 계속 동작합니다.
-- Widget과 Live Activity는 원본 저장소가 아니라 필요한 정보만 전달받는 projection으로 제한합니다.
-
-## Current status
-
-기능별 build와 테스트 근거는 공개 저장소에 남아 있습니다. 최종 통합, 실기기 검증과 출시는 완료된 결과로 표기하지 않습니다.
