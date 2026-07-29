@@ -11,7 +11,7 @@ period:
   label: May-Jun 2026
 team:
   type: team
-  description: A private Apple Developer Academy C3 team project, summarized only through my publicly safe contributions.
+  description: The team planned and built the project during Apple Developer Academy C3. I worked on the game structure and lifecycle, device communication, and sensor flow.
 problem: People in the same space need to play a real-time game together through distance and direction without focusing continuously on their screens.
 role:
   - iOS development
@@ -23,14 +23,12 @@ whatITried:
   - Implemented start countdown, bomb transfer, and sensor fallback flows.
 whatChanged:
   - Expanded from managing one screen's state to keeping state consistent across several devices.
+  - At the final booth, we explained MultipeerConnectivity and NearbyInteraction and let visitors experience the app directly.
 learnings:
   - A real-time experience needs game rules that absorb latency and differences in sensor quality, not just successful communication.
+  - Turning a deep technical exploration into an experience motivated me to explore more Apple technologies.
 relatedProject: bombaway
 relatedPosts: []
 visibility: private-summary
 draft: false
 ---
-
-## Privacy note
-
-The private repository URL, internal code and documents, teammate information, and unapproved test results remain private.

@@ -3,39 +3,35 @@ slug: academy-c4-leaf
 locale: en
 translationKey: academy-c4-leaf
 sequence: C4
-title: Leaf - Recording a Garden's Day
-summary: Separated interface and persistence responsibilities and implemented record flows for a team project about caring for and observing a small garden.
+title: Ssukssuk - Recording the Restorative Garden Experience
+summary: A User Experience-focused team project shaped by an interview and a 47-person survey, where I led domain modeling and supported shared team understanding.
 period:
   start: '2026-07'
   end: present
   label: Jul 2026-present
 team:
   type: team
-  description: A private Apple Developer Academy C4 team project, summarized only through my publicly safe contributions.
-problem: Short care activities, growth stages, and harvest records from a small garden are difficult to preserve and review in one flow.
+  description: The team built the project during Apple Developer Academy C4. I led the domain model, record and main-home implementation, and helped the team understand the structure.
+problem: An app cannot manage every external variable in a garden, while a simple activity log cannot fully preserve the restorative experience people find in ongoing care.
 role:
   - iOS development
+  - Domain model design
   - Record and MainHome flow implementation
-  - Service structure design and explanation
+  - Helping the team understand the structure
 whatITried:
+  - Used a city-official interview and a survey of 47 garden users to shift from garden problems to the restorative experience of gardening.
   - Implemented the Record service through a protocol, preview service, and production service.
-  - Connected the activity timer to record creation.
-  - Separated plant information, growth stages, and 3D rendering responsibilities.
+  - Modeled varied record types and growth flows, then explained them at each teammate's current level of understanding.
+  - Considered accessibility during implementation and iterated with feedback from final user testing.
 whatChanged:
+  - The product shifted from reducing garden problems to extending the restorative experience of gardening.
   - Screens access data through a service contract instead of knowing persistence details.
-  - Preview states can be reproduced without production stored data.
 learnings:
-  - Designing a sound structure and helping a team understand it are both necessary.
-  - Explaining data flow and layer responsibilities can be more useful than handing over finished code.
+  - User research can change the problem itself rather than merely confirm an existing answer.
+  - Explaining ideas at another person's current level of knowledge strengthened my interest in sharing learning through a systematic curriculum.
 relatedProject: leaf
 relatedPosts:
   - ai-context-before-code
 visibility: private-summary
 draft: false
 ---
-
-## Challenge context
-
-This entry summarizes the project goal and my contribution without reproducing code from the private team repository. User-research figures are not presented as confirmed outcomes until publishable evidence is verified.
-
-The private repository URL, internal issues and pull requests, teammate accounts, and raw research materials remain private.
