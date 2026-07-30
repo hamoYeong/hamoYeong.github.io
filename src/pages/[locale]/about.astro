@@ -120,38 +120,8 @@ const publicEmail = 'rlatjdud6573@naver.com';
 
 	<div class="about-actions">
 		<a class="primary-action" href="#experience">{t.about.experienceTitle}</a>
-		<a href={localizedPath(locale, 'projects')}>{t.about.allProjects}</a>
-		<a href={localizedPath(locale, 'posts')}>{t.about.allPosts}</a>
 		<ExternalLink href={githubUrl}>{t.about.github}</ExternalLink>
 	</div>
-
-	<section class="content-section" aria-labelledby="explore-title">
-		<SectionHeading
-			id="explore-title"
-			eyebrow={t.about.exploreEyebrow}
-			title={t.about.exploreTitle}
-			description={t.about.exploreIntro}
-		/>
-		<div class="explore-grid">
-			{
-				exploreGroups.map((group) => (
-					<article class="explore-card">
-						<h3>{group.title}</h3>
-						<p>{group.description}</p>
-						<ul>
-							{group.links.map((link) => (
-								<li><a href={link.href}>{link.label} →</a></li>
-							))}
-						</ul>
-					</article>
-				))
-			}
-		</div>
-		<div class="explore-actions">
-			<a href={localizedPath(locale, 'projects')}>{t.about.allProjects} →</a>
-			<a href={localizedPath(locale, 'posts')}>{t.about.allPosts} →</a>
-		</div>
-	</section>
 
 	<section id="experience" class="content-section" aria-labelledby="experience-title">
 		<SectionHeading
@@ -219,6 +189,34 @@ const publicEmail = 'rlatjdud6573@naver.com';
 					</article>
 				))
 			}
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="explore-title">
+		<SectionHeading
+			id="explore-title"
+			eyebrow={t.about.exploreEyebrow}
+			title={t.about.exploreTitle}
+			description={t.about.exploreIntro}
+		/>
+		<div class="explore-grid">
+			{
+				exploreGroups.map((group) => (
+					<article class="explore-card">
+						<h3>{group.title}</h3>
+						<p>{group.description}</p>
+						<ul>
+							{group.links.map((link) => (
+								<li><a href={link.href}>{link.label} →</a></li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
+		<div class="explore-actions">
+			<a href={localizedPath(locale, 'projects')}>{t.about.allProjects} →</a>
+			<a href={localizedPath(locale, 'posts')}>{t.about.allPosts} →</a>
 		</div>
 	</section>
 
