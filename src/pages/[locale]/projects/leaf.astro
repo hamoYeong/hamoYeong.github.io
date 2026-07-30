@@ -1,0 +1,16 @@
+---
+import {
+	getLocaleStaticPaths,
+	isLocale,
+	localizedPath,
+} from '../../../i18n/config';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+return Astro.redirect(localizedPath(localeParam, 'projects/ssukssuk'), 301);
+---

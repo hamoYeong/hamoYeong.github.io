@@ -139,14 +139,6 @@ const contents = [
 				}
 			</div>
 
-			{
-				project.data.visibility === 'private-summary' && (
-					<Callout title={t.projects.privateSummaryTitle}>
-						<p>{t.projects.privateSummary}</p>
-					</Callout>
-				)
-			}
-
 			<nav class="case-contents" aria-label={t.projects.contents}>
 				<p>{t.projects.contents}</p>
 				<ol>

@@ -13,8 +13,15 @@ category: community
 highlights:
   - 대학생의 iPad 활용법을 소개했습니다.
   - Notion을 생각과 활동 기록에 사용하는 흐름을 공유했습니다.
+  - iPad 활용 영상은 2026년 7월 29일 기준 조회수 89만 회를 기록했습니다.
+  - Notion 활용 영상은 2026년 7월 29일 기준 조회수 32만 회를 기록했습니다.
+links:
+  - label: iPad 필기 활용법 영상
+    href: https://youtu.be/Yt5l9woL2I4
+  - label: Notion 스마트 메모 영상
+    href: https://youtu.be/hzDwmZsRtfo
 order: 45
 draft: false
 ---
 
-조회수처럼 시간이 지나며 바뀌는 수치는 최신 확인 전까지 웹 CV에 포함하지 않습니다.
+두 영상은 각각 2024년 8월 25일과 9월 1일에 공개됐습니다. 조회수는 확인일을 함께 표기합니다.

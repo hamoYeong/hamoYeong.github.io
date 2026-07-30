@@ -1,10 +1,16 @@
 ---
+import ExternalLink from './ExternalLink.astro';
+
 interface Props {
 	period: string;
 	title: string;
 	organization?: string;
 	summary?: string;
 	highlights?: string[];
+	links?: Array<{
+		label: string;
+		href: string;
+	}>;
 }
 
 const {
@@ -13,6 +19,7 @@ const {
 	organization,
 	summary,
 	highlights = [],
+	links = [],
 } = Astro.props;
 ---
 
@@ -29,6 +36,15 @@ const {
 					<li>{highlight}</li>
 				))}
 			</ul>
+		)
+	}
+	{
+		links.length > 0 && (
+			<div class="timeline-item__links">
+				{links.map((link) => (
+					<ExternalLink href={link.href}>{link.label}</ExternalLink>
+				))}
+			</div>
 		)
 	}
 </article>
@@ -88,5 +104,12 @@ const {
 		color: var(--color-text-soft);
 		font-size: var(--text-sm);
 		line-height: 1.65;
+	}
+
+	.timeline-item__links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-4);
 	}
 </style>

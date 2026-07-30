@@ -4,26 +4,29 @@ locale: en
 translationKey: academy-c2
 sequence: C2
 title: Academy Benefits Discovery Prototype
-summary: Structured Academy benefits and place information by category and status, then implemented save and discovery flows.
+summary: I developed an idea for gathering scattered Academy benefits as a personal project, while acknowledging uncertainty about the user need and focusing on architecture learning.
 period:
   start: '2026-04'
   end: '2026-04'
   label: Apr 2026
 team:
-  type: unspecified
-  description: The public repository does not establish whether this was individual or team work, so only verified implementation is described.
-problem: Learning benefits, facilities, and activities need categories and saved states to be found again.
+  type: personal
+  description: I chose the problem and implementation direction and completed the challenge as an individual project.
+problem: I could not be confident that the Challenge Response—collecting scattered Academy benefits for learners—represented a sufficiently validated user need.
 role:
   - Implemented models, views, and view models
   - Implemented SwiftData seed data and saved-item flows
 whatITried:
   - Modeled categories, subcategories, and saved states as data.
   - Connected discovery and saved-item flows through view models and SwiftData.
+  - When I lost confidence in the user need, I used the challenge to explore state ownership and architecture that interested me.
 whatChanged:
   - Expanded a simple screen list into a data-centered structure where state could be saved and explored again.
-  - The public commit history confirms that the prototype reached a TestFlight build.
+  - Distributed the prototype through TestFlight.
 learnings:
+  - When I lost confidence in the premise, I could choose what I wanted to learn instead of continuing to push toward a product outcome.
   - Explaining who owns and changes state comes before choosing a label such as MV or MVVM.
+relatedProject: academy-c2-benefits
 relatedPosts: []
 repository: https://github.com/hamoYeong/C2
 visibility: public
@@ -32,4 +35,4 @@ draft: false
 
 ## Challenge context
 
-This entry focuses on the data and interface structure visible in public code. It does not claim that the information-fragmentation problem was validated with users.
+This entry records both the unvalidated user need I recognized at the time and my decision to turn the challenge into an architecture-learning exercise.

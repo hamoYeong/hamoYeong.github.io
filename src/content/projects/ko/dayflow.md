@@ -3,12 +3,12 @@ slug: dayflow
 locale: ko
 translationKey: dayflow
 title: DayFlow
-summary: 계획과 실제 기록을 분리해 하루의 차이를 성공과 실패로 판단하지 않고 돌아보도록 설계한 개인 iOS 프로젝트입니다.
+summary: 내가 필요하다고 느낀 하루 기록 방식을 직접 구현하고 사용해본 뒤, 추가 검증과 개선 없이 멈춘 개인 iOS 사이드 프로젝트입니다.
 period:
   start: '2026-06'
-  end: present
-  label: 2026.06-현재
-status: in-progress
+  end: '2026-07'
+  label: 2026.06-2026.07
+status: archived
 role:
   - 제품 원칙 정의
   - 데이터 모델과 아키텍처 설계
@@ -19,8 +19,8 @@ team:
 overview: 계획을 오늘에 대한 가설로, 실제 기록을 살아낸 하루의 흔적으로 분리해 차이를 판단 없이 돌아보는 iOS 앱입니다.
 problem: 계획을 실제 행동에 맞춰 자동 보정하면 계획과 기록의 의미가 섞이고 하루를 성공 또는 실패로만 평가하기 쉽습니다.
 whyItMattered: 생산성 도구가 계획 달성률만 강조하면 예상과 달랐던 하루에서 배울 정보까지 실패로 취급할 수 있습니다.
-context: 개인 iOS 프로젝트로 제품 원칙, 데이터 모델, Apple 플랫폼 연동과 실패 시 동작을 함께 검증하고 있습니다.
-user: 계획과 실제 하루를 함께 기록하되 둘의 차이를 성공과 실패로 단정하지 않고 돌아보고 싶은 사용자를 상정합니다.
+context: 내가 생각했고 필요하다고 느낀 기록 방식을 개인으로 구현하고 직접 사용해본 사이드 프로젝트입니다. 이후 사용자 검증이나 반복 개선으로 이어지지 않아 현재는 멈춰 있습니다.
+user: 우선 나 자신을 사용자로 두고 계획과 실제 하루의 차이를 판단 없이 돌아보는 흐름을 만들었습니다.
 contributions:
   - 계획과 실제 기록을 독립된 모델로 설계했습니다.
   - EventKit 일정과 HealthKit 수면 구간을 가져와 사용자가 오늘의 계획과 실제 기록을 구성하는 재료로 활용하게 했습니다.
@@ -57,18 +57,19 @@ technologies:
   - ActivityKit
 outcomes:
   - 시간 구간 계산, Store, CloudKit fallback, 일정·수면 연동, App Intents와 Widget 및 Live Activity를 unit 및 UI test로 검증했습니다.
-  - 최종 통합, 실기기 검증과 출시는 아직 진행 중입니다.
+  - 직접 사용해봤지만 추가 사용자 검증과 개선으로 이어지지 않았고, 출시하지 않은 상태에서 개발을 멈췄습니다.
 whatIWouldChange:
   - 기능 범위를 더 일찍 제한하고 하루 기록과 회고의 핵심 순환을 먼저 실기기에서 검증하겠습니다.
   - 동기화 실패와 재시도 상태를 사용자가 이해할 수 있는 언어로 보여주는 정책을 보강하겠습니다.
 learnings:
   - 시간과 동기화가 있는 앱에서는 화면보다 데이터 계약과 실패 시 fallback을 먼저 정해야 합니다.
   - 계획과 기록처럼 의미가 다른 데이터는 편의를 위해 하나로 합치지 않아야 합니다.
+  - 개인적인 필요에서 출발한 구현도 반복 사용과 개선으로 이어지지 않으면 제품 가치가 검증된 것은 아닙니다.
 categories:
   - iOS
   - Architecture
   - Personal Productivity
-featured: true
+featured: false
 draft: false
 repository: https://github.com/hamoYeong/DayFlow
 visibility: public

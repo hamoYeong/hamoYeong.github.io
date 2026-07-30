@@ -20,18 +20,18 @@ export const ui = {
 			label: '언어 선택',
 		},
 		home: {
-			eyebrow: 'iOS Developer · Problem Solver',
+			eyebrow: 'iOS Developer',
 			name: '김서영',
 			alias: 'Hamo',
-			title: '복잡한 문제를 구조로 풀고, 이해할 수 있는 언어로 연결합니다.',
+			title: '사용자의 문제를 구조로 풀고, 함께 이해할 수 있게 만듭니다.',
 			intro:
-				'사용자의 실제 문제에서 시작해 데이터와 책임의 경계를 설계하는 iOS 개발자입니다. 구현을 끝내는 데서 멈추지 않고, 팀이 함께 이해하고 다음 판단을 내릴 수 있는 구조를 만듭니다.',
+				'사용자의 실제 문제에서 출발해 데이터와 책임의 경계를 설계합니다. 구현하는 데서 멈추지 않고, 팀이 구조를 함께 이해하고 다음 판단을 이어갈 수 있도록 설명하고 기록합니다.',
 			aboutAction: 'About에서 더 알아보기',
 			projectsAction: '프로젝트 살펴보기',
 			careEyebrow: 'What I Care About',
-			careTitle: '기능보다 먼저 생각하는 것',
+			careTitle: '프로젝트에서 중요하게 보는 것',
 			careIntro:
-				'코드를 쓰기 전에 문제와 데이터, 함께 일하는 사람의 이해를 먼저 확인합니다.',
+				'사용자를 알아가는 일, 데이터의 흐름, 팀이 함께 이해할 수 있는 설명에 관심이 있습니다.',
 			carePoints: [
 				{
 					title: 'Problem Framing',
@@ -51,16 +51,16 @@ export const ui = {
 				},
 			],
 			featuredEyebrow: 'Featured Projects',
-			featuredTitle: '문제와 사람 사이에서 만든 것',
+			featuredTitle: '주요 프로젝트',
 			featuredIntro:
-				'공개 근거가 확인된 프로젝트 중 서로 다른 문제 해결 방식을 보여주는 세 가지를 골랐습니다.',
+				'현재 진행 중인 Academy 챌린지와 SCUTTA 웹 서비스를 먼저 소개합니다.',
 			journeyEyebrow: 'Current Journey',
 			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
 			journeyDescription:
-				'iOS 제품을 만들며 화면보다 데이터 흐름과 책임의 경계를 먼저 설명하는 연습을 하고 있습니다. C4에서는 Record 서비스의 계약과 Preview·실제 구현을 나누고, 팀이 같은 구조를 이해하도록 흐름을 함께 정리했습니다.',
-			journeyAction: '성장 과정 보기',
+				'C4 쑥쑥에서 사용자 리서치로 문제의 방향을 바꾸고, 모델을 설계하며 팀원이 같은 구조를 이해하도록 설명하는 경험을 쌓고 있습니다.',
+			journeyAction: '쑥쑥 프로젝트 보기',
 			learningsEyebrow: 'Selected Learnings',
-			learningsTitle: '경험 뒤에 남은 판단 기준',
+			learningsTitle: '프로젝트를 하며 배운 것',
 			learnings: [
 				{
 					title: '구조는 설명할 수 있어야 합니다.',
@@ -83,58 +83,44 @@ export const ui = {
 			postsIntro: '구현 방법뿐 아니라 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
 			postsAction: '모든 글 보기',
 			contactEyebrow: 'Contact',
-			contactTitle: '함께 풀고 싶은 문제가 있다면',
+			contactTitle: '연락하기',
 			contactDescription:
-				'공개 프로젝트와 현재 학습 과정은 GitHub에서 확인할 수 있습니다.',
+				'프로젝트는 GitHub에서 볼 수 있고, 이메일과 LinkedIn으로 연락할 수 있습니다.',
 			githubAction: 'GitHub에서 보기',
 		},
 		about: {
 			eyebrow: 'About',
-			title: '배움의 구조를 만들고, 함께 이해하는 과정을 돕습니다.',
+			title: '배움을 구조화하고, 함께 이해하는 과정을 만듭니다.',
 			intro:
-				'저는 김서영, Hamo입니다. 화학공학과 커뮤니티 운영 경험에서 출발해 iOS 개발을 배우고 있습니다. 사용자의 실제 문제를 데이터와 책임으로 나누고, 팀이 그 구조를 자기 언어로 이해하도록 돕는 일에 관심이 있습니다.',
-			principlesTitle: '일하는 기준',
-			principles: [
-				'기능보다 먼저 사용자가 실제로 겪는 문제를 정의합니다.',
-				'결과뿐 아니라 선택의 근거와 배운 점을 기록합니다.',
-				'완성된 답을 전달하기보다 함께 판단할 수 있는 구조를 설명합니다.',
-			],
-			sourceNoticeTitle: '웹 정보가 최신입니다',
-			sourceNotice:
-				'다운로드용 CV는 공개 가능한 정보만 담은 요약본입니다. Academy 경험과 진행 중인 프로젝트는 이 웹 페이지의 내용을 우선해 주세요.',
-			cvEyebrow: 'Web CV',
-			cvTitle: '경험과 역할의 흐름',
-			cvIntro:
-				'직함만 나열하지 않고 어떤 환경에서 무엇을 맡았으며 다음 선택에 무엇이 남았는지 정리했습니다.',
+				'저는 김서영, Hamo입니다. 사용자와 팀원에게 배우며 복잡한 개념과 데이터 흐름을 각자의 이해 단계에 맞게 설명하는 일에 관심이 있습니다. 한 번의 답을 건네기보다 필요할 때 다시 꺼내 쓸 수 있는 배움의 구조를 만들고 싶습니다.',
 			downloadKo: '한국어 CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: '새 탭에서 열기',
 			downloadPdf: '다운로드',
-			experienceTitle: 'Experience Timeline',
+			experienceTitle: '경력과 활동',
 			experienceIntro:
-				'최근의 iOS 학습부터 커뮤니티 운영, 연구와 교육 경험까지 시간의 흐름으로 볼 수 있습니다.',
+				'학업, 커뮤니티 운영, 연구, 교육과 개발 경험을 시간순으로 정리했습니다.',
 			experienceEmpty: '현재 이 언어로 공개된 경험 기록이 없습니다.',
-			projectsTitle: 'CV Projects',
-			projectsIntro:
-				'원본 CV에 수록된 SCUTTA 운영 도구를 현재 공개 기준에 맞춰 연결합니다.',
-			academyEyebrow: 'Apple Developer Academy',
-			academyTitle: 'C1에서 C4까지, 달라진 질문',
-			academyIntro:
-				'프로젝트명보다 각 챌린지에서 문제를 바라보는 방식과 팀에 기여하는 방식이 어떻게 달라졌는지 기록합니다.',
-			challenge: {
-				context: 'Challenge Context',
-				team: 'Team',
-				problem: 'Problem',
-				role: 'My Role',
-				tried: 'What I Tried',
-				changed: 'What Changed',
-				learning: 'What I Learned',
-				related: 'Related',
-				repository: '공개 저장소 보기',
-			},
-			skillsTitle: 'Skills & Interests',
+			exploreEyebrow: 'Projects & Posts',
+			exploreTitle: '더 살펴보기',
+			exploreIntro:
+				'프로젝트의 문제, 구현과 회고는 Projects에, 그 과정에서 정리한 생각은 Posts에 담았습니다.',
+			exploreAcademyTitle: 'Apple Developer Academy C1-C4',
+			exploreAcademyDescription:
+				'CBL, 아키텍처, Apple 기술, User Experience를 차례로 탐구한 네 번의 챌린지입니다.',
+			exploreScuttaTitle: 'SCUTTA 운영 도구',
+			exploreScuttaDescription:
+				'Notion 시스템으로 시작해 별도 웹 서비스로 발전시킨 동아리 운영 프로젝트입니다.',
+			exploreLearningTitle: '컴퓨팅 사고력과 배움',
+			exploreLearningDescription:
+				'하모컴 프로토타입과 팀원에게 설명하고 함께 구현하며 배운 내용을 모았습니다.',
+			allProjects: '모든 프로젝트',
+			allPosts: '모든 글',
+			pdfTitle: 'CV PDF',
+			pdfIntro: '한국어와 영어 이력서를 PDF로 볼 수 있습니다.',
+			skillsTitle: '기술과 관심사',
 			skillsIntro:
-				'도구 이름보다 현재 프로젝트에서 실제로 사용하거나 탐구하는 영역을 중심으로 정리했습니다.',
+				'현재 프로젝트에서 사용한 기술과 계속 공부하고 있는 주제입니다.',
 			skillGroups: [
 				{
 					title: 'iOS & Apple Platforms',
@@ -149,16 +135,18 @@ export const ui = {
 					items: ['컴퓨팅 사고력', '교육', '문서화', 'AI 보조 문제 해결'],
 				},
 			],
-			contactTitle: 'Public Contact',
+			contactTitle: 'Contact',
 			contactIntro:
-				'개인 전화번호와 주소는 공개하지 않습니다. 공개 프로젝트와 활동은 GitHub에서 확인할 수 있습니다.',
+				'프로젝트와 협업에 관한 연락은 이메일이나 LinkedIn으로 남겨 주세요.',
+			email: '이메일 보내기',
+			linkedin: 'LinkedIn 프로필',
 			github: 'GitHub 프로필',
 		},
 		projects: {
 			eyebrow: 'Projects',
-			title: '문제를 해결하며 만든 것들',
+			title: '프로젝트',
 			intro:
-				'기술 목록보다 문제를 정의하고, 역할을 나누고, 구조를 선택한 이유와 다음에 바꿀 점을 case study로 기록합니다.',
+				'SCUTTA 운영 도구, Apple Developer Academy C1-C4와 개인 사이드 프로젝트를 모았습니다.',
 			empty: '현재 이 언어로 공개된 프로젝트가 없습니다.',
 			readMore: '프로젝트 자세히 보기',
 			back: 'Projects 목록으로',
@@ -177,7 +165,7 @@ export const ui = {
 				concept: '구상 중',
 				'in-progress': '진행 중',
 				completed: '완료',
-				archived: '운영 종료',
+				archived: '중단됨',
 			},
 			role: '역할',
 			team: '협업',
@@ -199,17 +187,14 @@ export const ui = {
 			learnings: 'Learning',
 			relatedPosts: 'Related Posts',
 			contents: 'Case study 목차',
-			privateSummaryTitle: '공개 범위를 제한한 프로젝트',
-			privateSummary:
-				'팀의 private 저장소, 내부 코드와 문서, 팀원 정보는 공개하지 않습니다. 아래 내용은 공개 가능한 프로젝트 목적과 본인의 기여만 구분해 정리했습니다.',
 			repository: '저장소 보기',
 			demo: '데모 보기',
 		},
 		posts: {
 			eyebrow: 'Posts',
-			title: '배우며 정리한 글',
+			title: '기록',
 			intro:
-				'구현 방법뿐 아니라 문제를 바라본 전제, 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
+				'프로젝트를 진행하며 공부한 구현 방식과 협업에 관한 생각을 씁니다.',
 			empty: '현재 이 언어로 공개된 글이 없습니다.',
 			readMore: '글 읽기',
 			back: 'Posts 목록으로',
@@ -245,18 +230,18 @@ export const ui = {
 			label: 'Choose language',
 		},
 		home: {
-			eyebrow: 'iOS Developer · Problem Solver',
+			eyebrow: 'iOS Developer',
 			name: 'Seoyeong Kim',
 			alias: 'Hamo',
-			title: 'I turn complex problems into structures people can understand.',
+			title: 'I turn user problems into structures people can understand together.',
 			intro:
-				"I'm an iOS developer who starts with real user problems and defines the boundaries of data and responsibility. I aim beyond finishing an implementation: I build structures a team can understand and use for its next decision.",
+				'I start with real user problems and define clear boundaries for data and responsibility. I go beyond implementation by explaining and documenting the structure so the team can understand it and carry the next decision forward.',
 			aboutAction: 'Learn more in About',
 			projectsAction: 'Explore projects',
 			careEyebrow: 'What I Care About',
-			careTitle: 'What comes before features',
+			careTitle: 'What matters in my projects',
 			careIntro:
-				'Before writing code, I clarify the problem, the data, and what the people working together need to understand.',
+				'I care about learning from users, tracing data flow, and explaining a structure the team can understand together.',
 			carePoints: [
 				{
 					title: 'Problem Framing',
@@ -276,16 +261,16 @@ export const ui = {
 				},
 			],
 			featuredEyebrow: 'Featured Projects',
-			featuredTitle: 'Built between problems and people',
+			featuredTitle: 'Featured projects',
 			featuredIntro:
-				'Three projects with verifiable public evidence, selected to show different approaches to problem solving.',
+				'My current Academy challenges and the SCUTTA web service.',
 			journeyEyebrow: 'Current Journey',
 			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
 			journeyDescription:
-				"I'm building iOS products while practicing how to explain data flow and responsibility before screens. During C4, I separated the Record service contract from preview and production implementations, then worked with the team to build a shared understanding of the flow.",
-			journeyAction: 'View my journey',
+				'In C4 Ssukssuk, user research changed the direction of the problem. I designed the model and practiced explaining the structure so the team could understand it together.',
+			journeyAction: 'View the Ssukssuk project',
 			learningsEyebrow: 'Selected Learnings',
-			learningsTitle: 'Principles that remained after the work',
+			learningsTitle: 'What I learned from the work',
 			learnings: [
 				{
 					title: 'A structure should be explainable.',
@@ -309,58 +294,44 @@ export const ui = {
 				'I document not only implementation methods, but why a choice was made and what remains for the next decision.',
 			postsAction: 'View all posts',
 			contactEyebrow: 'Contact',
-			contactTitle: "Let's talk about a problem worth solving",
+			contactTitle: 'Contact',
 			contactDescription:
-				'My public projects and current learning journey are available on GitHub.',
+				'View my projects on GitHub, or reach me by email and LinkedIn.',
 			githubAction: 'View GitHub',
 		},
 		about: {
 			eyebrow: 'About',
-			title: 'I build structures for learning and help teams understand them together.',
+			title: 'I structure learning and create ways to understand together.',
 			intro:
-				"I'm Seoyeong Kim, also known as Hamo. My path to iOS development began with chemical engineering and community operations. I care about turning real user problems into data and responsibilities, then helping a team understand that structure in its own language.",
-			principlesTitle: 'How I work',
-			principles: [
-				'Define the real user problem before choosing features.',
-				'Document the reasoning and learning behind each result.',
-				'Explain structures that support shared judgment instead of handing over finished answers.',
-			],
-			sourceNoticeTitle: 'The web version is current',
-			sourceNotice:
-				'The downloadable CV is a public-safe summary. For Academy work and projects in progress, please treat this web page as the current source.',
-			cvEyebrow: 'Web CV',
-			cvTitle: 'A timeline of roles and learning',
-			cvIntro:
-				'Rather than listing titles alone, this timeline records the environment, my responsibility, and what influenced the next decision.',
+				"I'm Seoyeong Kim, also known as Hamo. I learn from users and teammates, and I care about explaining complex concepts and data flows at each person's current level of understanding. Rather than offering a one-time answer, I want to build learning structures people can return to when they need them.",
 			downloadKo: 'Korean CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: 'Open in a new tab',
 			downloadPdf: 'Download',
-			experienceTitle: 'Experience Timeline',
+			experienceTitle: 'Experience',
 			experienceIntro:
-				'Follow the path from current iOS learning through community operations, research, and education.',
+				'Education, community operations, research, teaching, and development experience in chronological order.',
 			experienceEmpty: 'No experience entries are available in this language yet.',
-			projectsTitle: 'CV Projects',
-			projectsIntro:
-				'SCUTTA operations tools from the source CV, connected under the current public disclosure policy.',
-			academyEyebrow: 'Apple Developer Academy',
-			academyTitle: 'How my questions changed from C1 to C4',
-			academyIntro:
-				'The focus is not only what each challenge built, but how my approach to problems and contribution to a team changed.',
-			challenge: {
-				context: 'Challenge Context',
-				team: 'Team',
-				problem: 'Problem',
-				role: 'My Role',
-				tried: 'What I Tried',
-				changed: 'What Changed',
-				learning: 'What I Learned',
-				related: 'Related',
-				repository: 'View public repository',
-			},
-			skillsTitle: 'Skills & Interests',
+			exploreEyebrow: 'Projects & Posts',
+			exploreTitle: 'Explore more',
+			exploreIntro:
+				'Projects contains the problem, implementation, and retrospective for each project. Posts collects the ideas that emerged from the work.',
+			exploreAcademyTitle: 'Apple Developer Academy C1-C4',
+			exploreAcademyDescription:
+				'Four challenges exploring CBL, architecture, Apple technologies, and user experience.',
+			exploreScuttaTitle: 'SCUTTA operations tools',
+			exploreScuttaDescription:
+				'A student-club operations project that began in Notion and grew into a standalone web service.',
+			exploreLearningTitle: 'Computational thinking and learning',
+			exploreLearningDescription:
+				'The HamoCom prototype and notes from explaining concepts and implementing them with a teammate.',
+			allProjects: 'All projects',
+			allPosts: 'All posts',
+			pdfTitle: 'CV PDF',
+			pdfIntro: 'View or download my CV in Korean or English.',
+			skillsTitle: 'Skills & interests',
 			skillsIntro:
-				'Focused on areas I currently use or explore in real projects, rather than a long list of tool names.',
+				'Technologies used in current projects and subjects I continue to study.',
 			skillGroups: [
 				{
 					title: 'iOS & Apple Platforms',
@@ -375,16 +346,18 @@ export const ui = {
 					items: ['Computational thinking', 'Education', 'Documentation', 'AI-assisted problem solving'],
 				},
 			],
-			contactTitle: 'Public Contact',
+			contactTitle: 'Contact',
 			contactIntro:
-				'Personal phone numbers and addresses remain private. Public projects and activity are available on GitHub.',
+				'For projects and collaboration, reach me by email or LinkedIn.',
+			email: 'Send email',
+			linkedin: 'LinkedIn profile',
 			github: 'GitHub profile',
 		},
 		projects: {
 			eyebrow: 'Projects',
-			title: 'Things I built while solving problems',
+			title: 'Projects',
 			intro:
-				'These case studies focus on how I framed each problem, separated responsibilities, chose a structure, and decided what to change next—not just the technology list.',
+				'SCUTTA operations tools, Apple Developer Academy C1-C4, and personal side projects.',
 			empty: 'No projects are available in this language yet.',
 			readMore: 'View project details',
 			back: 'Back to Projects',
@@ -425,17 +398,14 @@ export const ui = {
 			learnings: 'Learning',
 			relatedPosts: 'Related Posts',
 			contents: 'Case study contents',
-			privateSummaryTitle: 'Public scope is limited',
-			privateSummary:
-				'The private team repository, internal code and documents, and teammate information are not published. This case study separates the publishable project context from my individual contribution.',
 			repository: 'View repository',
 			demo: 'View demo',
 		},
 		posts: {
 			eyebrow: 'Posts',
-			title: 'Notes from learning',
+			title: 'Notes',
 			intro:
-				'I record not only implementation, but the assumptions behind a problem, the reason for a choice, and what remains for the next decision.',
+				'Notes on implementation and collaboration from my projects.',
 			empty: 'No posts are available in this language yet.',
 			readMore: 'Read post',
 			back: 'Back to Posts',
