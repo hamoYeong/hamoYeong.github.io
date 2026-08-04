@@ -31,28 +31,28 @@
 	--space-20: 5rem;
 	--space-24: 6rem;
 
-	--color-canvas: #faf8f4;
-	--color-surface: #fffdf9;
-	--color-surface-muted: #f2eee7;
-	--color-surface-accent: #f6e8de;
-	--color-text: #25211d;
-	--color-text-soft: #5f5952;
-	--color-text-faint: #7b746b;
-	--color-border: #ddd6cc;
-	--color-border-strong: #c5bcae;
-	--color-accent: #914b2f;
-	--color-accent-strong: #6e341f;
-	--color-focus: #17657a;
+	--color-canvas: #f7f8f3;
+	--color-surface: #fffef9;
+	--color-surface-muted: #eef1e9;
+	--color-surface-accent: #e8eee2;
+	--color-text: #252820;
+	--color-text-soft: #5e645b;
+	--color-text-faint: #788074;
+	--color-border: #d8ded3;
+	--color-border-strong: #bdc8b8;
+	--color-accent: #758970;
+	--color-accent-strong: #4e6250;
+	--color-focus: #527158;
 	--color-on-accent: #ffffff;
-	--color-on-dark-soft: #e6e0d8;
-	--color-on-dark-accent: #e9bda8;
+	--color-on-dark-soft: #e3e9e0;
+	--color-on-dark-accent: #dbe6d5;
 
 	--radius-sm: 0.25rem;
 	--radius-md: 0.5rem;
 	--radius-lg: 0.75rem;
 	--radius-pill: 0.375rem;
 
-	--shadow-card: 0 1rem 3rem rgb(74 52 34 / 0.07);
+	--shadow-card: 0 1rem 3rem rgb(67 81 63 / 0.07);
 	--border-default: 1px solid var(--color-border);
 
 	--width-reading: 46rem;

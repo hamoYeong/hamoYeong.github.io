@@ -15,7 +15,9 @@ body {
 	min-width: 20rem;
 	min-height: 100vh;
 	margin: 0;
-	background: var(--color-canvas);
+	background:
+		radial-gradient(circle at 82% 7%, rgb(220 232 211 / 0.5), transparent 26rem),
+		var(--color-canvas);
 	color: var(--color-text);
 	font-family: var(--font-sans);
 	font-size: var(--text-base);
