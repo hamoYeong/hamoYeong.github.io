@@ -48,10 +48,10 @@ const isCurrent = (href: string) => {
 
 	summary {
 		min-width: 3rem;
-		min-height: 2.75rem;
+		min-height: 2.5rem;
 		border: var(--border-default);
-		border-radius: var(--radius-pill);
-		padding: 0.45rem var(--space-4);
+		border-radius: var(--radius-md);
+		padding: 0.35rem var(--space-3);
 		cursor: pointer;
 		color: var(--color-text);
 		font-size: var(--text-sm);
@@ -91,6 +91,8 @@ const isCurrent = (href: string) => {
 	}
 
 	nav a[aria-current='page'] {
+		box-shadow: inset 2px 0 var(--color-accent);
+		padding-left: var(--space-3);
 		color: var(--color-accent-strong);
 	}
 

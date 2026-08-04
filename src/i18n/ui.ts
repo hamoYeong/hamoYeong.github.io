@@ -23,15 +23,33 @@ export const ui = {
 			eyebrow: 'iOS Developer',
 			name: '김서영',
 			alias: 'Hamo',
+			selfQuestion: '01 · 나를 표현하는 한 문장',
 			title: '사용자의 문제를 구조로 풀고, 함께 이해할 수 있게 만듭니다.',
 			intro:
-				'사용자의 실제 문제에서 출발해 데이터와 책임의 경계를 설계합니다. 구현하는 데서 멈추지 않고, 팀이 구조를 함께 이해하고 다음 판단을 이어갈 수 있도록 설명하고 기록합니다.',
+				'사용자의 실제 문제에서 출발해 복잡한 맥락과 데이터의 흐름을 정리합니다. 넘어졌을 때마다 배움이 다시 일어설 힘이 되었고, 그 경험은 배움을 혼자 얻는 데서 멈추지 않고 다른 사람도 이해하고 활용할 수 있는 구조로 나누는 태도로 이어졌습니다. 그렇게 사용자와 팀이 같은 맥락에서 다음 판단을 이어갈 수 있게 만듭니다.',
+			storyAction: '이 문장에서 시작된 이야기',
+			reasonEyebrow: '02 · 왜 이 문장인가?',
+			reasonTitle: '배움은 익숙한 나를 흔들고, 이해는 다시 나아가게 합니다.',
+			reasonDescription:
+				'새로운 것을 배우면 알고 있다고 믿었던 기준이 자주 무너집니다. 저는 그 혼란을 그냥 지나치지 않고, 문제와 맥락을 나누어 보고 다른 사람도 이해할 수 있는 구조로 다시 세웁니다.',
+			reasonAction: '어떤 배움을 이어가고 있는지',
+			experienceEyebrow: '03 · 가장 큰 한 가지 경험',
+			experienceTitle: '기록 하나에서 시작해, 사람들이 쓰는 흐름을 만들었습니다.',
+			experienceDescription:
+				'탁구 동아리의 경기 결과가 흩어지는 문제를 발견했습니다. 먼저 Notion으로 기록 방식을 만들고, 실제 사용을 지켜보며 웹 서비스로 확장했습니다. 좋은 기능보다 먼저 필요한 것은 사용자의 문제와 흐름을 정확히 이해하는 일이라는 것을 배웠습니다.',
+			experienceSteps: ['흩어진 기록', 'Notion 구조화', '웹 서비스 배포'],
+			experienceAction: '문제를 풀어간 과정 보기',
+			identityEyebrow: '04 · 정리하자면 뭐 하는 사람?',
+			identityTitle: '배움을 사용 가능한 구조로 바꾸는 사람.',
+			identityDescription:
+				'지금은 Swift와 iOS를 배우며, 앱이 사용자의 일상 흐름 안에서 더 자연스럽게 동작하는 방법을 탐색합니다. 궁금한 것은 깊게 파고들고, 알게 된 것은 글과 프로젝트로 꺼내 놓습니다.',
+			identityKeywords: ['iOS · Swift', 'Problem Framing', 'Learning in Public'],
 			aboutAction: 'About에서 더 알아보기',
 			projectsAction: '프로젝트 살펴보기',
-			careEyebrow: 'What I Care About',
-			careTitle: '프로젝트에서 중요하게 보는 것',
+			careEyebrow: '05 · 그래서, 무엇을 할 수 있지?',
+			careTitle: '생각을 다음 행동으로 이어지게 만듭니다.',
 			careIntro:
-				'사용자를 알아가는 일, 데이터의 흐름, 팀이 함께 이해할 수 있는 설명에 관심이 있습니다.',
+				'사용자의 문제를 발견하고, 복잡한 맥락을 함께 판단할 수 있는 구조로 바꾸며, 그 과정의 배움을 다시 꺼내 쓸 수 있게 기록합니다.',
 			carePoints: [
 				{
 					title: 'Problem Framing',
@@ -50,7 +68,7 @@ export const ui = {
 					description: 'AI는 구현을 돕게 하되 문제를 나누고 결과를 판단하는 일은 직접 합니다.',
 				},
 			],
-			featuredEyebrow: 'Featured Projects',
+			featuredEyebrow: 'Evidence · Featured Projects',
 			featuredTitle: '주요 프로젝트',
 			featuredIntro:
 				'현재 진행 중인 Academy 챌린지와 SCUTTA 웹 서비스를 먼저 소개합니다.',
@@ -78,14 +96,14 @@ export const ui = {
 						'SCUTTA 운영 도구에서는 상대를 강제하기보다 새로운 사람과 경기할 이유를 설계했습니다.',
 				},
 			],
-			postsEyebrow: 'Latest Posts',
+			postsEyebrow: 'Notes · Latest Posts',
 			postsTitle: '최근에 정리한 생각',
 			postsIntro: '구현 방법뿐 아니라 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
 			postsAction: '모든 글 보기',
-			contactEyebrow: 'Contact',
-			contactTitle: '연락하기',
+			contactEyebrow: '06 · 나를 잊지 못할 한 마디',
+			contactTitle: '넘어진 자리마다, 함께 딛고 설 구조를 남깁니다.',
 			contactDescription:
-				'프로젝트는 GitHub에서 볼 수 있고, 이메일과 LinkedIn으로 연락할 수 있습니다.',
+				'아직 배우는 중이기에 더 많이 질문하고, 더 분명하게 정리할 수 있습니다.',
 			githubAction: 'GitHub에서 보기',
 		},
 		about: {
@@ -233,15 +251,33 @@ export const ui = {
 			eyebrow: 'iOS Developer',
 			name: 'Seoyeong Kim',
 			alias: 'Hamo',
+			selfQuestion: '01 · One sentence that describes me',
 			title: 'I turn user problems into structures people can understand together.',
 			intro:
-				'I start with real user problems and define clear boundaries for data and responsibility. I go beyond implementation by explaining and documenting the structure so the team can understand it and carry the next decision forward.',
+				'I start with real user problems and organize the surrounding context and data flow. Whenever I stumbled, learning helped me stand again; that experience taught me not to keep learning to myself, but to shape it into structures others can understand and use. That is how I help users and teams carry the next decision forward from shared context.',
+			storyAction: 'The story behind this sentence',
+			reasonEyebrow: '02 · Why this sentence?',
+			reasonTitle: 'Learning unsettles what feels familiar. Understanding moves me forward again.',
+			reasonDescription:
+				'Learning something new often breaks the assumptions I thought were solid. I do not leave that confusion untouched: I separate the problem from its context and rebuild it as a structure others can understand too.',
+			reasonAction: 'See what I am learning now',
+			experienceEyebrow: '03 · One experience that shaped me',
+			experienceTitle: 'A single record became a flow people could actually use.',
+			experienceDescription:
+				'I noticed that table-tennis match results were scattered across our club. I first structured the records in Notion, watched how members used them, and expanded the system into a web service. It taught me that understanding the user problem and flow comes before building a good feature.',
+			experienceSteps: ['Scattered records', 'Structured in Notion', 'Deployed as a web service'],
+			experienceAction: 'See how I worked through the problem',
+			identityEyebrow: '04 · So, what kind of person am I?',
+			identityTitle: 'I turn learning into structures people can use.',
+			identityDescription:
+				'I am learning Swift and iOS while exploring how apps can fit more naturally into everyday flows. I dig into questions, then bring what I learn back out through writing and projects.',
+			identityKeywords: ['iOS · Swift', 'Problem Framing', 'Learning in Public'],
 			aboutAction: 'Learn more in About',
 			projectsAction: 'Explore projects',
-			careEyebrow: 'What I Care About',
-			careTitle: 'What matters in my projects',
+			careEyebrow: '05 · So, what can I do?',
+			careTitle: 'I turn thoughts into the next action.',
 			careIntro:
-				'I care about learning from users, tracing data flow, and explaining a structure the team can understand together.',
+				'I find user problems, turn complex context into structures a team can reason about, and document the learning so it can be used again.',
 			carePoints: [
 				{
 					title: 'Problem Framing',
@@ -260,7 +296,7 @@ export const ui = {
 					description: 'Use AI to support implementation while retaining responsibility for decomposition and judgment.',
 				},
 			],
-			featuredEyebrow: 'Featured Projects',
+			featuredEyebrow: 'Evidence · Featured Projects',
 			featuredTitle: 'Featured projects',
 			featuredIntro:
 				'My current Academy challenges and the SCUTTA web service.',
@@ -288,15 +324,15 @@ export const ui = {
 						'In the SCUTTA operations tool, I designed reasons to meet new opponents instead of forcing a match.',
 				},
 			],
-			postsEyebrow: 'Latest Posts',
+			postsEyebrow: 'Notes · Latest Posts',
 			postsTitle: 'Recent notes',
 			postsIntro:
 				'I document not only implementation methods, but why a choice was made and what remains for the next decision.',
 			postsAction: 'View all posts',
-			contactEyebrow: 'Contact',
-			contactTitle: 'Contact',
+			contactEyebrow: '06 · One line to remember me by',
+			contactTitle: 'Wherever I stumble, I leave a structure we can stand on together.',
 			contactDescription:
-				'View my projects on GitHub, or reach me by email and LinkedIn.',
+				'I am still learning, which gives me more reasons to ask and more clarity to build.',
 			githubAction: 'View GitHub',
 		},
 		about: {
