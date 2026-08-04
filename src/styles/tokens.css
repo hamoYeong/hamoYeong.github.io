@@ -47,10 +47,10 @@
 	--color-on-dark-soft: #e6e0d8;
 	--color-on-dark-accent: #e9bda8;
 
-	--radius-sm: 0.5rem;
-	--radius-md: 0.875rem;
-	--radius-lg: 1.25rem;
-	--radius-pill: 999px;
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.75rem;
+	--radius-pill: 0.375rem;
 
 	--shadow-card: 0 1rem 3rem rgb(74 52 34 / 0.07);
 	--border-default: 1px solid var(--color-border);
