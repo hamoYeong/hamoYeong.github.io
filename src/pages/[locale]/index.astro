@@ -393,23 +393,22 @@ const publicEmail = 'rlatjdud6573@naver.com';
 
 	.care-card {
 		display: flex;
-		min-height: 20rem;
 		flex-direction: column;
 		border: var(--border-default);
 		border-top: 3px solid #aebea8;
-		padding: var(--space-6);
+		padding: var(--space-5);
 		background: color-mix(in srgb, var(--color-surface) 72%, transparent);
 	}
 
 	.care-card__index {
-		margin: 0 0 auto;
+		margin: 0;
 		color: var(--color-text-faint);
 		font-family: var(--font-mono);
 		font-size: var(--text-xs);
 	}
 
 	.care-card h3 {
-		margin: var(--space-10) 0 0;
+		margin: var(--space-6) 0 0;
 		font-size: 1.05rem;
 	}
 
@@ -469,11 +468,11 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	}
 
 	.closing {
-		display: flex;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.24fr);
 		margin: clamp(var(--space-20), 12vw, 10rem) calc(50% - 50vw) calc(-1 * var(--space-20));
 		align-items: end;
-		justify-content: space-between;
-		gap: var(--space-10);
+		gap: clamp(var(--space-10), 6vw, var(--space-20));
 		padding: clamp(var(--space-16), 10vw, 8rem) max(var(--gutter), calc((100vw - var(--width-content)) / 2));
 		background: #3f4d41;
 		color: var(--color-on-accent);
@@ -484,23 +483,25 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	}
 
 	.closing h2 {
-		max-width: 15ch;
+		max-width: 22ch;
 		color: var(--color-on-accent);
 	}
 
 	.closing > div:first-child > p:last-child {
-		max-width: var(--width-reading);
+		max-width: none;
 		margin: var(--space-6) 0 0;
 		color: var(--color-on-dark-soft);
 		font-size: var(--text-md);
 	}
 
 	.contact-links {
-		display: flex;
-		flex: 0 0 auto;
-		flex-wrap: wrap;
-		justify-content: flex-end;
+		display: grid;
 		gap: var(--space-2);
+	}
+
+	.contact-links :global(a) {
+		width: 100%;
+		justify-content: space-between;
 	}
 
 	.contact-email {
@@ -556,18 +557,18 @@ const publicEmail = 'rlatjdud6573@naver.com';
 			gap: var(--space-8);
 		}
 
-		.care-card {
-			min-height: 17rem;
-		}
-
-		.section-with-action,
-		.closing {
+		.section-with-action {
 			align-items: flex-start;
 			flex-direction: column;
 		}
 
+		.closing {
+			grid-template-columns: 1fr;
+			align-items: start;
+		}
+
 		.contact-links {
-			justify-content: flex-start;
+			width: 100%;
 		}
 	}
 </style>
