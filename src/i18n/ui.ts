@@ -101,7 +101,7 @@ export const ui = {
 			postsIntro: '구현 방법뿐 아니라 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
 			postsAction: '모든 글 보기',
 			contactEyebrow: '06 · 나를 잊지 못할 한 마디',
-			contactTitle: '넘어진 자리마다, 함께 딛고 설 구조를 남깁니다.',
+			contactTitle: '넘어진 자리마다,\n함께 딛고 설 구조를 남깁니다.',
 			contactDescription:
 				'아직 배우는 중이기에 더 많이 질문하고, 더 분명하게 정리할 수 있습니다.',
 			githubAction: 'GitHub에서 보기',
