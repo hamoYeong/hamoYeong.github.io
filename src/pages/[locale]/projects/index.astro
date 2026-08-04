@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import {
+	getLocaleStaticPaths,
+	isLocale,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../../i18n/config';
+import { getUi } from '../../../i18n/ui';
+import { getProjects } from '../../../lib/content';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam;
+const t = getUi(locale);
+const projects = await getProjects({ locale });
+const getFilterValues = (categories: string[]) => {
+	const normalized = categories.map((category) => category.toLowerCase());
+	const values = [];
+
+	if (normalized.includes('ios')) values.push('ios');
+	if (normalized.includes('web')) values.push('web');
+	if (
+		normalized.some((category) =>
+			['education', 'computational thinking', 'learning'].includes(category),
+		)
+	) {
+		values.push('education');
+	}
+	if (normalized.includes('community')) values.push('community');
+
+	return values;
+};
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => [
+		targetLocale,
+		localizedPath(targetLocale, 'projects'),
+	]),
+) as LocalePaths;
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${t.nav.projects} | Hamo`}
+	description={t.projects.intro}
+	alternatePaths={alternatePaths}
+>
+	<SectionHeading
+		level="h1"
+		eyebrow={t.projects.eyebrow}
+		title={t.projects.title}
+		description={t.projects.intro}
+	/>
+
+	{
+		projects.length > 0 ? (
+			<>
+				<div
+					class="project-filter"
+					data-project-filter
+					role="group"
+					aria-label={t.projects.filterLabel}
+				>
+					<div class="project-filter__buttons">
+						<button
+							type="button"
+							data-filter="all"
+							aria-pressed="true"
+							aria-controls="project-list"
+						>
+							{t.projects.filterAll}
+						</button>
+						{t.projects.filters.map((filter) => (
+							<button
+								type="button"
+								data-filter={filter.value}
+								aria-pressed="false"
+								aria-controls="project-list"
+							>
+								{filter.label}
+							</button>
+						))}
+					</div>
+					<p aria-live="polite" data-project-count data-count-suffix={t.projects.filterCount}>
+						{projects.length}{t.projects.filterCount}
+					</p>
+				</div>
+
+				<div id="project-list" class="card-grid">
+					{projects.map((project) => (
+						<div
+							class="project-entry"
+							data-project-entry
+							data-categories={getFilterValues(project.data.categories).join(' ')}
+						>
+							<ProjectCard
+								title={project.data.title}
+								summary={project.data.summary}
+								meta={`${project.data.period.label} · ${t.projects.statusLabels[project.data.status]}`}
+								tags={project.data.technologies.slice(0, 4)}
+								facts={[
+									{ label: t.projects.problem, value: project.data.problem },
+									{ label: t.projects.role, value: project.data.role.join(', ') },
+									{ label: t.projects.outcomes, value: project.data.outcomes[0] },
+								]}
+								href={localizedPath(locale, `projects/${project.data.slug}`)}
+								actionLabel={t.projects.readMore}
+							/>
+						</div>
+					))}
+				</div>
+			</>
+		) : (
+			<p class="empty-state">{t.projects.empty}</p>
+		)
+	}
+</BaseLayout>
+
+<script>
+	const filterRoot = document.querySelector('[data-project-filter]');
+	const projectEntries = Array.from(
+		document.querySelectorAll<HTMLElement>('[data-project-entry]'),
+	);
+
+	if (filterRoot) {
+		const filterButtons = Array.from(
+			filterRoot.querySelectorAll<HTMLButtonElement>('button[data-filter]'),
+		);
+		const count = filterRoot.querySelector<HTMLElement>('[data-project-count]');
+
+		filterButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const selected = button.dataset.filter ?? 'all';
+				let visibleCount = 0;
+
+				filterButtons.forEach((candidate) => {
+					candidate.setAttribute(
+						'aria-pressed',
+						String(candidate === button),
+					);
+				});
+
+				projectEntries.forEach((entry) => {
+					const categories = entry.dataset.categories?.split(' ') ?? [];
+					const visible = selected === 'all' || categories.includes(selected);
+					entry.hidden = !visible;
+					if (visible) visibleCount += 1;
+				});
+
+				if (count) {
+					count.textContent = `${visibleCount}${count.dataset.countSuffix ?? ''}`;
+				}
+			});
+		});
+	}
+</script>
+
+<style>
+	.project-filter {
+		display: flex;
+		margin: var(--space-8) 0 var(--space-8);
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+	}
+
+	.project-filter__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+
+	.project-filter button {
+		min-height: 2.75rem;
+		border: var(--border-default);
+		border-radius: var(--radius-pill);
+		padding: 0 var(--space-4);
+		background: var(--color-surface);
+		color: var(--color-text-soft);
+		font: inherit;
+		font-size: var(--text-sm);
+		font-weight: 800;
+		cursor: pointer;
+	}
+
+	.project-filter button[aria-pressed='true'] {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-on-accent);
+	}
+
+	.project-filter p {
+		flex: 0 0 auto;
+		margin: 0;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+	}
+
+	.project-entry {
+		min-width: 0;
+	}
+
+	.project-entry[hidden] {
+		display: none;
+	}
+
+	@media (max-width: 640px) {
+		.project-filter {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>

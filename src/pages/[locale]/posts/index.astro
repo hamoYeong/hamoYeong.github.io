@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import {
+	formatDate,
+	getLocaleStaticPaths,
+	isLocale,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../../i18n/config';
+import { getUi } from '../../../i18n/ui';
+import { getPosts } from '../../../lib/content';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam;
+const t = getUi(locale);
+const posts = await getPosts({ locale });
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort(
+	(left, right) => left.localeCompare(right, locale),
+);
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => [
+		targetLocale,
+		localizedPath(targetLocale, 'posts'),
+	]),
+) as LocalePaths;
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${t.nav.posts} | Hamo`}
+	description={t.posts.intro}
+	alternatePaths={alternatePaths}
+>
+	<SectionHeading
+		level="h1"
+		eyebrow={t.posts.eyebrow}
+		title={t.posts.title}
+		description={t.posts.intro}
+	/>
+
+	{
+		posts.length > 0 ? (
+			<>
+				<div
+					class="post-filter"
+					data-post-filter
+					role="group"
+					aria-label={t.posts.filterLabel}
+				>
+					<div class="post-filter__buttons">
+						<button
+							type="button"
+							data-filter="all"
+							aria-pressed="true"
+							aria-controls="post-list"
+						>
+							{t.posts.filterAll}
+						</button>
+						{tags.map((tag) => (
+							<button
+								type="button"
+								data-filter={tag}
+								aria-pressed="false"
+								aria-controls="post-list"
+							>
+								{tag}
+							</button>
+						))}
+					</div>
+					<p aria-live="polite" data-post-count data-count-suffix={t.posts.postCount}>
+						{posts.length}{t.posts.postCount}
+					</p>
+				</div>
+
+				<div id="post-list" class="stack-list">
+					{posts.map((post) => (
+						<div
+							class="post-entry"
+							data-post-entry
+							data-tags={post.data.tags.join('|')}
+						>
+							<PostCard
+								title={post.data.title}
+								description={post.data.description}
+								date={formatDate(post.data.publishedAt, locale)}
+								tags={post.data.tags}
+								href={localizedPath(locale, `posts/${post.data.slug}`)}
+								actionLabel={t.posts.readMore}
+							/>
+						</div>
+					))}
+				</div>
+			</>
+		) : (
+			<p class="empty-state">{t.posts.empty}</p>
+		)
+	}
+</BaseLayout>
+
+<script>
+	const filterRoot = document.querySelector('[data-post-filter]');
+	const postEntries = Array.from(
+		document.querySelectorAll<HTMLElement>('[data-post-entry]'),
+	);
+
+	if (filterRoot) {
+		const filterButtons = Array.from(
+			filterRoot.querySelectorAll<HTMLButtonElement>('button[data-filter]'),
+		);
+		const count = filterRoot.querySelector<HTMLElement>('[data-post-count]');
+
+		filterButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const selected = button.dataset.filter ?? 'all';
+				let visibleCount = 0;
+
+				filterButtons.forEach((candidate) => {
+					candidate.setAttribute(
+						'aria-pressed',
+						String(candidate === button),
+					);
+				});
+
+				postEntries.forEach((entry) => {
+					const tags = entry.dataset.tags?.split('|') ?? [];
+					const visible = selected === 'all' || tags.includes(selected);
+					entry.hidden = !visible;
+					if (visible) visibleCount += 1;
+				});
+
+				if (count) {
+					count.textContent = `${visibleCount}${count.dataset.countSuffix ?? ''}`;
+				}
+			});
+		});
+	}
+</script>
+
+<style>
+	.post-filter {
+		display: flex;
+		margin: var(--space-8) 0 0;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+	}
+
+	.post-filter__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+
+	.post-filter button {
+		min-height: 2.75rem;
+		border: var(--border-default);
+		border-radius: var(--radius-pill);
+		padding: 0 var(--space-4);
+		background: var(--color-surface);
+		color: var(--color-text-soft);
+		font: inherit;
+		font-size: var(--text-sm);
+		font-weight: 800;
+		cursor: pointer;
+	}
+
+	.post-filter button[aria-pressed='true'] {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-on-accent);
+	}
+
+	.post-filter p {
+		flex: 0 0 auto;
+		margin: 0;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+	}
+
+	.post-entry[hidden] {
+		display: none;
+	}
+
+	@media (max-width: 640px) {
+		.post-filter {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>

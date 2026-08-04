@@ -1,0 +1,447 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Tag from '../../components/Tag.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
+import {
+	getLocaleStaticPaths,
+	isLocale,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../i18n/config';
+import { getUi } from '../../i18n/ui';
+import {
+	getExperiences,
+	getPosts,
+	getProjects,
+} from '../../lib/content';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam;
+const t = getUi(locale);
+const [experiences, projects, posts] = await Promise.all([
+	getExperiences({ locale }),
+	getProjects({ locale }),
+	getPosts({ locale }),
+]);
+const projectByTranslationKey = new Map(
+	projects.map((project) => [project.data.translationKey, project]),
+);
+const postByTranslationKey = new Map(
+	posts.map((post) => [post.data.translationKey, post]),
+);
+const projectLink = (translationKey: string) => {
+	const project = projectByTranslationKey.get(translationKey);
+
+	return project
+		? {
+				label: project.data.title,
+				href: localizedPath(locale, `projects/${project.data.slug}`),
+			}
+		: undefined;
+};
+const postLink = (translationKey: string) => {
+	const post = postByTranslationKey.get(translationKey);
+
+	return post
+		? {
+				label: post.data.title,
+				href: localizedPath(locale, `posts/${post.data.slug}`),
+			}
+		: undefined;
+};
+const compactLinks = <T,>(links: Array<T | undefined>) =>
+	links.filter((link): link is T => link !== undefined);
+const exploreGroups = [
+	{
+		title: t.about.exploreAcademyTitle,
+		description: t.about.exploreAcademyDescription,
+		links: compactLinks([
+			projectLink('academy-c1-setup-guide'),
+			projectLink('academy-c2-benefits'),
+			projectLink('bombaway'),
+			projectLink('leaf'),
+		]),
+	},
+	{
+		title: t.about.exploreScuttaTitle,
+		description: t.about.exploreScuttaDescription,
+		links: compactLinks([
+			projectLink('scutta-web-service'),
+			projectLink('scutta-notion-system'),
+		]),
+	},
+	{
+		title: t.about.exploreLearningTitle,
+		description: t.about.exploreLearningDescription,
+		links: compactLinks([
+			projectLink('computational-thinking-hamo'),
+			postLink('thinking-together-before-code'),
+			postLink('protocol-preview-service-flow'),
+			postLink('ai-context-before-code'),
+		]),
+	},
+];
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => [
+		targetLocale,
+		localizedPath(targetLocale, 'about'),
+	]),
+) as LocalePaths;
+const pdfLinks = [
+	{ label: t.about.downloadKo, href: '/cv/seoyeong-kim-cv-ko.pdf', lang: 'ko' },
+	{ label: t.about.downloadEn, href: '/cv/seoyeong-kim-cv-en.pdf', lang: 'en' },
+] as const;
+const githubUrl = 'https://github.com/hamoYeong';
+const linkedinUrl = 'https://www.linkedin.com/in/seoyeong-kim-hamoyeong';
+const publicEmail = 'rlatjdud6573@naver.com';
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${t.nav.about} | Hamo`}
+	description={t.about.intro}
+	alternatePaths={alternatePaths}
+>
+	<SectionHeading
+		level="h1"
+		eyebrow={t.about.eyebrow}
+		title={t.about.title}
+		description={t.about.intro}
+	/>
+
+	<div class="about-actions">
+		<a class="primary-action" href="#experience">{t.about.experienceTitle}</a>
+		<ExternalLink href={githubUrl}>{t.about.github}</ExternalLink>
+	</div>
+
+	<section id="experience" class="content-section" aria-labelledby="experience-title">
+		<SectionHeading
+			id="experience-title"
+			title={t.about.experienceTitle}
+			description={t.about.experienceIntro}
+		/>
+		{
+			experiences.length > 0 ? (
+				<div class="timeline-list">
+					{experiences.map((experience) => (
+						<TimelineItem
+							period={experience.data.period.label}
+							title={experience.data.title}
+							organization={experience.data.organization}
+							summary={experience.data.summary}
+							highlights={experience.data.highlights}
+							links={experience.data.links}
+						/>
+					))}
+				</div>
+			) : (
+				<p class="empty-state">{t.about.experienceEmpty}</p>
+			)
+		}
+	</section>
+
+	<section class="content-section" aria-labelledby="cv-pdf-title">
+		<SectionHeading
+			id="cv-pdf-title"
+			title={t.about.pdfTitle}
+			description={t.about.pdfIntro}
+		/>
+		<div class="pdf-grid">
+			{
+				pdfLinks.map((pdf) => (
+					<article lang={pdf.lang}>
+						<h3>{pdf.label}</h3>
+						<div>
+							<a href={pdf.href} target="_blank" rel="noreferrer">
+								{t.about.openPdf} ↗
+							</a>
+							<a href={pdf.href} download>{t.about.downloadPdf} ↓</a>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="skills-title">
+		<SectionHeading
+			id="skills-title"
+			title={t.about.skillsTitle}
+			description={t.about.skillsIntro}
+		/>
+		<div class="skill-grid">
+			{
+				t.about.skillGroups.map((group) => (
+					<article>
+						<h3>{group.title}</h3>
+						<div>
+							{group.items.map((item) => <Tag label={item} />)}
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="content-section" aria-labelledby="explore-title">
+		<SectionHeading
+			id="explore-title"
+			eyebrow={t.about.exploreEyebrow}
+			title={t.about.exploreTitle}
+			description={t.about.exploreIntro}
+		/>
+		<div class="explore-grid">
+			{
+				exploreGroups.map((group) => (
+					<article class="explore-card">
+						<h3>{group.title}</h3>
+						<p>{group.description}</p>
+						<ul>
+							{group.links.map((link) => (
+								<li><a href={link.href}>{link.label} →</a></li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
+		<div class="explore-actions">
+			<a href={localizedPath(locale, 'projects')}>{t.about.allProjects} →</a>
+			<a href={localizedPath(locale, 'posts')}>{t.about.allPosts} →</a>
+		</div>
+	</section>
+
+	<section class="contact" aria-labelledby="contact-title">
+		<div>
+			<h2 id="contact-title">{t.about.contactTitle}</h2>
+			<p>{t.about.contactIntro}</p>
+		</div>
+		<div class="contact__links">
+			<a class="contact__email" href={`mailto:${publicEmail}`}>
+				{t.about.email}
+			</a>
+			<ExternalLink href={linkedinUrl}>{t.about.linkedin}</ExternalLink>
+			<ExternalLink href={githubUrl}>{t.about.github}</ExternalLink>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.about-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-8);
+	}
+
+	.primary-action,
+	.pdf-grid a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		border-radius: var(--radius-pill);
+		padding-inline: var(--space-5);
+		font-size: var(--text-sm);
+		font-weight: 850;
+		text-decoration: none;
+	}
+
+	.primary-action {
+		background: var(--color-accent);
+		color: var(--color-on-accent);
+	}
+
+	.pdf-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-8);
+	}
+
+	.pdf-grid article {
+		border: var(--border-default);
+		border-radius: var(--radius-md);
+		padding: var(--space-6);
+		background: var(--color-surface);
+	}
+
+	.pdf-grid h3 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+
+	.pdf-grid article div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-5);
+	}
+
+	.pdf-grid a {
+		border: var(--border-default);
+		padding-inline: var(--space-4);
+		color: var(--color-accent-strong);
+	}
+
+	.timeline-list {
+		display: grid;
+		margin-top: var(--space-10);
+	}
+
+	.explore-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-8);
+	}
+
+	.explore-card {
+		border: var(--border-default);
+		border-radius: var(--radius-md);
+		padding: var(--space-6);
+		background: var(--color-surface);
+	}
+
+	.explore-card h3,
+	.explore-card p {
+		margin: 0;
+	}
+
+	.explore-card h3 {
+		font-size: 1.1rem;
+	}
+
+	.explore-card p {
+		margin-top: var(--space-3);
+		color: var(--color-text-soft);
+		font-size: var(--text-sm);
+		line-height: 1.7;
+	}
+
+	.explore-card ul {
+		display: grid;
+		gap: var(--space-3);
+		margin: var(--space-5) 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.explore-card a,
+	.explore-actions a {
+		color: var(--color-accent-strong);
+		font-weight: 800;
+	}
+
+	.explore-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-5);
+		margin-top: var(--space-6);
+	}
+
+	.skill-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-8);
+	}
+
+	.skill-grid article {
+		border-top: 3px solid var(--color-accent);
+		padding-top: var(--space-5);
+	}
+
+	.skill-grid h3 {
+		margin: 0;
+		font-size: 1.05rem;
+	}
+
+	.skill-grid article div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-4);
+	}
+
+	.contact {
+		display: flex;
+		margin-top: clamp(var(--space-16), 9vw, 8rem);
+		align-items: end;
+		justify-content: space-between;
+		gap: var(--space-8);
+		border-top: var(--border-default);
+		padding-top: var(--space-10);
+	}
+
+	.contact h2,
+	.contact p {
+		margin: 0;
+	}
+
+	.contact h2 {
+		font-size: var(--text-xl);
+	}
+
+	.contact p {
+		max-width: var(--width-reading);
+		margin-top: var(--space-3);
+		color: var(--color-text-soft);
+	}
+
+	.contact__links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: var(--space-2);
+	}
+
+	.contact__email {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		border: var(--border-default);
+		border-radius: var(--radius-pill);
+		padding-inline: var(--space-4);
+		background: var(--color-surface);
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+		font-weight: 850;
+		text-decoration: none;
+	}
+
+	.contact__email:hover {
+		border-color: var(--color-accent);
+		background: var(--color-surface-accent);
+	}
+
+	@media (max-width: 800px) {
+		.explore-grid,
+		.skill-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.pdf-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.contact {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.contact__links {
+			justify-content: flex-start;
+		}
+	}
+</style>

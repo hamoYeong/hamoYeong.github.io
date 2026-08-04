@@ -13,8 +13,8 @@
 		"description": "Notion 플랫폼에서 발전하여 웹 서비스를 배포하고 관리했습니다.",
 		"role": "제작자, 관리자",
 		"tools": ["FlaskAPI", "Python", "PostgreSQL"],
-		"result": "배포 (현 중단)",
-		"detail": "Notion 플랫폼에서 시작한 기록 방식을 웹 서비스로 확장했습니다. FlaskAPI, Python, PostgreSQL을 사용해 서비스를 배포하고 관리했습니다. 현재는 운영을 중단했지만, 데이터를 저장하고 실제 서비스로 연결하는 과정을 경험했습니다.",
+		"result": "배포·운영 후 인계",
+		"detail": "Notion 플랫폼에서 시작한 기록 방식을 웹 서비스로 확장했습니다. FlaskAPI, Python, PostgreSQL을 사용해 서비스를 배포하고 관리했습니다. 2025년 8월 다음 담당자에게 인계된 뒤 별도 저장소에서 리팩터링됐으며, 기존 서비스의 토대는 현재도 사용되고 있습니다.",
 		"slug": "table-tennis-club-web-service"
 	}
 ]

@@ -1,0 +1,55 @@
+---
+import { localizedPath, type Locale } from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getUi(locale);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="site-footer__inner">
+		<p>© {year} Hamo</p>
+		<p>{t.site.footer}</p>
+		<a href={localizedPath(locale)}>{t.nav.home}</a>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: var(--border-default);
+		background: var(--color-surface-muted);
+		color: var(--color-text-soft);
+	}
+
+	.site-footer__inner {
+		display: grid;
+		width: min(calc(100% - (var(--gutter) * 2)), var(--width-content));
+		margin-inline: auto;
+		padding-block: var(--space-8);
+		grid-template-columns: auto 1fr auto;
+		gap: var(--space-4);
+		align-items: center;
+		font-size: var(--text-sm);
+	}
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: var(--color-text);
+		font-weight: 800;
+	}
+
+	@media (max-width: 640px) {
+		.site-footer__inner {
+			grid-template-columns: 1fr;
+			gap: var(--space-2);
+		}
+	}
+</style>
