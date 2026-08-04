@@ -50,7 +50,6 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		<div class="hero-meta">
 			<p class="eyebrow">{t.home.eyebrow}</p>
 			<p class="name">{t.home.name} <span>{t.home.alias}</span></p>
-			<p class="note" aria-label={t.home.note}>{t.home.note}</p>
 		</div>
 
 		<div class="hero-copy">
@@ -221,8 +220,14 @@ const publicEmail = 'rlatjdud6573@naver.com';
 
 <style>
 	:global(body) {
+		--color-accent: #758970;
+		--color-accent-strong: #4e6250;
+		--color-surface-accent: #e8eee2;
+		--color-focus: #527158;
+		--color-on-dark-accent: #dbe6d5;
+
 		background:
-			radial-gradient(circle at 82% 7%, color-mix(in srgb, var(--color-surface-accent) 72%, transparent), transparent 24rem),
+			radial-gradient(circle at 82% 7%, rgba(220, 232, 211, 0.58), transparent 26rem),
 			var(--color-canvas);
 	}
 
@@ -231,21 +236,22 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	}
 
 	.hero {
-		display: grid;
+		display: block;
 		min-height: min(47rem, calc(100vh - 7rem));
-		grid-template-columns: minmax(10rem, 0.38fr) minmax(0, 1fr);
-		gap: clamp(var(--space-8), 7vw, 7rem);
-		align-items: start;
+		max-width: 64rem;
 		padding-bottom: clamp(var(--space-20), 12vw, 10rem);
 	}
 
 	.hero-meta {
-		position: relative;
-		min-height: 23rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-6);
+		margin-bottom: clamp(var(--space-10), 7vw, var(--space-20));
 	}
 
 	.hero-meta .eyebrow {
-		margin-bottom: var(--space-4);
+		margin: 0;
 	}
 
 	.name {
@@ -270,27 +276,10 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		text-transform: uppercase;
 	}
 
-	.note {
-		position: absolute;
-		top: 10rem;
-		left: 0;
-		width: 11rem;
-		margin: 0;
-		padding: var(--space-5);
-		transform: rotate(-4deg);
-		background: #dfff6b;
-		box-shadow: 0.5rem 0.6rem 0 var(--color-text);
-		color: #202621;
-		font-size: 1rem;
-		font-weight: 900;
-		line-height: 1.5;
-		word-break: keep-all;
-	}
-
 	.hero-copy h1 {
-		max-width: 13ch;
+		max-width: 17ch;
 		margin: var(--space-6) 0 0;
-		font-size: clamp(3.2rem, 7vw, 6.65rem);
+		font-size: clamp(3.2rem, 6.6vw, 6.1rem);
 		letter-spacing: -0.065em;
 		line-height: 0.98;
 		word-break: keep-all;
@@ -328,7 +317,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	.hero-actions .story-link {
 		border-radius: var(--radius-pill);
 		padding-inline: var(--space-5);
-		background: var(--color-text);
+		background: #4e6250;
 		color: var(--color-on-accent);
 		text-decoration: none;
 	}
@@ -407,7 +396,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		min-height: 20rem;
 		flex-direction: column;
 		border: var(--border-default);
-		border-top: 3px solid var(--color-accent);
+		border-top: 3px solid #aebea8;
 		padding: var(--space-6);
 		background: color-mix(in srgb, var(--color-surface) 72%, transparent);
 	}
@@ -486,7 +475,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		justify-content: space-between;
 		gap: var(--space-10);
 		padding: clamp(var(--space-16), 10vw, 8rem) max(var(--gutter), calc((100vw - var(--width-content)) / 2));
-		background: var(--color-text);
+		background: #3f4d41;
 		color: var(--color-on-accent);
 	}
 
@@ -538,31 +527,19 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	@media (max-width: 760px) {
 		.hero {
 			min-height: auto;
-			grid-template-columns: 1fr;
-			gap: var(--space-10);
 		}
 
 		.hero-meta {
-			display: flex;
-			min-height: auto;
-			align-items: flex-start;
-			justify-content: space-between;
-			gap: var(--space-4);
+			align-items: center;
+			margin-bottom: var(--space-12);
 		}
 
 		.hero-meta .eyebrow {
-			display: none;
+			margin: 0;
 		}
 
 		.name {
-			padding-top: var(--space-2);
-		}
-
-		.note {
-			position: static;
-			width: 10rem;
-			flex: 0 0 auto;
-			font-size: 0.88rem;
+			font-size: var(--text-sm);
 		}
 
 		.hero-copy h1 {
