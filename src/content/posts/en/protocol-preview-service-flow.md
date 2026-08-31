@@ -3,8 +3,9 @@ slug: protocol-preview-service-flow
 locale: en
 translationKey: protocol-preview-service-flow
 title: Understanding Data Flow Through Protocol → PreviewService → Service
-description: A reflection on defining contracts, executable example states, and production persistence in sequence instead of memorizing architecture labels.
+description: How Protocol → PreviewService → Service became a scaffold for one learner to see the larger data flow, and why I adjusted the size and order of that scaffold in C5.
 publishedAt: 2026-07-29
+updatedAt: 2026-08-31
 tags:
   - SwiftUI
   - Architecture
@@ -15,7 +16,11 @@ relatedProjects:
   - leaf
 ---
 
-SwiftUI projects often separate a `Protocol`, a `PreviewService`, and a production `Service`. Dividing code into three files does not make responsibilities clear by itself. When a team cannot explain why each boundary exists, abstraction can add names without adding understanding.
+I did not begin explaining this structure because I wanted cleaner file boundaries. In C4, one learner had enjoyed changing SwiftUI views and seeing immediate visual feedback early in the Academy. Returning to development later, the learner could not connect the logic and data responsibilities behind the screen and could not decide what to do next.
+
+`Protocol → PreviewService → Service` became a scaffold for seeing the larger flow from screen to contract, example state, and production persistence. It was not a pattern I wanted the learner to reproduce as a finished answer.
+
+SwiftUI projects often separate these three boundaries. Dividing code into three files does not make responsibilities clear by itself. When a team cannot explain why each boundary exists, abstraction can add names without adding understanding.
 
 While implementing a record flow in a team project, I changed the order in which I approached the structure. Instead of building persistence first and extracting a protocol later, I described the actions the screen needed as a contract, checked that contract through preview states, and only then connected production persistence.
 
@@ -105,6 +110,14 @@ This order moves the conversation away from “Is this MV or MVVM?” and toward
 
 Architecture labels then become easier to discuss. Whether a ViewModel is needed can depend on the complexity of state transformation and the responsibility that deserves testing, not on habit.
 
+The order mattered as a learning scaffold too. Before entering syntax or the implementation of each file, the learner could see the whole flow as one chunk and identify which boundary was still unclear. After seeing that flow, the learner wrote the intended behavior before comparing it with an AI result and was able to explain an assumption the result had missed. This was one observation, not evidence of a general learning effect.
+
+## In C5, I adjusted the size of the scaffold
+
+In C5, I tried a similar approach with another learner. This learner wanted to become a developer and tended to investigate details deeply, spending longer than expected inside one concept.
+
+I therefore separated time for seeing the large chunks and overall flow from time for studying detailed concepts. This is not a validated method. It is one example of changing the size and order of a scaffold for a different learner.
+
 ## This structure is not always necessary
 
 Three boundaries can be excessive for a small screen with read-only static data. During an experiment with one implementation, no failure state, and interface and data that change together, a direct connection may be easier to understand.
@@ -116,7 +129,7 @@ I tend to separate the boundary when:
 - several screens share the same data actions; or
 - the team needs to discuss interface and persistence responsibilities separately.
 
-The important criterion is not whether a protocol exists. It is whether each boundary can be explained in one sentence.
+The important criterion is not whether a protocol exists. It is whether the structure is necessary for this problem and learner, and whether each boundary can be explained in one sentence.
 
 ## What the structure should leave behind
 

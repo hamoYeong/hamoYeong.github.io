@@ -265,6 +265,38 @@ const contents = [
 								</div>
 							)
 						}
+						{
+							project.data.learnerCase && (
+								<div class="learner-case">
+									<p class="learner-case__eyebrow">{t.projects.learnerCase}</p>
+									<h3>{project.data.learnerCase.title}</h3>
+									<p>{project.data.learnerCase.context}</p>
+									<div class="learner-case__grid">
+										<article>
+											<h4>{t.projects.before}</h4>
+											<p>{project.data.learnerCase.before}</p>
+										</article>
+										<article>
+											<h4>{t.projects.diagnosis}</h4>
+											<p>{project.data.learnerCase.diagnosis}</p>
+										</article>
+										<article>
+											<h4>{t.projects.intervention}</h4>
+											<ul>
+												{project.data.learnerCase.intervention.map((item) => <li>{item}</li>)}
+											</ul>
+										</article>
+										<article>
+											<h4>{t.projects.after}</h4>
+											<p>{project.data.learnerCase.after}</p>
+										</article>
+									</div>
+									<Callout title={t.projects.limitation}>
+										<p>{project.data.learnerCase.limitation}</p>
+									</Callout>
+								</div>
+							)
+						}
 					</div>
 				</section>
 
@@ -428,6 +460,29 @@ const contents = [
 						<ul class="outcome-list">
 							{project.data.outcomes.map((item) => <li>{item}</li>)}
 						</ul>
+						{
+							project.data.validation && (
+								<div class="validation-summary">
+									<Callout title={t.projects.statusMeaning}>
+										<p>{project.data.validation.statusNote}</p>
+									</Callout>
+									<div class="validation-summary__grid">
+										<article>
+											<h3>{t.projects.limitation}</h3>
+											<ul>
+												{project.data.validation.limitations.map((item) => <li>{item}</li>)}
+											</ul>
+										</article>
+										<article>
+											<h3>{t.projects.nextValidation}</h3>
+											<ul>
+												{project.data.validation.nextValidation.map((item) => <li>{item}</li>)}
+											</ul>
+										</article>
+									</div>
+								</div>
+							)
+						}
 					</div>
 				</section>
 
@@ -814,6 +869,61 @@ const contents = [
 		padding-top: var(--space-6);
 	}
 
+	.learner-case {
+		margin-top: var(--space-8);
+		border: var(--border-default);
+		border-radius: var(--radius-lg);
+		padding: var(--space-6);
+		background: var(--color-surface-muted);
+	}
+
+	.learner-case__eyebrow {
+		margin: 0;
+		color: var(--color-accent-strong) !important;
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		font-weight: 900;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.learner-case > h3 {
+		margin-top: var(--space-3);
+	}
+
+	.learner-case__grid,
+	.validation-summary__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-6);
+	}
+
+	.learner-case__grid article,
+	.validation-summary__grid article {
+		border: var(--border-default);
+		border-radius: var(--radius-md);
+		padding: var(--space-5);
+		background: var(--color-surface);
+	}
+
+	.learner-case__grid h4,
+	.validation-summary__grid h3 {
+		margin: 0;
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+	}
+
+	.learner-case__grid p,
+	.learner-case__grid ul,
+	.validation-summary__grid ul {
+		margin-bottom: 0;
+	}
+
+	.validation-summary {
+		margin-top: var(--space-8);
+	}
+
 	.process-list {
 		display: grid;
 		margin: var(--space-8) 0 0;
@@ -1056,7 +1166,9 @@ const contents = [
 	@media (max-width: 820px) {
 		.case-hero,
 		.two-column,
-		.decision-grid {
+		.decision-grid,
+		.learner-case__grid,
+		.validation-summary__grid {
 			grid-template-columns: 1fr;
 		}
 

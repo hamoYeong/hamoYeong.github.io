@@ -4,7 +4,7 @@ locale: en
 translationKey: chemistry-tutoring
 title: Chemistry Tutor
 organization: Department of Chemical Engineering, University of Seoul
-summary: Tutored first-year students in chemistry and laboratory courses, learning to break complex concepts down according to another person's current understanding.
+summary: Tutored first-year students in chemistry and laboratory courses, tracing questions back to prerequisite concepts and changing the order of explanation to match each learner’s understanding.
 period:
   start: '2023-03'
   end: '2023-12'

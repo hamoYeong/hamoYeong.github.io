@@ -84,6 +84,22 @@ const projectArtifactSchema = z.object({
 	previewImage: coverImageSchema,
 });
 
+const learnerCaseSchema = z.object({
+	title: z.string().min(1),
+	context: z.string().min(1),
+	before: z.string().min(1),
+	diagnosis: z.string().min(1),
+	intervention: z.array(z.string().min(1)).min(1),
+	after: z.string().min(1),
+	limitation: z.string().min(1),
+});
+
+const projectValidationSchema = z.object({
+	statusNote: z.string().min(1),
+	limitations: z.array(z.string().min(1)).min(1),
+	nextValidation: z.array(z.string().min(1)).min(1),
+});
+
 const projects = defineCollection({
 	loader: glob({
 		base: './src/content/projects',
@@ -123,6 +139,8 @@ const projects = defineCollection({
 		demo: z.url().optional(),
 		coverImage: coverImageSchema.optional(),
 		artifacts: z.array(projectArtifactSchema).default([]),
+		learnerCase: learnerCaseSchema.optional(),
+		validation: projectValidationSchema.optional(),
 		visibility: z.enum(['public', 'private-summary', 'unlisted']),
 		relatedPosts: z.array(translationKeySchema).default([]),
 	}),

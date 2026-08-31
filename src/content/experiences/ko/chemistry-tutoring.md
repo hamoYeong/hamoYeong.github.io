@@ -4,7 +4,7 @@ locale: ko
 translationKey: chemistry-tutoring
 title: 화학 튜터
 organization: 서울시립대학교 화학공학과
-summary: 새내기를 대상으로 화학및실험 과목을 설명하며 복잡한 개념을 상대의 이해 단계에 맞춰 나누는 경험을 했습니다.
+summary: 새내기의 질문과 이해 단계를 확인한 뒤 필요한 기초 개념으로 거슬러 올라가 설명 순서를 바꾸며 화학및실험 과목을 튜터링했습니다.
 period:
   start: '2023-03'
   end: '2023-12'

@@ -3,7 +3,7 @@ slug: learn-with-ai-questioning
 locale: en
 translationKey: learn-with-ai-questioning
 title: Turning Stuckness into Questions — Learn with AI
-summary: I designed a learning experience that helps Swift beginners move beyond a vague “I don’t know” and turn where they are stuck into a concrete question. In the process, I learned to use AI to turn my own vague thoughts into questions and structure.
+summary: Beginning with observations of Academy beginners and one-to-one learning support in C4, I moved from defining thinking actions to working backward into minimum Swift concepts, separating knowledge and learning systems, and building a macOS prototype. It has not yet been piloted with learners.
 period:
   start: '2026-08'
   end: '2026-08'
@@ -17,24 +17,33 @@ role:
 team:
   type: personal
   description: An individual learning project completed during Apple Developer Academy @ POSTECH C5 Learn with AI.
-overview: A computational-thinking learning experience that helps Swift beginners notice when they are stuck, separate what they know from what they do not, put the unclear point into words, and form a concrete question. It is better understood as a learning process that connected an educational problem to curriculum, planning, UI/UX, and a prototype than as a production-ready service.
-problem: Programming beginners may feel stuck and ask “I don’t know,” “Why doesn’t this work?” or “What should I do?” without separating how far they understand from the exact location, condition, or attempt where they became uncertain. When AI gives an immediate answer, it can become even easier to skip that thinking process.
-whyItMattered: I believed the important ability was not solving everything without AI, but judging whether an AI answer fits the learner’s problem and forming the next question independently.
-context: HamoCom, built in June 2026, was a macOS prototype that started with the tool before defining a learner and curriculum clearly enough. After recognizing that limitation, I began this separate C5 learning project by returning to education and asking whether Swift could serve as a tool for practicing thought.
-user: Beginners learning their first programming language or Swift for the first time. The experience uses Swift as a tool for practicing thought rather than treating the product as a Swift syntax drill.
+overview: A learning-experience design that helps Swift beginners notice when they are stuck, separate what they know from what they do not, put the unclear point into words, and form a concrete question. During C5, I connected educational study to curriculum, planning, UI/UX, and a macOS prototype, but this is not yet a program with demonstrated learning outcomes.
+problem: At the Academy, I saw learners struggle with Swift fundamentals and delegate not only implementation but the thinking behind it to AI. When “I don’t know,” “Why doesn’t this work?” or “What should I do?” remains undivided—without the learner identifying their current understanding, location, conditions, and attempts—an immediate AI answer can make it easier to skip decomposition and judgment.
+whyItMattered: The goal is not to reduce AI use. I want implementation to benefit from AI while the learner remains responsible for explaining intent and assumptions, finding omissions and errors in a result, and forming the next question.
+context: HamoCom, built in June 2026, began with a tool before defining a learner and curriculum clearly enough, so I stopped the project. In C4, I enjoyed working one-to-one with a teammate on logic, but also saw the limit of doing so without a curriculum. Each explanation kept tracing back to more fundamental concepts, and one explanation did not become a system the learner could retrieve later. C5 therefore began with “What thinking should be practiced?” rather than “How much should I explain?”
+user: Beginners learning their first programming language or Swift for the first time who may be able to modify interface code but struggle to explain intent and data flow in their own words.
 contributions:
   - Examined cognitive load, scaffolding, and metacognition while exploring an experience that elicits thought instead of supplying an answer.
+  - Structured the block and limitation I observed during one-to-one support in C4 as a Before–Diagnosis–Intervention–After–Limitation case.
   - Defined the thinking actions a learner should be able to perform before selecting syntax, then worked backward to the minimum Swift concepts required.
+  - Made self-explanation and transfer to unfamiliar problems explicit learning goals, then designed a flow for connecting experience back into a learner’s own knowledge.
   - Separated the nonlinear knowledge system from the linear learning experience, structured them in Obsidian, and translated the plan into implementable tickets.
   - Shaped a macOS UI/UX prototype around a Sidebar and Inspector so learners could see their current position and thinking process.
   - Used AI as a learning guide in unfamiliar domains and as a way to test ideas during implementation, then questioned the gap between the result and my intent.
 process:
+  - Connected observations of Academy learners, the decision to stop HamoCom, and one-to-one support in C4 into one problem—the fact that an explanation given once did not become a reusable system for thinking.
   - Asked how cognitive load, scaffolding, and metacognition could support a learner’s thinking process.
   - Reviewed Swift’s approachability, standard library, and language characteristics from the perspective of a learning tool.
   - Defined the thinking actions a learner should perform, then worked backward to the minimum Swift concepts they required.
   - Separated the knowledge system from the learning system, structured them in Obsidian, and translated them into implementable tickets.
   - Used common macOS components, a Sidebar, and an Inspector to make the learner’s position and thinking process visible.
 processDetails:
+  - title: Origin
+    question: Why was one explanation not enough?
+    items:
+      - Observing Academy beginners using AI
+      - HamoCom’s tool-first limitation
+      - One-to-one C4 support that did not become reusable knowledge
   - title: Education
     question: How should this be taught?
     items:
@@ -66,8 +75,21 @@ processDetails:
       - Shared components
 processSummary: The answer to one question did not finish the work; it made the next question more precise.
 research:
+  - Began with the observation that learners blocked on Swift fundamentals could delegate the thinking itself to AI.
+  - Documented one learner’s change in C4 as a case while keeping its single-person limitation explicit.
   - Reviewed cognitive load, scaffolding, and metacognition as starting points for the learning experience.
   - Considered Swift’s approachability, standard library, and language characteristics from the perspective of a learning tool.
+learnerCase:
+  title: A learner who could change the screen but could not identify the next step in the logic
+  context: In C4, I worked with one Academy learner who studied business, hoped to work as a PM, and still wanted to learn development through the project. Early in the Academy, changing SwiftUI views and seeing visual feedback had been engaging. Returning to development later, the learner struggled to connect the logic and data flow behind the screen.
+  before: The learner had experience modifying interface code but could not explain where data came from, who was responsible for it, or what to do next.
+  diagnosis: I saw a learning gap between the visible result and the data and responsibility flow that produced it. The learner also had little practice noticing and describing the exact moment understanding stopped.
+  intervention:
+    - We first drew the larger flow from screen to contract, example state, and production persistence.
+    - We explored Protocol → PreviewService → Service as responsibilities rather than file names.
+    - Before asking AI to implement, the learner wrote the intended behavior and compared it with the generated result.
+  after: The learner was able to state the intent, find an assumption the AI result had overlooked, and explain what should have been specified more clearly.
+  limitation: This was one observation in one learner’s project context. Transfer to another problem and durability over time have not been evaluated.
 keyDecisions:
   - title: Build a sequence for forming questions, not receiving answers
     description: The central experience moves from noticing stuckness to separating known and unknown points, putting the unclear point into words, and forming a concrete question.
@@ -75,6 +97,8 @@ keyDecisions:
     description: Instead of starting with a syntax syllabus, I defined what learners should be able to think through and connected only the minimum concepts required for those actions.
   - title: Separate the knowledge system from the learning system
     description: I treated connected knowledge and the ordered experience a learner follows as different systems, then designed how they should meet.
+  - title: Make self-explanation and transfer learning goals
+    description: The goal extends beyond getting an answer right. Learners should explain their assumptions and judgment, then connect prior experience to an unfamiliar problem.
 questionShift:
   summary: The question changed from “What should I teach?” to “What kind of thinking should the learner practice?”
   before:
@@ -100,15 +124,27 @@ challenges:
   - In an unfamiliar field such as education, I had to judge what I understood and what still required verification.
   - I needed to distinguish between Swift being available in the environment and Swift being appropriate as a learning tool.
   - A nonlinear knowledge structure had to become an experience a learner could follow without collapsing the knowledge and learning systems into one.
+  - The hypothesis drawn from one C4 learner needed to remain a question for a pilot rather than becoming a claim of general educational effectiveness.
 technologies:
   - Swift
   - macOS
   - Obsidian
   - Codex
 outcomes:
-  - Designed a computational-thinking learning experience that turns a Swift beginner’s stuckness into a question.
-  - Connected educational study to curriculum, planning, UI/UX, and a macOS prototype.
+  - Defined a sequence of thinking actions—notice stuckness, separate known and unknown points, describe location, conditions, and attempts, form a question, and judge an AI-generated result.
+  - Worked backward from those actions to the minimum Swift concepts and separated the nonlinear knowledge system from the linear learning sequence.
+  - Connected educational study to an Obsidian knowledge structure, implementation tickets, and a macOS prototype built around a Sidebar and Inspector.
   - Summarized the changing questions and what I learned with AI in a one-page final Learning Poster.
+validation:
+  statusNote: “Completed” means that the Apple Developer Academy C5 challenge and its poster and prototype were completed. It does not mean the full curriculum is finished or that its learning outcomes have been validated.
+  limitations:
+    - The curriculum and macOS prototype have not yet been piloted with Swift beginners.
+    - The C4 change was observed in one learner and one project context; durability and transfer have not been evaluated.
+    - Cognitive load, metacognition, self-explanation, and transfer informed the design, but the effects of individual scaffolds have not been compared.
+  nextValidation:
+    - Run small sessions with Swift beginners from different backgrounds and observe where they struggle to verbalize stuckness.
+    - Check whether learners can identify assumptions and errors in an AI result and connect prior experience to a new problem without immediate help.
+    - Adjust the size and order of scaffolds for each learner, including a separate large-chunk overview for learners who remain in details for too long, as explored in C5.
 whatIWouldChange:
   - Observe where Swift beginners actually struggle to explain their stuckness and validate the question-forming flow.
   - Use small learning sessions to see whether each scaffold leads learners toward an answer or helps them form the next question themselves.
@@ -137,4 +173,6 @@ artifacts:
 visibility: public
 relatedPosts:
   - ai-context-before-code
+  - thinking-actions-before-content
+  - reusable-knowledge-from-explanations
 ---

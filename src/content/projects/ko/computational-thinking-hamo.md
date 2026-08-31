@@ -3,7 +3,7 @@ slug: computational-thinking-hamo
 locale: ko
 translationKey: computational-thinking-hamo
 title: 하모컴
-summary: 컴퓨팅 사고력 세션을 들은 뒤 소규모 세션을 직접 열어보기 위해 만들다가, 명확한 학습자 필요와 커리큘럼 없이 중단한 macOS 프로토타입입니다.
+summary: 학습자와 커리큘럼 없이 코드 리딩 도구부터 만든 한계를 확인해 중단한 macOS 프로토타입이며, 이 실패가 교육학과 사고 행동부터 다시 설계한 Learn with AI의 출발점이 됐습니다.
 period:
   start: '2026-06'
   end: '2026-06'
@@ -74,4 +74,5 @@ visibility: public
 relatedPosts:
   - ai-context-before-code
   - thinking-together-before-code
+  - reusable-knowledge-from-explanations
 ---

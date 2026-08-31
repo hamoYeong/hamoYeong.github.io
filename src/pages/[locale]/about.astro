@@ -194,6 +194,31 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		</div>
 	</section>
 
+	<section class="content-section" aria-labelledby="direction-title">
+		<SectionHeading
+			id="direction-title"
+			eyebrow={t.about.directionEyebrow}
+			title={t.about.directionTitle}
+			description={t.about.directionIntro}
+		/>
+		<div class="direction-grid">
+			{
+				t.about.directionGroups.map((group) => (
+					<article class:list={['direction-card', { 'direction-card--wide': group.ordered }]}>
+						<h3>{group.title}</h3>
+						{
+							group.ordered ? (
+								<ol>{group.items.map((item) => <li>{item}</li>)}</ol>
+							) : (
+								<ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+							)
+						}
+					</article>
+				))
+			}
+		</div>
+	</section>
+
 	<section class="content-section" aria-labelledby="explore-title">
 		<SectionHeading
 			id="explore-title"
@@ -374,6 +399,39 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		margin-top: var(--space-4);
 	}
 
+	.direction-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin-top: var(--space-8);
+	}
+
+	.direction-card {
+		border: var(--border-default);
+		border-radius: var(--radius-md);
+		padding: var(--space-6);
+		background: var(--color-surface);
+	}
+
+	.direction-card--wide {
+		grid-column: 1 / -1;
+	}
+
+	.direction-card h3 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+
+	.direction-card ul,
+	.direction-card ol {
+		display: grid;
+		gap: var(--space-3);
+		margin: var(--space-5) 0 0;
+		padding-left: var(--space-6);
+		color: var(--color-text-soft);
+		line-height: 1.7;
+	}
+
 	.contact {
 		display: flex;
 		margin-top: clamp(var(--space-16), 9vw, 8rem);
@@ -427,8 +485,13 @@ const publicEmail = 'rlatjdud6573@naver.com';
 
 	@media (max-width: 800px) {
 		.explore-grid,
-		.skill-grid {
+		.skill-grid,
+		.direction-grid {
 			grid-template-columns: 1fr;
+		}
+
+		.direction-card--wide {
+			grid-column: auto;
 		}
 	}
 
