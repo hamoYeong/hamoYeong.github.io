@@ -51,6 +51,39 @@ const projectDecisionSchema = z.object({
 	description: z.string().min(1),
 });
 
+const projectProcessStepSchema = z.object({
+	title: z.string().min(1),
+	question: z.string().min(1),
+	items: z.array(z.string().min(1)).min(1),
+});
+
+const questionShiftSchema = z.object({
+	summary: z.string().min(1),
+	before: z.object({
+		statement: z.string().min(1),
+		note: z.string().min(1),
+	}),
+	after: z.object({
+		statement: z.string().min(1),
+		note: z.string().min(1),
+	}),
+	secondary: z.array(
+		z.object({
+			label: z.string().min(1),
+			before: z.string().min(1),
+			after: z.string().min(1),
+			note: z.string().min(1),
+		}),
+	).default([]),
+});
+
+const projectArtifactSchema = z.object({
+	title: z.string().min(1),
+	description: z.string().min(1),
+	href: z.string().min(1),
+	previewImage: coverImageSchema,
+});
+
 const projects = defineCollection({
 	loader: glob({
 		base: './src/content/projects',
@@ -72,8 +105,11 @@ const projects = defineCollection({
 		user: z.string().min(1),
 		contributions: z.array(z.string().min(1)).min(1),
 		process: z.array(z.string().min(1)).min(1),
+		processDetails: z.array(projectProcessStepSchema).default([]),
+		processSummary: z.string().min(1).optional(),
 		research: z.array(z.string().min(1)).default([]),
 		keyDecisions: z.array(projectDecisionSchema).min(1),
+		questionShift: questionShiftSchema.optional(),
 		technicalStructure: z.array(z.string().min(1)).min(1),
 		challenges: z.array(z.string().min(1)).min(1),
 		technologies: z.array(z.string().min(1)).min(1),
@@ -86,6 +122,7 @@ const projects = defineCollection({
 		repository: z.url().optional(),
 		demo: z.url().optional(),
 		coverImage: coverImageSchema.optional(),
+		artifacts: z.array(projectArtifactSchema).default([]),
 		visibility: z.enum(['public', 'private-summary', 'unlisted']),
 		relatedPosts: z.array(translationKeySchema).default([]),
 	}),
@@ -139,7 +176,7 @@ const challenges = defineCollection({
 	}),
 	schema: z.object({
 		...localizedFields,
-		sequence: z.enum(['C1', 'C2', 'C3', 'C4']),
+		sequence: z.enum(['C1', 'C2', 'C3', 'C4', 'C5']),
 		title: z.string().min(1),
 		summary: z.string().min(1),
 		period: periodSchema,

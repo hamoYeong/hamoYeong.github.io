@@ -111,6 +111,7 @@ const alternatePaths = Object.fromEntries(
 									{ label: t.projects.role, value: project.data.role.join(', ') },
 									{ label: t.projects.outcomes, value: project.data.outcomes[0] },
 								]}
+								image={project.data.coverImage}
 								href={localizedPath(locale, `projects/${project.data.slug}`)}
 								actionLabel={t.projects.readMore}
 							/>

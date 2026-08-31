@@ -81,6 +81,7 @@ const challengeOrder = {
 	C2: 2,
 	C3: 3,
 	C4: 4,
+	C5: 5,
 } as const;
 
 export async function getChallenges(options: CollectionOptions = {}) {

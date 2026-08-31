@@ -33,7 +33,7 @@ const [projects, posts] = await Promise.all([
 ]);
 const featuredProjects = projects
 	.filter((project) => project.data.featured)
-	.slice(0, 3);
+	.slice(0, 4);
 const latestPosts = posts.slice(0, 3);
 const githubUrl = 'https://github.com/hamoYeong';
 const linkedinUrl = 'https://www.linkedin.com/in/seoyeong-kim-hamoyeong';
@@ -166,6 +166,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 							{ label: t.projects.role, value: project.data.role.join(', ') },
 							{ label: t.projects.outcomes, value: project.data.outcomes[0] },
 						]}
+						image={project.data.coverImage}
 						actionLabel={t.projects.readMore}
 					/>
 				))
@@ -430,7 +431,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 
 	.featured-grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--space-5);
 		margin-top: var(--space-10);
 	}

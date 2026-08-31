@@ -71,7 +71,7 @@ export const ui = {
 			featuredEyebrow: 'Evidence · Featured Projects',
 			featuredTitle: '주요 프로젝트',
 			featuredIntro:
-				'현재 진행 중인 Academy 챌린지와 SCUTTA 웹 서비스를 먼저 소개합니다.',
+				'C5 Learn with AI를 비롯한 Academy 프로젝트와 SCUTTA 웹 서비스를 먼저 소개합니다.',
 			journeyEyebrow: 'Current Journey',
 			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
 			journeyDescription:
@@ -123,15 +123,15 @@ export const ui = {
 			exploreTitle: '더 살펴보기',
 			exploreIntro:
 				'프로젝트의 문제, 구현과 회고는 Projects에, 그 과정에서 정리한 생각은 Posts에 담았습니다.',
-			exploreAcademyTitle: 'Apple Developer Academy C1-C4',
+			exploreAcademyTitle: 'Apple Developer Academy C1-C5',
 			exploreAcademyDescription:
-				'CBL, 아키텍처, Apple 기술, User Experience를 차례로 탐구한 네 번의 챌린지입니다.',
+				'CBL, 아키텍처, Apple 기술, User Experience와 AI를 활용한 학습을 차례로 탐구한 다섯 번의 챌린지입니다.',
 			exploreScuttaTitle: 'SCUTTA 운영 도구',
 			exploreScuttaDescription:
 				'Notion 시스템으로 시작해 별도 웹 서비스로 발전시킨 동아리 운영 프로젝트입니다.',
 			exploreLearningTitle: '컴퓨팅 사고력과 배움',
 			exploreLearningDescription:
-				'하모컴 프로토타입과 팀원에게 설명하고 함께 구현하며 배운 내용을 모았습니다.',
+				'초기 하모컴 프로토타입에서 학습자와 커리큘럼의 필요를 발견하고, C5에서 교육학부터 다시 질문한 흐름을 모았습니다.',
 			allProjects: '모든 프로젝트',
 			allPosts: '모든 글',
 			pdfTitle: 'CV PDF',
@@ -164,7 +164,7 @@ export const ui = {
 			eyebrow: 'Projects',
 			title: '프로젝트',
 			intro:
-				'SCUTTA 운영 도구, Apple Developer Academy C1-C4와 개인 사이드 프로젝트를 모았습니다.',
+				'SCUTTA 운영 도구, Apple Developer Academy C1-C5와 개인 사이드 프로젝트를 모았습니다.',
 			empty: '현재 이 언어로 공개된 프로젝트가 없습니다.',
 			readMore: '프로젝트 자세히 보기',
 			back: 'Projects 목록으로',
@@ -207,6 +207,14 @@ export const ui = {
 			contents: 'Case study 목차',
 			repository: '저장소 보기',
 			demo: '데모 보기',
+			artifactEyebrow: 'Learning Artifact',
+			artifactTitle: '최종 결과물',
+			openArtifact: 'PDF 원본 열기',
+			downloadArtifact: 'PDF 다운로드',
+			processTakeaway: '과정을 관통한 문장',
+			primaryQuestion: '가장 크게 바뀐 질문',
+			before: 'Before',
+			after: 'After',
 		},
 		posts: {
 			eyebrow: 'Posts',
@@ -299,7 +307,7 @@ export const ui = {
 			featuredEyebrow: 'Evidence · Featured Projects',
 			featuredTitle: 'Featured projects',
 			featuredIntro:
-				'My current Academy challenges and the SCUTTA web service.',
+				'Academy work including C5 Learn with AI, alongside the SCUTTA web service.',
 			journeyEyebrow: 'Current Journey',
 			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
 			journeyDescription:
@@ -352,15 +360,15 @@ export const ui = {
 			exploreTitle: 'Explore more',
 			exploreIntro:
 				'Projects contains the problem, implementation, and retrospective for each project. Posts collects the ideas that emerged from the work.',
-			exploreAcademyTitle: 'Apple Developer Academy C1-C4',
+			exploreAcademyTitle: 'Apple Developer Academy C1-C5',
 			exploreAcademyDescription:
-				'Four challenges exploring CBL, architecture, Apple technologies, and user experience.',
+				'Five challenges exploring CBL, architecture, Apple technologies, user experience, and learning with AI.',
 			exploreScuttaTitle: 'SCUTTA operations tools',
 			exploreScuttaDescription:
 				'A student-club operations project that began in Notion and grew into a standalone web service.',
 			exploreLearningTitle: 'Computational thinking and learning',
 			exploreLearningDescription:
-				'The HamoCom prototype and notes from explaining concepts and implementing them with a teammate.',
+				'A path from the early HamoCom prototype, where I discovered the need for a learner and curriculum, to restarting from education in C5.',
 			allProjects: 'All projects',
 			allPosts: 'All posts',
 			pdfTitle: 'CV PDF',
@@ -393,7 +401,7 @@ export const ui = {
 			eyebrow: 'Projects',
 			title: 'Projects',
 			intro:
-				'SCUTTA operations tools, Apple Developer Academy C1-C4, and personal side projects.',
+				'SCUTTA operations tools, Apple Developer Academy C1-C5, and personal side projects.',
 			empty: 'No projects are available in this language yet.',
 			readMore: 'View project details',
 			back: 'Back to Projects',
@@ -436,6 +444,14 @@ export const ui = {
 			contents: 'Case study contents',
 			repository: 'View repository',
 			demo: 'View demo',
+			artifactEyebrow: 'Learning Artifact',
+			artifactTitle: 'Final artifact',
+			openArtifact: 'Open original PDF',
+			downloadArtifact: 'Download PDF',
+			processTakeaway: 'The sentence behind the process',
+			primaryQuestion: 'The question that changed most',
+			before: 'Before',
+			after: 'After',
 		},
 		posts: {
 			eyebrow: 'Posts',
