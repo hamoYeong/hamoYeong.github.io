@@ -3,7 +3,7 @@ slug: computational-thinking-hamo
 locale: en
 translationKey: computational-thinking-hamo
 title: HamoCom
-summary: A macOS prototype I began after a computational-thinking session, then stopped when I recognized that it lacked a clear learner need and curriculum.
+summary: I stopped this macOS code-reading prototype after recognizing that I had built the tool before defining a learner and curriculum; that failure became the starting point for rebuilding Learn with AI from education and thinking actions.
 period:
   start: '2026-06'
   end: '2026-06'
@@ -74,4 +74,5 @@ visibility: public
 relatedPosts:
   - ai-context-before-code
   - thinking-together-before-code
+  - reusable-knowledge-from-explanations
 ---

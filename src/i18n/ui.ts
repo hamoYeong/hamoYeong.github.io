@@ -20,58 +20,58 @@ export const ui = {
 			label: '언어 선택',
 		},
 		home: {
-			eyebrow: 'iOS Developer',
+			eyebrow: 'SOFTWARE LEARNING EXPERIENCE · iOS DEVELOPMENT',
 			name: '김서영',
 			alias: 'Hamo',
 			selfQuestion: '01 · 나를 표현하는 한 문장',
-			title: '사용자의 문제를 구조로 풀고, 함께 이해할 수 있게 만듭니다.',
+			title: '초심자의 막힘을 질문으로 바꾸고, 배움을 다시 꺼내 쓸 수 있게 만듭니다.',
 			intro:
-				'사용자의 실제 문제에서 출발해 복잡한 맥락과 데이터의 흐름을 정리합니다. 넘어졌을 때마다 배움이 다시 일어설 힘이 되었고, 그 경험은 배움을 혼자 얻는 데서 멈추지 않고 다른 사람도 이해하고 활용할 수 있는 구조로 나누는 태도로 이어졌습니다. 그렇게 사용자와 팀이 같은 맥락에서 다음 판단을 이어갈 수 있게 만듭니다.',
+				'프로그래밍 초심자가 AI가 만든 코드를 그대로 받아들이는 대신, 자신의 의도와 가정을 설명하고 결과를 판단하도록 돕는 학습 경험을 설계합니다. Swift·iOS 개발, 소규모 멘토링과 커뮤니티 운영 경험을 바탕으로 커리큘럼과 교육용 소프트웨어를 함께 만들고 있습니다.',
 			storyAction: '이 문장에서 시작된 이야기',
 			reasonEyebrow: '02 · 왜 이 문장인가?',
-			reasonTitle: '배움은 익숙한 나를 흔들고, 이해는 다시 나아가게 합니다.',
+			reasonTitle: 'AI를 막기보다, 사고와 판단의 주체를 학습자에게 남깁니다.',
 			reasonDescription:
-				'새로운 것을 배우면 알고 있다고 믿었던 기준이 자주 무너집니다. 저는 그 혼란을 그냥 지나치지 않고, 문제와 맥락을 나누어 보고 다른 사람도 이해할 수 있는 구조로 다시 세웁니다.',
-			reasonAction: '어떤 배움을 이어가고 있는지',
+				'Academy에서 Swift 기초에 막힌 러너가 구현뿐 아니라 생각까지 AI에 맡기는 모습을 보았습니다. AI를 덜 쓰게 하는 것이 아니라, 문제를 나누고 누락된 전제와 오류를 판단하는 기준을 먼저 자신의 언어로 만들게 하는 것이 필요하다고 보았습니다.',
+			reasonAction: '교육 방향과 근거 경험 보기',
 			experienceEyebrow: '03 · 가장 큰 한 가지 경험',
-			experienceTitle: '기록 하나에서 시작해, 사람들이 쓰는 흐름을 만들었습니다.',
+			experienceTitle: '“무엇을 해야 할지 모르겠다”를 설명 가능한 질문으로 바꿨습니다.',
 			experienceDescription:
-				'탁구 동아리의 경기 결과가 흩어지는 문제를 발견했습니다. 먼저 Notion으로 기록 방식을 만들고, 실제 사용을 지켜보며 웹 서비스로 확장했습니다. 좋은 기능보다 먼저 필요한 것은 사용자의 문제와 흐름을 정확히 이해하는 일이라는 것을 배웠습니다.',
-			experienceSteps: ['흩어진 기록', 'Notion 구조화', '웹 서비스 배포'],
-			experienceAction: '문제를 풀어간 과정 보기',
+				'C4에서 화면 수정은 해봤지만 로직과 데이터 흐름을 연결하지 못한 한 학습자와 큰 흐름을 먼저 그렸습니다. Protocol → PreviewService → Service를 함께 탐색하고 AI에게 맡기기 전 의도를 적게 하자, 이후 AI 결과가 놓친 전제를 찾아 설명할 수 있었습니다. 한 학습자의 프로젝트 맥락에서 본 변화이며 아직 일반화할 수는 없습니다.',
+			experienceSteps: ['로직 흐름을 설명하지 못함', '의도와 데이터 책임을 먼저 표현', 'AI 결과의 누락을 판단'],
+			experienceAction: '학습 사례와 설계 과정 보기',
 			identityEyebrow: '04 · 정리하자면 뭐 하는 사람?',
-			identityTitle: '배움을 사용 가능한 구조로 바꾸는 사람.',
+			identityTitle: '기술 기반 학습 경험 설계자.',
 			identityDescription:
-				'지금은 Swift와 iOS를 배우며, 앱이 사용자의 일상 흐름 안에서 더 자연스럽게 동작하는 방법을 탐색합니다. 궁금한 것은 깊게 파고들고, 알게 된 것은 글과 프로젝트로 꺼내 놓습니다.',
-			identityKeywords: ['iOS · Swift', 'Problem Framing', 'Learning in Public'],
+				'지금은 Swift·iOS 개발과 소규모 학습 지원 경험을 바탕으로, 초심자가 사고 행동을 반복하고 자신의 지식 체계를 만들도록 돕는 커리큘럼과 도구를 설계합니다.',
+			identityKeywords: ['Curriculum · Facilitation', 'Educational Software', 'iOS · Swift'],
 			aboutAction: 'About에서 더 알아보기',
 			projectsAction: '프로젝트 살펴보기',
 			careEyebrow: '05 · 그래서, 무엇을 할 수 있지?',
-			careTitle: '생각을 다음 행동으로 이어지게 만듭니다.',
+			careTitle: '초심자가 스스로 다음 질문을 만들 수 있게 돕습니다.',
 			careIntro:
-				'사용자의 문제를 발견하고, 복잡한 맥락을 함께 판단할 수 있는 구조로 바꾸며, 그 과정의 배움을 다시 꺼내 쓸 수 있게 기록합니다.',
+				'막힘을 관찰하고, 필요한 사고 행동을 과제와 발판으로 만들고, 소프트웨어와 커뮤니티 운영으로 반복 가능한 학습 환경을 구현합니다.',
 			carePoints: [
 				{
-					title: 'Problem Framing',
-					description: '사용자가 바라는 변화를 기능 이름보다 먼저 정의합니다.',
+					title: 'Beginner Diagnosis',
+					description: '초심자가 아는 것과 모르는 것, 막힌 위치·조건·시도를 어떻게 구분하는지 관찰합니다.',
 				},
 				{
-					title: 'Architecture',
-					description: '화면보다 데이터의 원본과 각 계층의 책임을 먼저 나눕니다.',
+					title: 'Curriculum & Scaffolding',
+					description: '가르칠 목록보다 반복할 사고 행동을 먼저 정하고 과제와 발판의 순서를 설계합니다.',
 				},
 				{
-					title: 'Shared Understanding',
-					description: '완성된 답을 전달하기보다 팀이 판단 기준을 함께 이해하도록 돕습니다.',
+					title: 'Educational Software',
+					description: 'Swift·iOS 개발 역량으로 학습 흐름을 직접 시험할 수 있는 교육용 소프트웨어를 만듭니다.',
 				},
 				{
-					title: 'Computational Thinking',
-					description: 'AI는 구현을 돕게 하되 문제를 나누고 결과를 판단하는 일은 직접 합니다.',
+					title: 'Community & Program Operations',
+					description: '운영 규칙과 도구를 함께 개선해 구성원이 참여하고 공동 기준을 만들어 가는 환경을 운영합니다.',
 				},
 			],
 			featuredEyebrow: 'Evidence · Featured Projects',
 			featuredTitle: '주요 프로젝트',
 			featuredIntro:
-				'C5 Learn with AI를 비롯한 Academy 프로젝트와 SCUTTA 웹 서비스를 먼저 소개합니다.',
+				'학습 경험 설계, 커뮤니티 운영의 시스템화, 팀 안의 학습 지원과 iOS 구현 역량을 서로 다른 근거로 보여줍니다.',
 			journeyEyebrow: 'Current Journey',
 			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
 			journeyDescription:
@@ -101,16 +101,16 @@ export const ui = {
 			postsIntro: '구현 방법뿐 아니라 선택의 이유와 다음 판단에 남은 것을 기록합니다.',
 			postsAction: '모든 글 보기',
 			contactEyebrow: '06 · 나를 잊지 못할 한 마디',
-			contactTitle: '넘어진 자리마다,\n함께 딛고 설 구조를 남깁니다.',
+			contactTitle: '작은 관찰을,\n다음 검증으로 이어갑니다.',
 			contactDescription:
-				'아직 배우는 중이기에 더 많이 질문하고, 더 분명하게 정리할 수 있습니다.',
+				'현재 근거는 소규모 학습 지원과 커뮤니티 운영 경험입니다. 다음 과제는 더 다양한 학습자에게 적용하고 자기설명과 새로운 문제로의 전이를 확인하는 일입니다.',
 			githubAction: 'GitHub에서 보기',
 		},
 		about: {
 			eyebrow: 'About',
-			title: '배움을 구조화하고, 함께 이해하는 과정을 만듭니다.',
+			title: '초심자가 생각을 설명하고 다시 꺼내 쓸 수 있는 배움을 설계합니다.',
 			intro:
-				'저는 김서영, Hamo입니다. 사용자와 팀원에게 배우며 복잡한 개념과 데이터 흐름을 각자의 이해 단계에 맞게 설명하는 일에 관심이 있습니다. 한 번의 답을 건네기보다 필요할 때 다시 꺼내 쓸 수 있는 배움의 구조를 만들고 싶습니다.',
+				'저는 김서영, Hamo입니다. Swift·iOS 개발, 초심자 멘토링과 커뮤니티 운영을 바탕으로 커리큘럼과 교육용 소프트웨어를 함께 만듭니다. 정답을 많이 알려주기보다 학습자가 막힘을 질문으로 바꾸고 AI 결과를 판단하며, 경험을 자신의 지식으로 연결하도록 돕고 싶습니다.',
 			downloadKo: '한국어 CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: '새 탭에서 열기',
@@ -138,19 +138,82 @@ export const ui = {
 			pdfIntro: '한국어와 영어 이력서를 PDF로 볼 수 있습니다.',
 			skillsTitle: '기술과 관심사',
 			skillsIntro:
-				'현재 프로젝트에서 사용한 기술과 계속 공부하고 있는 주제입니다.',
+				'교육 프로그램을 설계하고 직접 구현·운영하는 데 연결되는 역량을 여섯 묶음으로 정리했습니다.',
 			skillGroups: [
+				{
+					title: 'Curriculum & Task Design',
+					items: ['사고 행동 정의', '과제 설계', '학습 발판', '전이 질문'],
+				},
+				{
+					title: 'Beginner Learning & Facilitation',
+					items: ['막힘 관찰', '메타인지', '자기설명', '반복 피드백'],
+				},
+				{
+					title: 'Educational Software',
+					items: ['학습 흐름 프로토타이핑', 'macOS', 'SwiftUI', '접근성'],
+				},
+				{
+					title: 'Community & Program Operations',
+					items: ['100명+ 커뮤니티 운영', '운영 규칙', '도구 개선', '공동 이해'],
+				},
 				{
 					title: 'iOS & Apple Platforms',
 					items: ['Swift', 'SwiftUI', 'SwiftData', 'App Intents', 'WidgetKit'],
 				},
 				{
-					title: 'Architecture & Data',
+					title: 'Architecture & Data Flow',
 					items: ['데이터 모델링', 'Service 계약', '상태 흐름', '실패 fallback'],
 				},
+			],
+			directionEyebrow: 'Software Learning Direction',
+			directionTitle: '소프트웨어 교육자로서의 방향',
+			directionIntro:
+				'흩어진 개발·교육·운영 경험이 왜 하나의 방향으로 이어지는지, 현재 말할 수 있는 근거와 아직 검증하지 못한 부분을 함께 적었습니다.',
+			directionGroups: [
 				{
-					title: 'Learning & Collaboration',
-					items: ['컴퓨팅 사고력', '교육', '문서화', 'AI 보조 문제 해결'],
+					title: '대상 학습자',
+					ordered: false,
+					items: [
+						'Swift·iOS 또는 프로그래밍을 처음 배우며, 코드를 따라 쓸 수는 있지만 자신의 의도와 데이터 흐름을 설명하기 어려운 초심자',
+						'장기적으로는 AI 시대에 컴퓨팅 사고력이 필요한 여러 도메인의 초심자',
+					],
+				},
+				{
+					title: '원하는 변화',
+					ordered: true,
+					items: [
+						'문제를 자신의 말로 다시 설명하고 가정을 드러냅니다.',
+						'아는 것과 모르는 것, 막힌 위치·조건·시도를 질문으로 분리합니다.',
+						'AI 결과에서 누락된 전제와 오류를 판단합니다.',
+						'경험을 자신의 지식으로 구조화하고 처음 보는 문제에 연결해 자기설명합니다.',
+					],
+				},
+				{
+					title: '설계 원칙',
+					ordered: false,
+					items: [
+						'인지 부하를 낮추되 사고 자체를 대신하지 않는 발판을 둡니다.',
+						'지식 목록보다 학습자가 반복할 사고 행동을 먼저 정의합니다.',
+						'자기설명과 새로운 문제로의 전이를 학습 목표로 둡니다.',
+					],
+				},
+				{
+					title: '근거 경험',
+					ordered: false,
+					items: [
+						'C4의 한 학습자와 로직·데이터 흐름을 함께 탐색하고 AI 결과를 판단하는 변화를 관찰했습니다.',
+						'화학 튜터링과 SCUTTA 훈련에서 이해 단계와 굳어진 습관에 따라 설명 순서를 조정했습니다.',
+						'SCUTTA 100명+ 커뮤니티에서 Notion·Shortcuts·API·웹으로 운영 도구를 단계적으로 개선했습니다.',
+					],
+				},
+				{
+					title: '현재 한계와 다음 검증',
+					ordered: false,
+					items: [
+						'C4 사례는 한 학습자의 프로젝트 맥락에서 관찰한 변화이며 일반화할 수 없습니다.',
+						'Learn with AI 커리큘럼과 macOS 프로토타입은 실제 학습자 대상 파일럿 전입니다.',
+						'다양한 학습자에게 발판의 크기를 조정하고 자기설명·전이의 지속성을 확인해야 합니다.',
+					],
 				},
 			],
 			contactTitle: 'Contact',
@@ -164,7 +227,7 @@ export const ui = {
 			eyebrow: 'Projects',
 			title: '프로젝트',
 			intro:
-				'SCUTTA 운영 도구, Apple Developer Academy C1-C5와 개인 사이드 프로젝트를 모았습니다.',
+				'학습 경험 설계와 커뮤니티 운영 도구를 먼저 두고, 문제 정의·구조화·실패 조건을 판단한 iOS 개발 프로젝트를 함께 모았습니다.',
 			empty: '현재 이 언어로 공개된 프로젝트가 없습니다.',
 			readMore: '프로젝트 자세히 보기',
 			back: 'Projects 목록으로',
@@ -215,12 +278,19 @@ export const ui = {
 			primaryQuestion: '가장 크게 바뀐 질문',
 			before: 'Before',
 			after: 'After',
+			learnerCase: '한 학습자 사례',
+			caseContext: 'Context',
+			diagnosis: 'Diagnosis',
+			intervention: 'Intervention',
+			limitation: 'Limitation',
+			statusMeaning: '현재 상태가 의미하는 것',
+			nextValidation: 'Next Validation',
 		},
 		posts: {
 			eyebrow: 'Posts',
 			title: '기록',
 			intro:
-				'프로젝트를 진행하며 공부한 구현 방식과 협업에 관한 생각을 씁니다.',
+				'초심자의 학습, AI와 판단 기준, 데이터 흐름과 함께 사고하는 협업을 실제 프로젝트 경험에서 씁니다.',
 			empty: '현재 이 언어로 공개된 글이 없습니다.',
 			readMore: '글 읽기',
 			back: 'Posts 목록으로',
@@ -256,58 +326,58 @@ export const ui = {
 			label: 'Choose language',
 		},
 		home: {
-			eyebrow: 'iOS Developer',
+			eyebrow: 'SOFTWARE LEARNING EXPERIENCE · iOS DEVELOPMENT',
 			name: 'Seoyeong Kim',
 			alias: 'Hamo',
 			selfQuestion: '01 · One sentence that describes me',
-			title: 'I turn user problems into structures people can understand together.',
+			title: 'I turn a beginner’s stuckness into questions and learning they can use again.',
 			intro:
-				'I start with real user problems and organize the surrounding context and data flow. Whenever I stumbled, learning helped me stand again; that experience taught me not to keep learning to myself, but to shape it into structures others can understand and use. That is how I help users and teams carry the next decision forward from shared context.',
+				'I design learning experiences that help programming beginners explain their intent and assumptions, then judge AI-generated results instead of accepting them as given. Drawing on Swift and iOS development, small-scale mentoring, and community operations, I build both curricula and educational software.',
 			storyAction: 'The story behind this sentence',
 			reasonEyebrow: '02 · Why this sentence?',
-			reasonTitle: 'Learning unsettles what feels familiar. Understanding moves me forward again.',
+			reasonTitle: 'The goal is not to ban AI, but to keep thinking and judgment with the learner.',
 			reasonDescription:
-				'Learning something new often breaks the assumptions I thought were solid. I do not leave that confusion untouched: I separate the problem from its context and rebuild it as a structure others can understand too.',
-			reasonAction: 'See what I am learning now',
+				'At the Academy, I saw learners get stuck on Swift fundamentals and delegate not only implementation but also the thinking behind it to AI. I want learners to define their own criteria for decomposing a problem and finding missing assumptions or errors before accepting a result.',
+			reasonAction: 'See the direction and supporting experience',
 			experienceEyebrow: '03 · One experience that shaped me',
-			experienceTitle: 'A single record became a flow people could actually use.',
+			experienceTitle: '“I don’t know what to do” became a question the learner could explain.',
 			experienceDescription:
-				'I noticed that table-tennis match results were scattered across our club. I first structured the records in Notion, watched how members used them, and expanded the system into a web service. It taught me that understanding the user problem and flow comes before building a good feature.',
-			experienceSteps: ['Scattered records', 'Structured in Notion', 'Deployed as a web service'],
-			experienceAction: 'See how I worked through the problem',
+				'In C4, I worked with one learner who could change SwiftUI screens but could not connect the logic and data flow behind them. We drew the larger flow, explored Protocol → PreviewService → Service, and wrote intent before asking AI to implement. The learner later identified an assumption the AI result had missed. This was one observation in a single project context, not evidence of a general learning effect.',
+			experienceSteps: ['Could not explain the logic flow', 'Stated intent and data responsibilities', 'Judged what the AI result missed'],
+			experienceAction: 'See the learning case and design process',
 			identityEyebrow: '04 · So, what kind of person am I?',
-			identityTitle: 'I turn learning into structures people can use.',
+			identityTitle: 'A technology-based learning experience designer.',
 			identityDescription:
-				'I am learning Swift and iOS while exploring how apps can fit more naturally into everyday flows. I dig into questions, then bring what I learn back out through writing and projects.',
-			identityKeywords: ['iOS · Swift', 'Problem Framing', 'Learning in Public'],
+				'I use Swift and iOS development together with small-scale learning support to design curricula and tools where beginners repeatedly practice thinking and build their own knowledge structures.',
+			identityKeywords: ['Curriculum · Facilitation', 'Educational Software', 'iOS · Swift'],
 			aboutAction: 'Learn more in About',
 			projectsAction: 'Explore projects',
 			careEyebrow: '05 · So, what can I do?',
-			careTitle: 'I turn thoughts into the next action.',
+			careTitle: 'I help beginners form their own next question.',
 			careIntro:
-				'I find user problems, turn complex context into structures a team can reason about, and document the learning so it can be used again.',
+				'I observe where learners get stuck, translate thinking actions into tasks and scaffolds, and build repeatable learning environments through software and community operations.',
 			carePoints: [
 				{
-					title: 'Problem Framing',
-					description: 'Define the change the user needs before naming a feature.',
+					title: 'Beginner Diagnosis',
+					description: 'Observe how a beginner separates what they know, what they do not, and the location, conditions, and attempts around a block.',
 				},
 				{
-					title: 'Architecture',
-					description: 'Separate sources of truth and layer responsibilities before polishing screens.',
+					title: 'Curriculum & Scaffolding',
+					description: 'Define repeatable thinking actions before a content list, then sequence tasks and scaffolds around them.',
 				},
 				{
-					title: 'Shared Understanding',
-					description: 'Help a team understand the criteria behind a decision instead of handing over a finished answer.',
+					title: 'Educational Software',
+					description: 'Use Swift and iOS development to build software that makes a learning flow testable in practice.',
 				},
 				{
-					title: 'Computational Thinking',
-					description: 'Use AI to support implementation while retaining responsibility for decomposition and judgment.',
+					title: 'Community & Program Operations',
+					description: 'Improve operating rules and tools so participants can contribute and form shared criteria together.',
 				},
 			],
 			featuredEyebrow: 'Evidence · Featured Projects',
 			featuredTitle: 'Featured projects',
 			featuredIntro:
-				'Academy work including C5 Learn with AI, alongside the SCUTTA web service.',
+				'Learning design, systemized community operations, learning support within a team, and iOS engineering provide different kinds of evidence.',
 			journeyEyebrow: 'Current Journey',
 			journeyTitle: 'Apple Developer Academy @ POSTECH 2026',
 			journeyDescription:
@@ -338,16 +408,16 @@ export const ui = {
 				'I document not only implementation methods, but why a choice was made and what remains for the next decision.',
 			postsAction: 'View all posts',
 			contactEyebrow: '06 · One line to remember me by',
-			contactTitle: 'Wherever I stumble, I leave a structure we can stand on together.',
+			contactTitle: 'I turn small observations into the next validation.',
 			contactDescription:
-				'I am still learning, which gives me more reasons to ask and more clarity to build.',
+				'My current evidence comes from small-scale learning support and community operations. The next step is to work with more varied learners and evaluate self-explanation and transfer to unfamiliar problems.',
 			githubAction: 'View GitHub',
 		},
 		about: {
 			eyebrow: 'About',
-			title: 'I structure learning and create ways to understand together.',
+			title: 'I design learning that helps beginners explain their thinking and use it again.',
 			intro:
-				"I'm Seoyeong Kim, also known as Hamo. I learn from users and teammates, and I care about explaining complex concepts and data flows at each person's current level of understanding. Rather than offering a one-time answer, I want to build learning structures people can return to when they need them.",
+				"I'm Seoyeong Kim, also known as Hamo. I combine Swift and iOS development with beginner mentoring and community operations to build curricula and educational software. Rather than supplying more answers, I want to help learners turn stuckness into questions, judge AI-generated results, and connect experience into knowledge of their own.",
 			downloadKo: 'Korean CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: 'Open in a new tab',
@@ -375,19 +445,82 @@ export const ui = {
 			pdfIntro: 'View or download my CV in Korean or English.',
 			skillsTitle: 'Skills & interests',
 			skillsIntro:
-				'Technologies used in current projects and subjects I continue to study.',
+				'Six areas that connect learning-program design with the ability to build and operate it directly.',
 			skillGroups: [
+				{
+					title: 'Curriculum & Task Design',
+					items: ['Thinking actions', 'Task design', 'Scaffolding', 'Transfer prompts'],
+				},
+				{
+					title: 'Beginner Learning & Facilitation',
+					items: ['Diagnosing stuckness', 'Metacognition', 'Self-explanation', 'Iterative feedback'],
+				},
+				{
+					title: 'Educational Software',
+					items: ['Learning-flow prototypes', 'macOS', 'SwiftUI', 'Accessibility'],
+				},
+				{
+					title: 'Community & Program Operations',
+					items: ['100+ member community', 'Operating rules', 'Tool iteration', 'Shared understanding'],
+				},
 				{
 					title: 'iOS & Apple Platforms',
 					items: ['Swift', 'SwiftUI', 'SwiftData', 'App Intents', 'WidgetKit'],
 				},
 				{
-					title: 'Architecture & Data',
+					title: 'Architecture & Data Flow',
 					items: ['Data modeling', 'Service contracts', 'State flow', 'Failure fallbacks'],
 				},
+			],
+			directionEyebrow: 'Software Learning Direction',
+			directionTitle: 'My direction as a software educator',
+			directionIntro:
+				'How my development, teaching, and operations experience connects into one direction—along with what the evidence supports today and what remains untested.',
+			directionGroups: [
 				{
-					title: 'Learning & Collaboration',
-					items: ['Computational thinking', 'Education', 'Documentation', 'AI-assisted problem solving'],
+					title: 'Learners I want to support',
+					ordered: false,
+					items: [
+						'Beginners in Swift, iOS, or programming who can follow code but struggle to explain their intent and its data flow',
+						'Over time, beginners across domains who need computational thinking in an AI-shaped world',
+					],
+				},
+				{
+					title: 'The change I am designing for',
+					ordered: true,
+					items: [
+						'Restate the problem in their own words and surface assumptions.',
+						'Separate known and unknown points, the location and conditions of a block, and prior attempts into a question.',
+						'Judge missing premises and errors in an AI-generated result.',
+						'Structure experience as personal knowledge, connect it to unfamiliar problems, and self-explain.',
+					],
+				},
+				{
+					title: 'Design principles',
+					ordered: false,
+					items: [
+						'Reduce cognitive load without outsourcing the thinking itself.',
+						'Define repeatable thinking actions before choosing a knowledge list.',
+						'Treat self-explanation and transfer to new problems as learning goals.',
+					],
+				},
+				{
+					title: 'Evidence so far',
+					ordered: false,
+					items: [
+						'In C4, I worked through logic and data flow with one learner and observed a change in how they evaluated an AI result.',
+						'In chemistry tutoring and SCUTTA training, I adjusted explanations to a learner’s understanding and to habits that changed only through repeated observation.',
+						'For a 100+ member SCUTTA community, I iterated operations tools across Notion, Shortcuts, APIs, and a web service.',
+					],
+				},
+				{
+					title: 'Current limits and next validation',
+					ordered: false,
+					items: [
+						'The C4 case is one observation in one project context and cannot be generalized.',
+						'The Learn with AI curriculum and macOS prototype have not yet been piloted with learners.',
+						'I still need to adapt scaffold size for varied learners and examine the durability of self-explanation and transfer.',
+					],
 				},
 			],
 			contactTitle: 'Contact',
@@ -401,7 +534,7 @@ export const ui = {
 			eyebrow: 'Projects',
 			title: 'Projects',
 			intro:
-				'SCUTTA operations tools, Apple Developer Academy C1-C5, and personal side projects.',
+				'Learning-experience design and community operations come first, alongside iOS projects that demonstrate problem framing, structural reasoning, and failure-aware implementation.',
 			empty: 'No projects are available in this language yet.',
 			readMore: 'View project details',
 			back: 'Back to Projects',
@@ -452,12 +585,19 @@ export const ui = {
 			primaryQuestion: 'The question that changed most',
 			before: 'Before',
 			after: 'After',
+			learnerCase: 'One Learner Case',
+			caseContext: 'Context',
+			diagnosis: 'Diagnosis',
+			intervention: 'Intervention',
+			limitation: 'Limitation',
+			statusMeaning: 'What the current status means',
+			nextValidation: 'Next Validation',
 		},
 		posts: {
 			eyebrow: 'Posts',
 			title: 'Notes',
 			intro:
-				'Notes on implementation and collaboration from my projects.',
+				'Writing from actual project experience about beginner learning, judgment with AI, data flow, and thinking together.',
 			empty: 'No posts are available in this language yet.',
 			readMore: 'Read post',
 			back: 'Back to Posts',

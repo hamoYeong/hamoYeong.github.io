@@ -3,7 +3,7 @@ slug: ssukssuk
 locale: en
 translationKey: leaf
 title: Ssukssuk
-summary: An iOS record app focused on deepening the restorative experience of tending a garden rather than trying to manage every garden problem.
+summary: The team used research to define a restorative gardening experience; I implemented the iOS record and data flow while supporting one teammate in explaining the logic and evaluating an AI result independently.
 period:
   start: '2026-07'
   end: present
@@ -27,7 +27,7 @@ contributions:
   - Separated the Record Service into a protocol, PreviewService, and production service.
   - Implemented add, detail, edit, and harvest record flows.
   - Connected the MainHome activity timer to record creation.
-  - Explained models and data flow at each teammate's current level of knowledge so the team could implement together.
+  - Drew the larger Screen–Protocol–PreviewService–Service flow with one teammate, then had the teammate state the intended behavior before asking AI to implement and compare the result with that intent.
 process:
   - After an in-person interview with the Pohang city official responsible for urban agriculture, we shifted from reducing garden problems to increasing the restorative value of gardening.
   - Surveyed 47 garden users to understand the specific situations in which that restorative experience occurs.
@@ -59,6 +59,7 @@ technologies:
   - SwiftData
   - USDZ
 outcomes:
+  - As my individual contribution, I implemented the record and main-home data flow and observed one teammate begin to state intent and explain an assumption missed by an AI result. This is one learner case, not evidence of a general learning effect.
   - Used the city-official interview and 47-person survey to focus the product on the restorative experience of gardening.
   - Implemented onboarding, the current garden, activity timing, growth roadmaps, watering, and harvest records.
   - A memory-backed PreviewModelContainer and mock data reproduce major screen states without production data.
@@ -81,4 +82,6 @@ relatedPosts:
   - ai-context-before-code
   - thinking-together-before-code
   - protocol-preview-service-flow
+  - swiftui-beginner-logic-gap
+  - reusable-knowledge-from-explanations
 ---

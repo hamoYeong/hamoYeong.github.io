@@ -3,7 +3,7 @@ slug: ssukssuk
 locale: ko
 translationKey: leaf
 title: 쑥쑥
-summary: 텃밭의 문제를 관리하는 도구보다 돌봄 과정에서 느끼는 치유를 키우는 경험에 집중한 iOS 기록 앱입니다.
+summary: 팀은 사용자 리서치로 텃밭의 치유 경험을 정의했고, 저는 iOS 기록·데이터 흐름을 구현하며 한 팀원이 로직과 AI 결과를 스스로 설명하도록 1:1로 지원했습니다.
 period:
   start: '2026-07'
   end: present
@@ -27,7 +27,7 @@ contributions:
   - Record Service를 Protocol, PreviewService와 실제 Service로 나눴습니다.
   - 기록 추가·상세·수정 및 수확 기록 흐름을 구현했습니다.
   - MainHome의 활동 타이머를 기록 생성 흐름과 연결했습니다.
-  - 모델과 데이터 흐름을 팀원의 지식과 이해 정도에 맞춰 설명하며 함께 구현할 수 있도록 도왔습니다.
+  - 한 팀원과 화면–Protocol–PreviewService–Service의 큰 흐름을 먼저 그리고, AI에게 구현을 맡기기 전 자신의 의도를 적은 뒤 결과와 비교하도록 지원했습니다.
 process:
   - 포항시청 도시농업 담당자와 대면 인터뷰한 뒤 텃밭의 문제를 줄이는 기획에서 치유를 증대하는 기획으로 방향을 바꿨습니다.
   - 텃밭 이용자 47명을 설문해 치유가 구체적으로 일어나는 상황을 살폈습니다.
@@ -59,6 +59,7 @@ technologies:
   - SwiftData
   - USDZ
 outcomes:
+  - 개인 기여로 기록·메인 홈의 데이터 흐름을 구현했고, 한 팀원이 자신의 의도를 표현하고 AI 결과가 놓친 전제를 설명하는 변화를 관찰했습니다. 한 학습자 사례이므로 교육 효과로 일반화하지 않습니다.
   - 시청 담당자 인터뷰와 47명 설문을 바탕으로 제품 방향을 텃밭의 치유 경험에 맞췄습니다.
   - 온보딩, 현재 텃밭, 활동 타이머, 성장 로드맵과 물 주기·수확 기록 흐름을 구현했습니다.
   - 메모리 기반 PreviewModelContainer와 mock data로 실제 저장 데이터 없이 주요 화면 상태를 재현할 수 있습니다.
@@ -81,4 +82,6 @@ relatedPosts:
   - ai-context-before-code
   - thinking-together-before-code
   - protocol-preview-service-flow
+  - swiftui-beginner-logic-gap
+  - reusable-knowledge-from-explanations
 ---

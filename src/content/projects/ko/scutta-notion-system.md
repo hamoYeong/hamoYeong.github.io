@@ -62,7 +62,7 @@ learnings:
 categories:
   - Community
   - Automation
-featured: false
+featured: true
 draft: false
 visibility: public
 relatedPosts: []
