@@ -2,6 +2,29 @@
 slug: ssukssuk
 locale: en
 translationKey: leaf
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - data-flow-architecture
+  - user-research
+  - collaboration-facilitation
+evidenceLevels:
+  - designed
+  - implemented
+  - observed
+  - measured
+priority: 30
+relatedChallenges:
+  - academy-c4-leaf
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - learn-with-ai-questioning
 title: Ssukssuk
 summary: The team used research to define a restorative gardening experience; I implemented the iOS record and data flow while supporting one teammate in explaining the logic and evaluating an AI result independently.
 period:

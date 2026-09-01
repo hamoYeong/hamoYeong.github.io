@@ -2,6 +2,65 @@
 slug: learn-with-ai-questioning
 locale: ko
 translationKey: learn-with-ai-questioning
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - self-explanation-transfer
+  - curriculum-task-design
+  - educational-prototyping
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+  - observed
+priority: 10
+relatedChallenges:
+  - academy-c5-learn-with-ai
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - computational-thinking-hamo
+  - leaf
+media:
+  - id: learning-poster
+    section: outcome
+    type: image
+    webSrc: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/01-cover-learning-poster.png
+    alt: 막힘을 질문으로 Learn with AI 최종 학습 포스터 미리보기
+    caption: 앱의 학습 흐름, 제가 실제로 배운 경로, 질문의 Before와 After, AI와 함께 하며 배운 점을 한 장에 정리한 C5 최종 결과물입니다.
+    credit: 김서영
+    visibility: public
+  - id: learning-poster-pdf
+    section: outcome
+    type: pdf
+    webSrc: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/02-outcome-learning-poster.pdf
+    alt: 막힘을 질문으로 Learning Poster PDF
+    visibility: public
+portfolioSections:
+  - field: outcomes
+    kind: outcome
+    evidenceLevels:
+      - designed
+      - implemented
+    assetIds:
+      - learning-poster
+      - learning-poster-pdf
+  - field: limitations
+    kind: limitation
+    evidenceLevels:
+      - hypothesis
+  - field: nextValidation
+    kind: next-step
+    evidenceLevels:
+      - hypothesis
 title: 막힘을 질문으로 — Learn with AI
 summary: Academy의 초심자 관찰과 C4의 1:1 학습 지원에서 출발해, 사고 행위 정의·최소 Swift 개념 역산·지식/학습 체계 분리·macOS 프로토타입까지 만든 C5 설계 프로젝트입니다. 실제 학습자 파일럿은 아직 진행하지 않았습니다.
 period:
@@ -161,14 +220,14 @@ categories:
 featured: true
 draft: false
 coverImage:
-  src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+  src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
   alt: 막힘을 질문으로 Learn with AI 최종 학습 포스터 미리보기
 artifacts:
   - title: 막힘을 질문으로 — Learning Poster
     description: 앱의 학습 흐름, 제가 실제로 배운 경로, 질문의 Before와 After, AI와 함께 하며 배운 점을 한 장에 정리한 C5 최종 결과물입니다.
     href: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
     previewImage:
-      src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+      src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
       alt: C5 Learn with AI 막힘을 질문으로 학습 포스터 전체
 visibility: public
 relatedPosts:

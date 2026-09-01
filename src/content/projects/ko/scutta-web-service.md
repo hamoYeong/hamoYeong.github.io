@@ -2,6 +2,24 @@
 slug: scutta-web-service
 locale: ko
 translationKey: scutta-web-service
+roleLenses:
+  - community-program-operations
+  - problem-framing-research
+competencies:
+  - data-flow-architecture
+  - user-research
+  - community-operations
+  - documentation-systemization
+evidenceLevels:
+  - designed
+  - implemented
+  - operated
+  - measured
+priority: 25
+relatedExperiences:
+  - scutta-leadership
+relatedProjects:
+  - scutta-notion-system
 title: SCUTTA 경기 기록 웹 서비스
 summary: Notion 운영에서 확인한 모바일 접근성과 계산 문제를 별도 웹 서비스로 확장해 경기 기록과 참여 규칙을 운영했습니다.
 period:

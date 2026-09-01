@@ -2,6 +2,13 @@
 slug: university-of-seoul
 locale: en
 translationKey: university-of-seoul
+roleLenses:
+  - problem-framing-research
+competencies:
+  - documentation-systemization
+evidenceLevels:
+  - observed
+priority: 100
 title: Chemical Engineering
 organization: University of Seoul
 summary: Studied chemical engineering and experienced research and data analysis before expanding that learning toward structuring problems through software.

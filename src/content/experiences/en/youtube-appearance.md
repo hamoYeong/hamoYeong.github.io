@@ -2,6 +2,16 @@
 slug: youtube-appearance
 locale: en
 translationKey: youtube-appearance
+roleLenses:
+  - facilitation-mentoring
+  - community-program-operations
+competencies:
+  - technical-explanation
+  - documentation-systemization
+evidenceLevels:
+  - operated
+  - measured
+priority: 70
 title: iPad and Notion Content Guest
 organization: YouTube channel Room Review
 summary: Appeared in videos about how a university student used an iPad and treated Notion as a tool for thinking and recording activities.

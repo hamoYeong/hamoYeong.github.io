@@ -2,6 +2,18 @@
 slug: dayflow
 locale: en
 translationKey: dayflow
+roleLenses:
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - data-flow-architecture
+  - documentation-systemization
+evidenceLevels:
+  - designed
+  - implemented
+priority: 50
+relatedExperiences:
+  - apple-developer-academy
 title: DayFlow
 summary: A personal iOS side project I built around a day-recording approach I wanted, used myself, and then paused without further validation or iteration.
 period:

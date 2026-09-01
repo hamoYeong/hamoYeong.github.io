@@ -2,6 +2,16 @@
 slug: academy-c3-bombaway
 locale: ko
 translationKey: academy-c3-bombaway
+roleLenses:
+  - ios-software-development
+competencies:
+  - data-flow-architecture
+  - technical-explanation
+  - collaboration-facilitation
+evidenceLevels:
+  - implemented
+  - operated
+priority: 40
 sequence: C3
 title: BombAway
 summary: 화면을 계속 보지 않고 거리와 방향 감각으로 함께 즐기는 근거리 다인 iPhone 게임의 상태와 통신 흐름을 구현했습니다.

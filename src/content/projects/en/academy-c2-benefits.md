@@ -2,6 +2,20 @@
 slug: academy-c2-benefits
 locale: en
 translationKey: academy-c2-benefits
+roleLenses:
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - educational-prototyping
+  - data-flow-architecture
+evidenceLevels:
+  - hypothesis
+  - implemented
+priority: 70
+relatedChallenges:
+  - academy-c2
+relatedExperiences:
+  - apple-developer-academy
 title: Academy Benefits Discovery
 summary: A personal C2 project that developed an idea for gathering scattered Academy benefits while acknowledging uncertainty about the user need and focusing on architecture learning.
 period:

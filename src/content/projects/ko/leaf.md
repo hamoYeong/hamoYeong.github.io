@@ -2,6 +2,29 @@
 slug: ssukssuk
 locale: ko
 translationKey: leaf
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - data-flow-architecture
+  - user-research
+  - collaboration-facilitation
+evidenceLevels:
+  - designed
+  - implemented
+  - observed
+  - measured
+priority: 30
+relatedChallenges:
+  - academy-c4-leaf
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - learn-with-ai-questioning
 title: 쑥쑥
 summary: 팀은 사용자 리서치로 텃밭의 치유 경험을 정의했고, 저는 iOS 기록·데이터 흐름을 구현하며 한 팀원이 로직과 AI 결과를 스스로 설명하도록 1:1로 지원했습니다.
 period:

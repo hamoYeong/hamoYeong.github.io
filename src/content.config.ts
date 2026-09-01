@@ -2,6 +2,11 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { locales } from './i18n/config';
+import {
+	competencies,
+	evidenceLevels,
+	roleLenses,
+} from './i18n/taxonomy';
 
 const localeSchema = z.enum(locales);
 const slugSchema = z
@@ -13,6 +18,17 @@ const translationKeySchema = z
 const monthSchema = z
 	.string()
 	.regex(/^\d{4}(?:-\d{2})?$/, 'Use YYYY or YYYY-MM.');
+
+const roleLensSchema = z.enum(roleLenses);
+const competencySchema = z.enum(competencies);
+const evidenceLevelSchema = z.enum(evidenceLevels);
+
+const portfolioMetadataFields = {
+	roleLenses: z.array(roleLensSchema).min(1),
+	competencies: z.array(competencySchema).min(1),
+	evidenceLevels: z.array(evidenceLevelSchema).min(1),
+	priority: z.number().int().min(0).default(100),
+};
 
 const localizedFields = {
 	slug: slugSchema,
@@ -39,6 +55,27 @@ const teamSchema = z.object({
 const coverImageSchema = z.object({
 	src: z.string().min(1),
 	alt: z.string().min(1),
+});
+
+const mediaSchema = z.object({
+	id: translationKeySchema,
+	section: z.enum([
+		'cover',
+		'context',
+		'research',
+		'process',
+		'decision',
+		'solution',
+		'outcome',
+		'learning',
+	]),
+	type: z.enum(['image', 'pdf', 'video', 'diagram']),
+	webSrc: z.string().min(1).optional(),
+	masterPath: z.string().min(1).optional(),
+	alt: z.string().min(1).optional(),
+	caption: z.string().min(1).optional(),
+	credit: z.string().min(1).optional(),
+	visibility: z.enum(['public', 'private']).default('public'),
 });
 
 const externalLinkSchema = z.object({
@@ -100,6 +137,39 @@ const projectValidationSchema = z.object({
 	nextValidation: z.array(z.string().min(1)).min(1),
 });
 
+const portfolioSectionSchema = z.object({
+	field: z.enum([
+		'summary',
+		'problem',
+		'context',
+		'role',
+		'process',
+		'keyDecisions',
+		'technicalStructure',
+		'outcomes',
+		'learnings',
+		'limitations',
+		'nextValidation',
+	]),
+	kind: z.enum([
+		'summary',
+		'problem',
+		'context',
+		'role',
+		'action',
+		'decision',
+		'technical-evidence',
+		'outcome',
+		'learning',
+		'limitation',
+		'next-step',
+	]),
+	roleLenses: z.array(roleLensSchema).optional(),
+	competencies: z.array(competencySchema).optional(),
+	evidenceLevels: z.array(evidenceLevelSchema).optional(),
+	assetIds: z.array(translationKeySchema).default([]),
+});
+
 const projects = defineCollection({
 	loader: glob({
 		base: './src/content/projects',
@@ -108,6 +178,7 @@ const projects = defineCollection({
 	}),
 	schema: z.object({
 		...localizedFields,
+		...portfolioMetadataFields,
 		title: z.string().min(1),
 		summary: z.string().min(1),
 		period: periodSchema,
@@ -143,6 +214,11 @@ const projects = defineCollection({
 		validation: projectValidationSchema.optional(),
 		visibility: z.enum(['public', 'private-summary', 'unlisted']),
 		relatedPosts: z.array(translationKeySchema).default([]),
+		relatedProjects: z.array(translationKeySchema).default([]),
+		relatedChallenges: z.array(translationKeySchema).default([]),
+		relatedExperiences: z.array(translationKeySchema).default([]),
+		media: z.array(mediaSchema).default([]),
+		portfolioSections: z.array(portfolioSectionSchema).default([]),
 	}),
 });
 
@@ -154,6 +230,7 @@ const posts = defineCollection({
 	}),
 	schema: z.object({
 		...localizedFields,
+		...portfolioMetadataFields,
 		title: z.string().min(1),
 		description: z.string().min(1),
 		publishedAt: z.coerce.date(),
@@ -163,6 +240,7 @@ const posts = defineCollection({
 		featured: z.boolean().default(false),
 		coverImage: coverImageSchema.optional(),
 		relatedProjects: z.array(translationKeySchema).default([]),
+		media: z.array(mediaSchema).default([]),
 	}),
 });
 
@@ -174,6 +252,7 @@ const experiences = defineCollection({
 	}),
 	schema: z.object({
 		...localizedFields,
+		...portfolioMetadataFields,
 		title: z.string().min(1),
 		organization: z.string().min(1),
 		summary: z.string().min(1),
@@ -183,6 +262,9 @@ const experiences = defineCollection({
 		links: z.array(externalLinkSchema).default([]),
 		order: z.number().int(),
 		draft: z.boolean().default(true),
+		relatedProjects: z.array(translationKeySchema).default([]),
+		relatedChallenges: z.array(translationKeySchema).default([]),
+		media: z.array(mediaSchema).default([]),
 	}),
 });
 
@@ -194,6 +276,7 @@ const challenges = defineCollection({
 	}),
 	schema: z.object({
 		...localizedFields,
+		...portfolioMetadataFields,
 		sequence: z.enum(['C1', 'C2', 'C3', 'C4', 'C5']),
 		title: z.string().min(1),
 		summary: z.string().min(1),
@@ -209,6 +292,7 @@ const challenges = defineCollection({
 		repository: z.url().optional(),
 		visibility: z.enum(['public', 'private-summary', 'unlisted']),
 		draft: z.boolean().default(true),
+		media: z.array(mediaSchema).default([]),
 	}),
 });
 

@@ -2,6 +2,65 @@
 slug: learn-with-ai-questioning
 locale: en
 translationKey: learn-with-ai-questioning
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - self-explanation-transfer
+  - curriculum-task-design
+  - educational-prototyping
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+  - observed
+priority: 10
+relatedChallenges:
+  - academy-c5-learn-with-ai
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - computational-thinking-hamo
+  - leaf
+media:
+  - id: learning-poster
+    section: outcome
+    type: image
+    webSrc: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/01-cover-learning-poster.png
+    alt: Preview of the Turning Stuckness into Questions Learn with AI poster
+    caption: The final C5 artifact brings together the app’s learning flow, the path I actually followed, the questions before and after, and what I learned while working with AI.
+    credit: Seoyeong Kim
+    visibility: public
+  - id: learning-poster-pdf
+    section: outcome
+    type: pdf
+    webSrc: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/02-outcome-learning-poster.pdf
+    alt: Turning Stuckness into Questions Learning Poster PDF
+    visibility: public
+portfolioSections:
+  - field: outcomes
+    kind: outcome
+    evidenceLevels:
+      - designed
+      - implemented
+    assetIds:
+      - learning-poster
+      - learning-poster-pdf
+  - field: limitations
+    kind: limitation
+    evidenceLevels:
+      - hypothesis
+  - field: nextValidation
+    kind: next-step
+    evidenceLevels:
+      - hypothesis
 title: Turning Stuckness into Questions — Learn with AI
 summary: Beginning with observations of Academy beginners and one-to-one learning support in C4, I moved from defining thinking actions to working backward into minimum Swift concepts, separating knowledge and learning systems, and building a macOS prototype. It has not yet been piloted with learners.
 period:
@@ -161,14 +220,14 @@ categories:
 featured: true
 draft: false
 coverImage:
-  src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+  src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
   alt: Preview of the Turning Stuckness into Questions Learn with AI poster
 artifacts:
   - title: Turning Stuckness into Questions — Learning Poster
     description: The final C5 artifact brings together the app’s learning flow, the path I actually followed, the questions before and after, and what I learned while working with AI.
     href: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
     previewImage:
-      src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+      src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
       alt: Full C5 Learn with AI Turning Stuckness into Questions learning poster
 visibility: public
 relatedPosts:

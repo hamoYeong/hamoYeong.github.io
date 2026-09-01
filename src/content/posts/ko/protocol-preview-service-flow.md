@@ -2,6 +2,19 @@
 slug: protocol-preview-service-flow
 locale: ko
 translationKey: protocol-preview-service-flow
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+competencies:
+  - beginner-observation
+  - scaffold-design
+  - technical-explanation
+  - data-flow-architecture
+evidenceLevels:
+  - implemented
+  - observed
+priority: 30
 title: Protocol → PreviewService → Service로 이해하는 데이터 흐름
 description: 화면 뒤의 로직을 연결하지 못한 한 학습자에게 큰 흐름을 보여주기 위해 Protocol → PreviewService → Service를 발판으로 사용하고, C5에서 설명 순서를 조정한 과정을 기록합니다.
 publishedAt: 2026-07-29

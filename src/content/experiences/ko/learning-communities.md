@@ -2,6 +2,20 @@
 slug: learning-communities
 locale: ko
 translationKey: learning-communities
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+competencies:
+  - beginner-observation
+  - collaboration-facilitation
+  - community-operations
+evidenceLevels:
+  - observed
+  - operated
+priority: 35
+relatedProjects:
+  - computational-thinking-hamo
+  - learn-with-ai-questioning
 title: Flutter 및 Java 학습 커뮤니티
 organization: 개인 스터디와 우아한테크코스 프리코스
 summary: Flutter 학습 프로젝트를 공유하고, 이미 능숙한 사람보다 Java를 처음 배우는 사람들과 과제를 해석하는 과정을 보고 싶어 병아리반을 선택해 함께 공부했습니다.

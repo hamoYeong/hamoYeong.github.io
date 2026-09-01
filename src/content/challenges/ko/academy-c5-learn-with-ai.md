@@ -2,6 +2,24 @@
 slug: academy-c5-learn-with-ai
 locale: ko
 translationKey: academy-c5-learn-with-ai
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - self-explanation-transfer
+  - curriculum-task-design
+  - educational-prototyping
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+  - observed
+priority: 10
 sequence: C5
 title: Learn with AI — 막힘을 질문으로
 summary: Swift 초심자의 막힘을 질문으로 바꾸는 경험을 설계하며, AI를 답의 대행자보다 생각을 꺼내고 질문을 정교하게 만드는 도구로 사용한 개인 학습 프로젝트입니다.

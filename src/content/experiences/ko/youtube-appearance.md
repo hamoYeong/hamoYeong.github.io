@@ -2,6 +2,16 @@
 slug: youtube-appearance
 locale: ko
 translationKey: youtube-appearance
+roleLenses:
+  - facilitation-mentoring
+  - community-program-operations
+competencies:
+  - technical-explanation
+  - documentation-systemization
+evidenceLevels:
+  - operated
+  - measured
+priority: 70
 title: iPad 및 Notion 활용 콘텐츠 출연
 organization: YouTube 방구석 리뷰룸
 summary: 대학생의 iPad 활용과 Notion을 생각 도구로 사용하는 방식을 소개하는 콘텐츠에 출연했습니다.

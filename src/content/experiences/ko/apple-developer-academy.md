@@ -2,6 +2,43 @@
 slug: apple-developer-academy
 locale: ko
 translationKey: apple-developer-academy
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+  - facilitation-mentoring
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - curriculum-task-design
+  - technical-explanation
+  - educational-prototyping
+  - data-flow-architecture
+  - user-research
+  - collaboration-facilitation
+evidenceLevels:
+  - designed
+  - implemented
+  - observed
+  - measured
+priority: 10
+relatedProjects:
+  - academy-c1-setup-guide
+  - academy-c2-benefits
+  - bombaway
+  - leaf
+  - learn-with-ai-questioning
+  - computational-thinking-hamo
+  - dayflow
+relatedChallenges:
+  - academy-c1
+  - academy-c2
+  - academy-c3-bombaway
+  - academy-c4-leaf
+  - academy-c5-learn-with-ai
 title: Learner
 organization: Apple Developer Academy @ POSTECH
 summary: CBL과 Swift 구현에서 시작해 사용자 경험, 팀의 공동 이해, 초심자의 사고와 질문을 설계하는 학습 경험으로 관심을 확장했습니다.

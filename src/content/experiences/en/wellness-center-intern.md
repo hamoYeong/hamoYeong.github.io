@@ -2,6 +2,13 @@
 slug: wellness-center-intern
 locale: en
 translationKey: wellness-center-intern
+roleLenses:
+  - community-program-operations
+competencies:
+  - community-operations
+evidenceLevels:
+  - operated
+priority: 90
 title: Work Experience Intern
 organization: University of Seoul Wellness Center
 summary: Supported member reception and outdoor tennis court operations, gaining experience with the on-site flow through which people use a facility.

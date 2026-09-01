@@ -2,6 +2,13 @@
 slug: ccmd-research-intern
 locale: en
 translationKey: ccmd-research-intern
+roleLenses:
+  - problem-framing-research
+competencies:
+  - documentation-systemization
+evidenceLevels:
+  - implemented
+priority: 80
 title: Research Intern
 organization: CCMD Lab, Department of Chemical Engineering, University of Seoul
 summary: Supported prior research and catalyst process simulation analysis for improving ammonia decomposition catalyst performance.
