@@ -35,6 +35,7 @@ export interface PortfolioBlock {
 	kind: PortfolioBlockKind;
 	title: string;
 	text: string | string[];
+	note?: string;
 	roleLenses: RoleLens[];
 	competencies: Competency[];
 	evidenceLevels: EvidenceLevel[];
@@ -72,6 +73,7 @@ interface BlockOptions {
 	kind: PortfolioBlockKind;
 	title: string;
 	text: string | string[];
+	note?: string;
 	roleLenses: RoleLens[];
 	competencies: Competency[];
 	evidenceLevels: EvidenceLevel[];
@@ -138,16 +140,13 @@ const getProjectBlocks = (project: CollectionEntry<'projects'>) => {
 		...(data.validation?.limitations ?? []),
 		...(data.learnerCase ? [data.learnerCase.limitation] : []),
 	]);
-	const nextSteps = unique([
-		...(data.validation?.nextValidation ?? []),
-		...data.whatIWouldChange,
-	]);
+	const nextSteps = data.validation?.nextValidation ?? data.whatIWouldChange;
 	const process = data.processDetails.length > 0
 		? data.processDetails.flatMap((step) => [step.title, step.question, ...step.items])
 		: data.process;
 
 	return compactBlocks([
-		createBlock({ ...defaults, href: sectionHref('overview'), ...metadataFor('summary', ['cover']), kind: 'summary', title: t.projects.overview, text: data.summary }),
+		createBlock({ ...defaults, href: sectionHref('overview'), ...metadataFor('summary', ['cover']), kind: 'summary', title: t.projects.overview, text: data.summary, note: data.summaryNote }),
 		createBlock({ ...defaults, href: sectionHref('problem'), ...metadataFor('problem', []), kind: 'problem', title: `${t.projects.problem} · ${t.projects.whyItMattered}`, text: [data.problem, data.whyItMattered] }),
 		createBlock({ ...defaults, href: sectionHref('context'), ...metadataFor('context', ['context', 'research']), kind: 'context', title: `${t.projects.user} · ${t.projects.context}`, text: [data.user, data.context, ...data.research] }),
 		createBlock({ ...defaults, href: sectionHref('role'), ...metadataFor('role', []), kind: 'role', title: t.projects.myRole, text: [data.team.description, ...data.role, ...data.contributions] }),

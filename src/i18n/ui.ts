@@ -26,17 +26,19 @@ export const ui = {
 			selfQuestion: '01 · 나를 표현하는 한 문장',
 			title: '초심자의 막힘을 질문으로 바꾸고, 배움을 다시 꺼내 쓸 수 있게 만듭니다.',
 			intro:
-				'프로그래밍 초심자가 AI가 만든 코드를 그대로 받아들이는 대신, 자신의 의도와 가정을 설명하고 결과를 판단하도록 돕는 학습 경험을 설계합니다. Swift·iOS 개발, 소규모 멘토링과 커뮤니티 운영 경험을 바탕으로 커리큘럼과 교육용 소프트웨어를 함께 만들고 있습니다.',
+				'프로그래밍 초심자가 자신의 의도와 가정을 설명하고 AI 결과를 판단하도록 돕는 학습 경험을 설계합니다. Swift·iOS 개발과 멘토링 경험을 바탕으로 커리큘럼과 교육용 소프트웨어를 만듭니다.',
 			storyAction: '이 문장에서 시작된 이야기',
 			reasonEyebrow: '02 · 왜 이 문장인가?',
 			reasonTitle: 'AI를 막기보다, 사고와 판단의 주체를 학습자에게 남깁니다.',
 			reasonDescription:
-				'Academy에서 Swift 기초에 막힌 러너가 구현뿐 아니라 생각까지 AI에 맡기는 모습을 보았습니다. AI를 덜 쓰게 하는 것이 아니라, 문제를 나누고 누락된 전제와 오류를 판단하는 기준을 먼저 자신의 언어로 만들게 하는 것이 필요하다고 보았습니다.',
+				'Academy에서 Swift 기초에 막힌 학습자가 구현과 판단을 모두 AI에 맡기는 모습을 보았습니다. 그래서 학습자가 문제를 나누고 오류를 판단하는 기준을 자신의 언어로 만들도록 돕고자 했습니다.',
 			reasonAction: '교육 방향과 근거 경험 보기',
 			experienceEyebrow: '03 · 가장 큰 한 가지 경험',
 			experienceTitle: '“무엇을 해야 할지 모르겠다”를 설명 가능한 질문으로 바꿨습니다.',
 			experienceDescription:
-				'C4에서 화면 수정은 해봤지만 로직과 데이터 흐름을 연결하지 못한 한 학습자와 큰 흐름을 먼저 그렸습니다. Protocol → PreviewService → Service를 함께 탐색하고 AI에게 맡기기 전 의도를 적게 하자, 이후 AI 결과가 놓친 전제를 찾아 설명할 수 있었습니다. 한 학습자의 프로젝트 맥락에서 본 변화이며 아직 일반화할 수는 없습니다.',
+				'쑥쑥 프로젝트(C4) 팀원 한 명은 화면 수정은 해봤지만 로직과 데이터 흐름을 연결하지 못했습니다. 큰 흐름을 먼저 그려 Protocol → PreviewService → Service를 함께 탐색하고 AI에게 맡기기 전 의도를 적게 하자, 이후 AI 결과가 놓친 전제를 찾아 설명할 수 있었습니다.',
+			experienceLimitation:
+				'한 학습자의 프로젝트 맥락에서 본 변화이며 아직 일반화할 수는 없습니다.',
 			experienceSteps: ['로직 흐름을 설명하지 못함', '의도와 데이터 책임을 먼저 표현', 'AI 결과의 누락을 판단'],
 			experienceAction: '학습 사례와 설계 과정 보기',
 			identityEyebrow: '04 · 정리하자면 뭐 하는 사람?',
@@ -49,7 +51,7 @@ export const ui = {
 			careEyebrow: '05 · 그래서, 무엇을 할 수 있지?',
 			careTitle: '관찰·설계·구현·운영을 실제 근거로 연결합니다.',
 			careIntro:
-				'C4 한 학습자의 변화와 한계, C5의 사고 행동 중심 설계, macOS 프로토타입, SCUTTA 운영 시스템을 통해 각 역량이 실제로 쓰인 장면을 보여줍니다.',
+				'막힘을 관찰해 필요한 사고 행동을 과제와 발판으로 구조화하고, 소프트웨어로 반복 가능한 학습 환경을 만듭니다.',
 			carePoints: [
 				{
 					title: 'Beginner Diagnosis',
@@ -110,7 +112,7 @@ export const ui = {
 			eyebrow: 'About',
 			title: '초심자가 생각을 설명하고 다시 꺼내 쓸 수 있는 배움을 설계합니다.',
 			intro:
-				'저는 김서영, Hamo입니다. Swift·iOS 개발, 초심자 멘토링과 커뮤니티 운영을 바탕으로 커리큘럼과 교육용 소프트웨어를 함께 만듭니다. 정답을 많이 알려주기보다 학습자가 막힘을 질문으로 바꾸고 AI 결과를 판단하며, 경험을 자신의 지식으로 연결하도록 돕고 싶습니다.',
+				'저는 김서영, Hamo입니다. Swift·iOS 개발과 초심자 멘토링 경험을 바탕으로, 막힘을 질문으로 바꾸고 경험을 자신의 지식으로 연결하는 커리큘럼과 도구를 만듭니다.',
 			downloadKo: '한국어 CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: '새 탭에서 열기',
@@ -230,6 +232,12 @@ export const ui = {
 			title: '프로젝트',
 			intro:
 				'학습 경험 설계와 커뮤니티 운영 도구를 먼저 두고, 문제 정의·구조화·실패 조건을 판단한 iOS 개발 프로젝트를 함께 모았습니다.',
+			featuredGalleryTitle: '핵심 프로젝트',
+			featuredGalleryIntro:
+				'현재의 소프트웨어 학습 경험·커뮤니티 운영 방향을 가장 직접적으로 보여주는 프로젝트입니다.',
+			moreGalleryTitle: '연결된 프로젝트',
+			moreGalleryIntro:
+				'문제 정의, 아키텍처와 실패 대응 역량을 보여주는 개발·탐구 프로젝트입니다.',
 			empty: '현재 이 언어로 공개된 프로젝트가 없습니다.',
 			readMore: '프로젝트 자세히 보기',
 			back: 'Projects 목록으로',
@@ -253,6 +261,12 @@ export const ui = {
 			role: '역할',
 			team: '협업',
 			overview: 'Overview',
+			approach: '해결 방식',
+			evidenceStatus: '현재 근거',
+			problemAndContext: '문제와 대상',
+			roleAndProcess: '역할과 과정',
+			decisionsAndStructure: '판단과 구조',
+			outcomeAndNext: '결과와 다음 단계',
 			problem: 'Problem',
 			whyItMattered: 'Why It Mattered',
 			context: 'Context',
@@ -312,7 +326,7 @@ export const ui = {
 			eyebrow: 'Portfolio Kit · noindex',
 			title: '주제별 포트폴리오 스토리',
 			intro:
-				'지원 직무와 주제를 선택하면 공개 사이트의 문제·행동·결과·한계를 이야기로 읽기 좋은 순서로 연결합니다. 각 페이지는 기존 원문 한 파트와 다음 근거로 넘어가는 이유를 함께 보여줍니다.',
+				'주제를 고르면 공개 사이트의 문제·행동·결과·한계를 하나의 이야기로 연결합니다. 각 페이지에서 원문과 다음 근거로 이어지는 이유를 확인할 수 있습니다.',
 			note: 'PDF를 자동 생성하지 않습니다. 한 번에 한 파트씩 읽으며 원문을 확인하고, 필요한 문장과 근거만 골라 직접 구성하세요.',
 			chooseStory: '먼저 이야기의 주제를 선택하세요',
 			chooseStoryIntro: '각 주제의 순서는 날짜가 아니라 문제의 발견, 판단의 변화, 구현, 결과와 한계가 이어지는 근거를 기준으로 정했습니다.',
@@ -406,17 +420,19 @@ export const ui = {
 			selfQuestion: '01 · One sentence that describes me',
 			title: 'I turn a beginner’s stuckness into questions and learning they can use again.',
 			intro:
-				'I design learning experiences that help programming beginners explain their intent and assumptions, then judge AI-generated results instead of accepting them as given. Drawing on Swift and iOS development, small-scale mentoring, and community operations, I build both curricula and educational software.',
+				'I design learning experiences that help programming beginners explain their intent and assumptions, then judge AI-generated results. Drawing on Swift and iOS development and mentoring, I build curricula and educational software.',
 			storyAction: 'The story behind this sentence',
 			reasonEyebrow: '02 · Why this sentence?',
 			reasonTitle: 'The goal is not to ban AI, but to keep thinking and judgment with the learner.',
 			reasonDescription:
-				'At the Academy, I saw learners get stuck on Swift fundamentals and delegate not only implementation but also the thinking behind it to AI. I want learners to define their own criteria for decomposing a problem and finding missing assumptions or errors before accepting a result.',
+				'At the Academy, I saw learners stuck on Swift fundamentals delegate both implementation and judgment to AI. I set out to help them build their own criteria for decomposing problems and identifying errors.',
 			reasonAction: 'See the direction and supporting experience',
 			experienceEyebrow: '03 · One experience that shaped me',
 			experienceTitle: '“I don’t know what to do” became a question the learner could explain.',
 			experienceDescription:
-				'In C4, I worked with one learner who could change SwiftUI screens but could not connect the logic and data flow behind them. We drew the larger flow, explored Protocol → PreviewService → Service, and wrote intent before asking AI to implement. The learner later identified an assumption the AI result had missed. This was one observation in a single project context, not evidence of a general learning effect.',
+				'One teammate in the Ssukssuk project (C4) had modified screens before but could not connect the logic and data flow. We first drew the larger flow, explored Protocol → PreviewService → Service, and wrote intent before asking AI to implement. The teammate later identified an assumption the AI result had missed.',
+			experienceLimitation:
+				'This was one observation in a single project context and cannot yet be generalized.',
 			experienceSteps: ['Could not explain the logic flow', 'Stated intent and data responsibilities', 'Judged what the AI result missed'],
 			experienceAction: 'See the learning case and design process',
 			identityEyebrow: '04 · So, what kind of person am I?',
@@ -429,7 +445,7 @@ export const ui = {
 			careEyebrow: '05 · So, what can I do?',
 			careTitle: 'I connect observation, design, implementation, and operation with concrete evidence.',
 			careIntro:
-				'The evidence comes from one C4 learner case and its limits, a thinking-action-centered C5 design, a macOS prototype, and the SCUTTA operations system.',
+				'I observe where learners get stuck, structure the necessary thinking actions into tasks and scaffolds, and use software to build repeatable learning environments.',
 			carePoints: [
 				{
 					title: 'Beginner Diagnosis',
@@ -491,7 +507,7 @@ export const ui = {
 			eyebrow: 'About',
 			title: 'I design learning that helps beginners explain their thinking and use it again.',
 			intro:
-				"I'm Seoyeong Kim, also known as Hamo. I combine Swift and iOS development with beginner mentoring and community operations to build curricula and educational software. Rather than supplying more answers, I want to help learners turn stuckness into questions, judge AI-generated results, and connect experience into knowledge of their own.",
+				"I'm Seoyeong Kim, also known as Hamo. Drawing on Swift and iOS development and beginner mentoring, I build curricula and tools that turn stuckness into questions and connect experience to a learner's own knowledge.",
 			downloadKo: 'Korean CV PDF',
 			downloadEn: 'English CV PDF',
 			openPdf: 'Open in a new tab',
@@ -611,6 +627,12 @@ export const ui = {
 			title: 'Projects',
 			intro:
 				'Learning-experience design and community operations come first, alongside iOS projects that demonstrate problem framing, structural reasoning, and failure-aware implementation.',
+			featuredGalleryTitle: 'Featured projects',
+			featuredGalleryIntro:
+				'The projects that most directly represent my current direction in software learning experiences and community operations.',
+			moreGalleryTitle: 'Connected projects',
+			moreGalleryIntro:
+				'Development and exploration projects that show problem framing, architecture, and failure-aware judgment.',
 			empty: 'No projects are available in this language yet.',
 			readMore: 'View project details',
 			back: 'Back to Projects',
@@ -634,6 +656,12 @@ export const ui = {
 			role: 'Role',
 			team: 'Collaboration',
 			overview: 'Overview',
+			approach: 'Approach',
+			evidenceStatus: 'Current evidence',
+			problemAndContext: 'Problem & audience',
+			roleAndProcess: 'Role & process',
+			decisionsAndStructure: 'Decisions & structure',
+			outcomeAndNext: 'Outcome & next steps',
 			problem: 'Problem',
 			whyItMattered: 'Why It Mattered',
 			context: 'Context',
@@ -693,7 +721,7 @@ export const ui = {
 			eyebrow: 'Portfolio Kit · noindex',
 			title: 'Portfolio stories by theme',
 			intro:
-				'Choose a role or theme to connect problems, actions, outcomes, and limits from the public site in a deliberate narrative order. Each page shows one source section and why the next piece follows.',
+				'Choose a theme to connect problems, actions, outcomes, and limits from the public site into one story. Each page shows the source and why the next piece follows.',
 			note: 'This does not generate a PDF. Read one part at a time, verify it in the source, and select only the sentences and evidence needed for your own composition.',
 			chooseStory: 'Choose the story first',
 			chooseStoryIntro: 'Each sequence is based on evidence linking problem discovery, changed judgment, implementation, outcome, and limits—not on date alone.',

@@ -181,6 +181,7 @@ const projects = defineCollection({
 		...portfolioMetadataFields,
 		title: z.string().min(1),
 		summary: z.string().min(1),
+		summaryNote: z.string().min(1).optional(),
 		period: periodSchema,
 		status: z.enum(['concept', 'in-progress', 'completed', 'archived']),
 		role: z.array(z.string().min(1)).min(1),

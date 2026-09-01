@@ -7,6 +7,7 @@ interface Props {
 	status: string;
 	title: string;
 	summary: string;
+	summaryNote?: string;
 	categories: string[];
 	coverImage?: { src: string; alt: string };
 	technologies: string[];
@@ -26,6 +27,7 @@ const {
 	status,
 	title,
 	summary,
+	summaryNote,
 	categories,
 	coverImage,
 	technologies,
@@ -50,6 +52,7 @@ const {
 			</div>
 			<h1>{title}</h1>
 			<p class="case-hero__summary">{summary}</p>
+			{summaryNote && <p class="case-hero__summary-note">{summaryNote}</p>}
 			<div class="case-hero__tags">
 				{categories.map((category) => <Tag label={category} />)}
 			</div>
@@ -139,6 +142,14 @@ const {
 		color: var(--color-text-soft);
 		font-size: var(--text-md);
 		line-height: var(--leading-body);
+	}
+
+	.case-hero__summary-note {
+		max-width: var(--width-reading);
+		margin: var(--space-3) 0 0;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+		line-height: 1.65;
 	}
 
 	.case-hero__tags,

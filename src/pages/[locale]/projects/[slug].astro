@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Callout from '../../../components/Callout.astro';
 import CaseStudyHeader from '../../../components/CaseStudyHeader.astro';
+import EvidenceLevelBadge from '../../../components/EvidenceLevelBadge.astro';
 import RelatedContent from '../../../components/RelatedContent.astro';
 import RoleAndTeamPanel from '../../../components/RoleAndTeamPanel.astro';
 import Tag from '../../../components/Tag.astro';
@@ -13,6 +14,7 @@ import {
 	type LocalePaths,
 } from '../../../i18n/config';
 import { getUi } from '../../../i18n/ui';
+import { getTaxonomy } from '../../../i18n/taxonomy';
 import {
 	findTranslation,
 	getChallenges,
@@ -40,6 +42,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const locale = project.data.locale;
 const t = getUi(locale);
+const taxonomy = getTaxonomy(locale);
 const [allProjects, posts, challenges, experiences] = await Promise.all([
 	getProjects(),
 	getPosts({ locale }),
@@ -84,9 +87,20 @@ const relatedItems = [
 		type: t.portfolioKit.sourceTypeLabels.experience,
 		title: `${experience.data.title} · ${experience.data.organization}`,
 		description: experience.data.summary,
-		href: `${localizedPath(locale, 'about')}#experience`,
+		href: `${localizedPath(locale, 'about')}#experience-${experience.data.translationKey}`,
 	})),
 ];
+const evidenceByKey = new Map(
+	taxonomy.evidenceLevels.map((item) => [item.key, item]),
+);
+const projectEvidence = project.data.evidenceLevels.flatMap((key) => {
+	const item = evidenceByKey.get(key);
+	return item ? [item] : [];
+});
+const nextActions = project.data.validation?.nextValidation ?? project.data.whatIWouldChange;
+const nextActionTitle = project.data.validation
+	? t.projects.nextValidation
+	: t.projects.whatIWouldChange;
 const alternatePaths = Object.fromEntries(
 	locales.map((targetLocale) => {
 		const translation = findTranslation(
@@ -103,19 +117,10 @@ const alternatePaths = Object.fromEntries(
 ) as LocalePaths;
 const contents = [
 	{ id: 'overview', label: t.projects.overview },
-	{ id: 'problem', label: t.projects.problem },
-	{ id: 'context', label: t.projects.context },
-	{ id: 'role', label: t.projects.myRole },
-	{ id: 'process', label: t.projects.process },
-	{ id: 'decisions', label: t.projects.keyDecisions },
-	{ id: 'structure', label: t.projects.technicalStructure },
-	{ id: 'challenges', label: t.projects.challenges },
-	{ id: 'outcome', label: t.projects.outcomes },
-	{ id: 'change', label: t.projects.whatIWouldChange },
-	{ id: 'learning', label: t.projects.learnings },
-	...(relatedItems.length > 0
-		? [{ id: 'related-content', label: t.projects.relatedContent }]
-		: []),
+	{ id: 'problem', label: t.projects.problemAndContext },
+	{ id: 'role', label: t.projects.roleAndProcess },
+	{ id: 'decisions', label: t.projects.decisionsAndStructure },
+	{ id: 'outcome', label: t.projects.outcomeAndNext },
 ];
 ---
 
@@ -136,6 +141,7 @@ const contents = [
 				status={t.projects.statusLabels[project.data.status]}
 				title={project.data.title}
 				summary={project.data.summary}
+				summaryNote={project.data.summaryNote}
 				categories={project.data.categories}
 				coverImage={project.data.coverImage}
 				technologies={project.data.technologies}
@@ -149,49 +155,6 @@ const contents = [
 				demo={project.data.demo}
 				demoLabel={t.projects.demo}
 			/>
-
-			{
-				project.data.artifacts.length > 0 && (
-					<section class="artifact-showcase" aria-labelledby="artifact-showcase-title">
-						<div class="artifact-showcase__heading">
-							<p class="eyebrow">{t.projects.artifactEyebrow}</p>
-							<h2 id="artifact-showcase-title">{t.projects.artifactTitle}</h2>
-						</div>
-						<div class="artifact-list">
-							{project.data.artifacts.map((artifact) => (
-								<article class="artifact-card">
-									<a
-										class="artifact-card__preview"
-										href={artifact.href}
-										target="_blank"
-										rel="noreferrer"
-									>
-										<img
-											src={artifact.previewImage.src}
-											alt={artifact.previewImage.alt}
-											loading="lazy"
-										/>
-									</a>
-									<div class="artifact-card__content">
-										<div>
-											<h3>{artifact.title}</h3>
-											<p>{artifact.description}</p>
-										</div>
-										<div class="artifact-card__actions">
-											<a href={artifact.href} target="_blank" rel="noreferrer">
-												{t.projects.openArtifact} <span aria-hidden="true">↗</span>
-											</a>
-											<a href={artifact.href} download>
-												{t.projects.downloadArtifact} <span aria-hidden="true">↓</span>
-											</a>
-										</div>
-									</div>
-								</article>
-							))}
-						</div>
-					</section>
-				)
-			}
 
 			<nav class="case-contents" aria-label={t.projects.contents}>
 				<p>{t.projects.contents}</p>
@@ -214,14 +177,39 @@ const contents = [
 					<p class="case-section__index">01</p>
 					<div>
 						<h2>{t.projects.overview}</h2>
-						<p class="lead-copy">{project.data.overview}</p>
+						<dl class="quick-summary">
+							<div>
+								<dt>{t.projects.user}</dt>
+								<dd>{project.data.user}</dd>
+							</div>
+							<div>
+								<dt>{t.projects.approach}</dt>
+								<dd>{project.data.overview}</dd>
+							</div>
+							<div>
+								<dt>{t.projects.myRole}</dt>
+								<dd>{project.data.role.join(', ')}</dd>
+							</div>
+							<div>
+								<dt>{t.projects.evidenceStatus}</dt>
+								<dd class="quick-summary__evidence">
+									{projectEvidence.map((item) => (
+										<EvidenceLevelBadge
+											level={item.key}
+											label={item.label}
+											description={item.description}
+										/>
+									))}
+								</dd>
+							</div>
+						</dl>
 					</div>
 				</section>
 
 				<section id="problem" class="case-section">
 					<p class="case-section__index">02</p>
 					<div>
-						<h2>{t.projects.problem}</h2>
+						<h2>{t.projects.problem} · {t.projects.whyItMattered}</h2>
 						<div class="two-column">
 							<div>
 								<h3>{t.projects.problem}</h3>
@@ -236,9 +224,9 @@ const contents = [
 				</section>
 
 				<section id="context" class="case-section">
-					<p class="case-section__index">03</p>
+					<p class="case-section__index">02</p>
 					<div>
-						<h2>{t.projects.context}</h2>
+						<h2>{t.projects.user} · {t.projects.context}</h2>
 						<div class="two-column">
 							<div>
 								<h3>{t.projects.context}</h3>
@@ -259,10 +247,16 @@ const contents = [
 								</div>
 							)
 						}
-						{
-							project.data.learnerCase && (
+					</div>
+				</section>
+
+				{
+					project.data.learnerCase && (
+						<section id="learner-case" class="case-section">
+							<p class="case-section__index">02</p>
+							<div>
+								<h2>{t.projects.learnerCase}</h2>
 								<div class="learner-case">
-									<p class="learner-case__eyebrow">{t.projects.learnerCase}</p>
 									<h3>{project.data.learnerCase.title}</h3>
 									<p>{project.data.learnerCase.context}</p>
 									<div class="learner-case__grid">
@@ -289,13 +283,13 @@ const contents = [
 										<p>{project.data.learnerCase.limitation}</p>
 									</Callout>
 								</div>
-							)
-						}
-					</div>
-				</section>
+							</div>
+						</section>
+					)
+				}
 
 				<section id="role" class="case-section">
-					<p class="case-section__index">04</p>
+					<p class="case-section__index">03</p>
 					<div>
 						<h2>{t.projects.myRole}</h2>
 						<RoleAndTeamPanel
@@ -310,7 +304,7 @@ const contents = [
 				</section>
 
 				<section id="process" class="case-section">
-					<p class="case-section__index">05</p>
+					<p class="case-section__index">03</p>
 					<div>
 						<h2>{t.projects.process}</h2>
 						{
@@ -353,7 +347,7 @@ const contents = [
 				</section>
 
 				<section id="decisions" class="case-section">
-					<p class="case-section__index">06</p>
+					<p class="case-section__index">04</p>
 					<div>
 						<h2>{t.projects.keyDecisions}</h2>
 						{
@@ -408,7 +402,7 @@ const contents = [
 				</section>
 
 				<section id="structure" class="case-section">
-					<p class="case-section__index">07</p>
+					<p class="case-section__index">04</p>
 					<div>
 						<h2>{t.projects.technicalStructure}</h2>
 						<ul class="structure-list">
@@ -429,7 +423,7 @@ const contents = [
 				</section>
 
 				<section id="challenges" class="case-section">
-					<p class="case-section__index">08</p>
+					<p class="case-section__index">04</p>
 					<div>
 						<h2>{t.projects.challenges}</h2>
 						<ul>
@@ -439,12 +433,54 @@ const contents = [
 				</section>
 
 				<section id="outcome" class="case-section">
-					<p class="case-section__index">09</p>
+					<p class="case-section__index">05</p>
 					<div>
 						<h2>{t.projects.outcomes}</h2>
 						<ul class="outcome-list">
 							{project.data.outcomes.map((item) => <li>{item}</li>)}
 						</ul>
+						{
+							project.data.artifacts.length > 0 && (
+								<div class="artifact-showcase" aria-labelledby="artifact-showcase-title">
+									<div class="artifact-showcase__heading">
+										<p class="eyebrow">{t.projects.artifactEyebrow}</p>
+										<h3 id="artifact-showcase-title">{t.projects.artifactTitle}</h3>
+									</div>
+									<div class="artifact-list">
+										{project.data.artifacts.map((artifact) => (
+											<article class="artifact-card">
+												<a
+													class="artifact-card__preview"
+													href={artifact.href}
+													target="_blank"
+													rel="noreferrer"
+												>
+													<img
+														src={artifact.previewImage.src}
+														alt={artifact.previewImage.alt}
+														loading="lazy"
+													/>
+												</a>
+												<div class="artifact-card__content">
+													<div>
+														<h4>{artifact.title}</h4>
+														<p>{artifact.description}</p>
+													</div>
+													<div class="artifact-card__actions">
+														<a href={artifact.href} target="_blank" rel="noreferrer">
+															{t.projects.openArtifact} <span aria-hidden="true">↗</span>
+														</a>
+														<a href={artifact.href} download>
+															{t.projects.downloadArtifact} <span aria-hidden="true">↓</span>
+														</a>
+													</div>
+												</div>
+											</article>
+										))}
+									</div>
+								</div>
+							)
+						}
 						{
 							project.data.validation && (
 								<div class="validation-summary">
@@ -458,12 +494,6 @@ const contents = [
 												{project.data.validation.limitations.map((item) => <li>{item}</li>)}
 											</ul>
 										</article>
-										<article>
-											<h3>{t.projects.nextValidation}</h3>
-											<ul>
-												{project.data.validation.nextValidation.map((item) => <li>{item}</li>)}
-											</ul>
-										</article>
 									</div>
 								</div>
 							)
@@ -472,17 +502,17 @@ const contents = [
 				</section>
 
 				<section id="change" class="case-section">
-					<p class="case-section__index">10</p>
+					<p class="case-section__index">05</p>
 					<div>
-						<h2>{t.projects.whatIWouldChange}</h2>
+						<h2>{nextActionTitle}</h2>
 						<ul>
-							{project.data.whatIWouldChange.map((item) => <li>{item}</li>)}
+							{nextActions.map((item) => <li>{item}</li>)}
 						</ul>
 					</div>
 				</section>
 
 				<section id="learning" class="case-section">
-					<p class="case-section__index">11</p>
+					<p class="case-section__index">05</p>
 					<div>
 						<h2>{t.projects.learnings}</h2>
 						<ul class="learning-list">
@@ -515,12 +545,12 @@ const contents = [
 	}
 
 	.artifact-showcase {
-		margin-top: var(--space-12);
+		margin-top: var(--space-10);
 		border-top: var(--border-default);
-		padding-top: var(--space-10);
+		padding-top: var(--space-8);
 	}
 
-	.artifact-showcase__heading h2 {
+	.artifact-showcase__heading h3 {
 		margin: 0;
 		font-size: var(--text-xl);
 		letter-spacing: -0.025em;
@@ -559,12 +589,12 @@ const contents = [
 		padding: var(--space-6);
 	}
 
-	.artifact-card h3,
+	.artifact-card h4,
 	.artifact-card p {
 		margin: 0;
 	}
 
-	.artifact-card h3 {
+	.artifact-card h4 {
 		font-size: var(--text-lg);
 	}
 
@@ -682,12 +712,38 @@ const contents = [
 		padding-left: var(--space-5);
 	}
 
-	.lead-copy {
-		max-width: 46rem;
-		margin: var(--space-6) 0 0;
-		color: var(--color-text) !important;
-		font-size: clamp(1.2rem, 2vw, 1.55rem);
-		line-height: 1.7 !important;
+	.quick-summary {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-4);
+		margin: var(--space-8) 0 0;
+	}
+
+	.quick-summary > div {
+		border: var(--border-default);
+		border-radius: var(--radius-md);
+		padding: var(--space-5);
+		background: var(--color-surface);
+	}
+
+	.quick-summary dt {
+		color: var(--color-accent-strong);
+		font-size: var(--text-xs);
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.quick-summary dd {
+		margin: var(--space-3) 0 0;
+		color: var(--color-text);
+		line-height: var(--leading-body);
+	}
+
+	.quick-summary__evidence {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
 	}
 
 	.two-column {
@@ -713,7 +769,7 @@ const contents = [
 	}
 
 	.learner-case {
-		margin-top: var(--space-8);
+		margin-top: var(--space-6);
 		border: var(--border-default);
 		border-radius: var(--radius-lg);
 		padding: var(--space-6);
@@ -737,9 +793,16 @@ const contents = [
 	.learner-case__grid,
 	.validation-summary__grid {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--space-4);
 		margin-top: var(--space-6);
+	}
+
+	.learner-case__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.validation-summary__grid {
+		grid-template-columns: 1fr;
 	}
 
 	.learner-case__grid article,
@@ -992,6 +1055,7 @@ const contents = [
 	@media (max-width: 820px) {
 		.two-column,
 		.decision-grid,
+		.quick-summary,
 		.learner-case__grid,
 		.validation-summary__grid {
 			grid-template-columns: 1fr;

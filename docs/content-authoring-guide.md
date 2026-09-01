@@ -132,6 +132,7 @@ evidenceLevels:
 priority: 50
 title: 프로젝트 제목
 summary: 목록 카드에 표시할 한두 문장 요약
+summaryNote: 요약과 분리해 작게 표시할 근거의 한계나 현재 상태 (선택)
 period:
   start: '2026-01'
   end: present

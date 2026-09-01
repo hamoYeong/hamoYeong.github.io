@@ -86,7 +86,7 @@ learnings:
 categories:
   - Web
   - Community
-featured: true
+featured: false
 draft: false
 repository: https://github.com/hamoYeong/scutta-2025-1
 visibility: public

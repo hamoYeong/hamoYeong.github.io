@@ -83,7 +83,7 @@ categories:
   - iOS
   - Multiplayer
   - Spatial Computing
-featured: true
+featured: false
 draft: false
 visibility: private-summary
 relatedPosts:

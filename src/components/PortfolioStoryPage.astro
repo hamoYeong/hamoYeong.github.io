@@ -53,7 +53,8 @@ const {
 	initiallyHidden = false,
 	labels,
 } = Astro.props;
-const copyValue = Array.isArray(block.text) ? block.text.join('\n') : block.text;
+const copyText = Array.isArray(block.text) ? block.text.join('\n') : block.text;
+const copyValue = block.note ? `${copyText}\n${block.note}` : copyText;
 const textPreview = Array.isArray(block.text) ? block.text[0] : block.text;
 ---
 
@@ -74,19 +75,6 @@ const textPreview = Array.isArray(block.text) ? block.text[0] : block.text;
 	data-kind={block.kind}
 	hidden={initiallyHidden}
 >
-	{
-		(bridge || dynamicBridge) && (
-			<aside
-				class:list={['story-bridge', bridge && `story-bridge--${bridge.direction}`]}
-				data-story-bridge={dynamicBridge ? '' : undefined}
-				hidden={dynamicBridge}
-			>
-				<p data-bridge-label>{bridge?.label}</p>
-				<p data-bridge-text>{bridge?.text}</p>
-			</aside>
-		)
-	}
-
 	<header class="story-page__header">
 		<div class="story-page__meta">
 			<span><span data-page-number>{String(pageNumber).padStart(2, '0')}</span> / <span data-page-count>{String(pageCount).padStart(2, '0')}</span> {labels.page}</span>
@@ -104,6 +92,7 @@ const textPreview = Array.isArray(block.text) ? block.text[0] : block.text;
 				<p>{block.text}</p>
 			)
 		}
+		{block.note && <p class="story-page__copy-note">{block.note}</p>}
 	</div>
 
 	{
@@ -122,6 +111,19 @@ const textPreview = Array.isArray(block.text) ? block.text[0] : block.text;
 					</figure>
 				))}
 			</div>
+		)
+	}
+
+	{
+		(bridge || dynamicBridge) && (
+			<aside
+				class:list={['story-bridge', bridge && `story-bridge--${bridge.direction}`]}
+				data-story-bridge={dynamicBridge ? '' : undefined}
+				hidden={dynamicBridge}
+			>
+				<p data-bridge-label>{bridge?.label}</p>
+				<p data-bridge-text>{bridge?.text}</p>
+			</aside>
 		)
 	}
 
@@ -172,8 +174,15 @@ const textPreview = Array.isArray(block.text) ? block.text[0] : block.text;
 		display: none;
 	}
 
+	.story-page__copy-note {
+		margin-top: var(--space-3);
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+		line-height: 1.65;
+	}
+
 	.story-bridge {
-		margin-bottom: var(--space-8);
+		margin-top: var(--space-8);
 		border-left: 4px solid var(--color-accent);
 		padding: var(--space-4) var(--space-5);
 		background: var(--color-surface-accent);

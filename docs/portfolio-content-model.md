@@ -102,7 +102,7 @@ priority: 10
 media: []
 ```
 
-Project identity는 `title`, `summary`, `period`, `status`, `categories`, `technologies`다. 나머지 canonical field의 책임은 다음과 같다.
+Project identity는 `title`, `summary`, 선택적인 `summaryNote`, `period`, `status`, `categories`, `technologies`다. `summaryNote`는 요약의 흐름을 끊지 않으면서 바로 아래에 분리해 보여줘야 하는 근거의 한계나 현재 상태에만 사용한다. 나머지 canonical field의 책임은 다음과 같다.
 
 | 질문 | canonical field |
 | --- | --- |
@@ -205,8 +205,8 @@ media:
 
 - Home은 정체성 → 문제의식 → 관찰 사례 → 실제 근거 → featured Project/Post → 현재 한계 → Contact 순서의 인물 서사를 유지한다. 역량을 추상 문장으로만 설명하지 않고 C4 학습자 사례, C5 설계 결정, 구현 구조, SCUTTA 운영 원문을 함께 조립한다.
 - About은 CV 사실을 timeline에서 한 번 보여주고, 그 아래에서 대상 학습자·원하는 변화·설계 원칙·근거·개발과 교육의 연결·한계를 해석한다. skill과 방향 문장에는 근거 Project/Experience의 실제 section 링크와 canonical 문장을 붙인다.
-- Projects는 기존 카드 위계와 All/iOS/Web/Education/Community filter를 유지한다.
-- Project 상세는 공통 component가 Quick Summary부터 related content까지 같은 질문 순서로 렌더링한다. 값이 없는 section은 출력하지 않는다.
+- Projects는 featured Project와 연결된 Project를 분리하고 각 그룹 안에서 `priority`를 먼저 적용한다. `featured`는 최신성이나 구현 규모가 아니라 현재 직무 방향을 대표하면서 실제 사용·관찰 근거까지 설명할 수 있는지를 기준으로 지정한다. All/iOS/Web/Education/Community filter는 두 그룹에 함께 작동한다. 목록 카드는 summary·개인 역할·대표 outcome만 보여주고 문제와 전체 근거는 상세에서 읽게 한다.
+- Project 상세는 공통 component가 대상·접근·역할·근거 수준을 Quick Summary로 보여준 뒤 문제와 대상 → 역할과 과정 → 판단과 구조 → 결과와 다음 단계 순서로 렌더링한다. 학습자 사례는 독립 section으로, artifact는 outcome의 근거로 배치한다. 값이 없는 section은 출력하지 않는다.
 - Posts는 본문을 과도하게 데이터화하지 않는다.
 
 ### Portfolio Kit
@@ -215,7 +215,7 @@ media:
 - 기본 navigation에는 넣지 않고 footer에 작은 링크만 둔다.
 - 검색 엔진에 `noindex, nofollow`를 적용한다.
 - 기본 화면은 `src/i18n/portfolio-stories.ts`에 명시한 네 curated story다. 각 story는 시간순이 아니라 문제 발견 → 판단 변화 → 구현 → 결과 → 근거의 한계를 설명하기에 적합한 순서로 `PortfolioBlock.id`를 참조한다.
-- 한 화면에는 원문 한 파트와 앞뒤 원문을 연결하는 접속부만 보여준다. 이전/다음 버튼과 좌우 방향키로 페이지를 넘기며, `prefers-reduced-motion`을 존중하는 짧은 전환 애니메이션을 사용한다.
+- 한 화면에는 Project 상세와 다른 canonical source에서 가져온 원문 한 파트를 먼저 보여주고, 다음 원문으로 이어지는 접속부와 추가 metadata를 그 아래에 분리한다. 이전/다음 버튼과 좌우 방향키로 페이지를 넘기며, `prefers-reduced-motion`을 존중하는 짧은 전환 애니메이션을 사용한다.
 - 과거 원문으로 이동하는 접속부는 현재 판단이 시작된 문제와 당시 초점을, 이후 원문으로 이동하는 접속부는 앞선 문제와 다음 개선을 설명한다. 접속부는 원문을 대체하거나 성과를 새로 주장하지 않는다.
 - role lens, competency, content type, evidence level은 접힌 “직접 흐름 만들기”에서 제공한다. 결과는 날짜가 아니라 `priority`와 원천별 `summary → problem → context → role/action → decision/structure → outcome → limitation/next` 순서로 한 페이지씩 보여준다.
 - 선택한 story, page, custom filter는 URL query에 남긴다. 각 페이지에서 원문 section 이동과 문장 복사를 제공한다.

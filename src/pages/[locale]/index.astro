@@ -46,6 +46,7 @@ const evidenceStories = compact([
 				source: leafProject.data.title,
 				meta: leafProject.data.period.label,
 				summary: leafProject.data.summary,
+				note: leafProject.data.summaryNote,
 				facts: compact([
 					leafProject.data.research[1]
 						? { label: t.projects.research, value: leafProject.data.research[1] }
@@ -66,6 +67,7 @@ const evidenceStories = compact([
 				source: learnProject.data.title,
 				meta: learnProject.data.period.label,
 				summary: learnProject.data.summary,
+				note: learnProject.data.summaryNote,
 				facts: compact([
 					learnProject.data.keyDecisions[1]
 						? { label: t.projects.keyDecisions, value: learnProject.data.keyDecisions[1].description }
@@ -86,6 +88,7 @@ const evidenceStories = compact([
 				source: learnProject.data.title,
 				meta: learnProject.data.period.label,
 				summary: learnProject.data.overview,
+				note: undefined,
 				facts: compact([
 					learnProject.data.technicalStructure[2]
 						? { label: t.projects.technicalStructure, value: learnProject.data.technicalStructure[2] }
@@ -106,6 +109,7 @@ const evidenceStories = compact([
 				source: scuttaProject.data.title,
 				meta: scuttaProject.data.period.label,
 				summary: scuttaProject.data.summary,
+				note: scuttaProject.data.summaryNote,
 				facts: compact([
 					{ label: t.projects.problem, value: scuttaProject.data.problem },
 					scuttaProject.data.outcomes[0]
@@ -175,6 +179,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 			</div>
 			<div class="story-body">
 				<p>{t.home.experienceDescription}</p>
+				<p class="story-note">{t.home.experienceLimitation}</p>
 				<div class="experience-path" aria-label={t.home.experienceEyebrow}>
 					{
 						t.home.experienceSteps.map((step, index) => (
@@ -228,6 +233,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 						<h3>{story.source}</h3>
 						<p class="evidence-card__meta">{story.meta}</p>
 						<p class="evidence-card__summary">{story.summary}</p>
+						{story.note && <p class="evidence-card__note">{story.note}</p>}
 						<dl>
 							{story.facts.map((fact) => (
 								<div>
@@ -260,7 +266,9 @@ const publicEmail = 'rlatjdud6573@naver.com';
 				featuredProjects.map((project) => (
 					<ProjectCard
 						title={project.data.title}
+						headingLevel="h3"
 						summary={project.data.summary}
+						summaryNote={project.data.summaryNote}
 						meta={project.data.period.label}
 						tags={project.data.technologies.slice(0, 3)}
 						href={localizedPath(locale, `projects/${project.data.slug}`)}
@@ -374,7 +382,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		margin: var(--space-6) 0 0;
 		font-size: clamp(3.2rem, 6.6vw, 6.1rem);
 		letter-spacing: -0.065em;
-		line-height: 0.98;
+		line-height: 1.08;
 		word-break: keep-all;
 	}
 
@@ -448,6 +456,14 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		word-break: keep-all;
 	}
 
+	.story-body > .story-note,
+	.evidence-card__note {
+		margin-top: var(--space-3);
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+		line-height: 1.65;
+	}
+
 	.experience-path,
 	.keywords {
 		display: flex;
@@ -499,6 +515,10 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	.evidence-card__meta,
 	.evidence-card__summary {
 		margin: 0;
+	}
+
+	.evidence-card__note {
+		margin-bottom: 0;
 	}
 
 	.evidence-card__index {
@@ -691,6 +711,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 
 		.hero-copy h1 {
 			font-size: clamp(3rem, 13vw, 5.2rem);
+			line-height: 1.12;
 		}
 
 		.story-block,

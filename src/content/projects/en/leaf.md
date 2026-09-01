@@ -82,7 +82,8 @@ technologies:
   - SwiftData
   - USDZ
 outcomes:
-  - As my individual contribution, I implemented the record and main-home data flow and observed one teammate begin to state intent and explain an assumption missed by an AI result. This is one learner case, not evidence of a general learning effect.
+  - I implemented the data model, Repository design, time-recording Service, and main-home data flow. I helped one teammate express their intent and observed them explain a premise missing from an AI result.
+  - This is one learner case and should not be generalized as an educational effect.
   - Used the city-official interview and 47-person survey to focus the product on the restorative experience of gardening.
   - Implemented onboarding, the current garden, activity timing, growth roadmaps, watering, and harvest records.
   - A memory-backed PreviewModelContainer and mock data reproduce major screen states without production data.

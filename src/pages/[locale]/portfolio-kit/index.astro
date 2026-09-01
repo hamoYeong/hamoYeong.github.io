@@ -51,12 +51,12 @@ const { blocks, assets } = buildPortfolioKit({
 const blockById = new Map(blocks.map((block) => [block.id, block]));
 const stories = storyDefinitions.map((story) => ({
 	...story,
-	pages: story.steps.map((step) => {
+	pages: story.steps.map((step, index) => {
 		const block = blockById.get(step.blockId);
 		if (!block) {
 			throw new Error(`Portfolio story "${story.key}" references missing block "${step.blockId}".`);
 		}
-		return { block, bridge: step.bridge };
+		return { block, bridge: story.steps[index + 1]?.bridge };
 	}),
 }));
 const sourceTypes = ['project', 'experience', 'challenge', 'post'] as const;
@@ -375,23 +375,23 @@ const pageLabels = {
 	const updateCustomBridge = (panel: HTMLElement, pages: HTMLElement[], index: number) => {
 		const page = pages[index];
 		const bridge = page?.querySelector<HTMLElement>('[data-story-bridge]');
-		if (!page || !bridge || index === 0) {
+		if (!page || !bridge || index >= pages.length - 1) {
 			if (bridge) bridge.hidden = true;
 			return;
 		}
-		const previous = pages[index - 1];
-		const previousDate = previous.dataset.date ?? '';
-		const nextDate = page.dataset.date ?? '';
-		let direction = nextDate > previousDate ? 'later' : nextDate < previousDate ? 'earlier' : 'same';
-		if (page.dataset.kind === 'limitation' || page.dataset.kind === 'next-step') direction = 'reflection';
+		const next = pages[index + 1];
+		const currentDate = page.dataset.date ?? '';
+		const nextDate = next.dataset.date ?? '';
+		let direction = nextDate > currentDate ? 'later' : nextDate < currentDate ? 'earlier' : 'same';
+		if (next.dataset.kind === 'limitation' || next.dataset.kind === 'next-step') direction = 'reflection';
 		const suffix = `${direction[0].toUpperCase()}${direction.slice(1)}`;
 		const template = panel.dataset[`bridge${suffix}`] ?? '';
 		const values = {
-			previous: previous.dataset.sourceTitle ?? '',
-			next: page.dataset.sourceTitle ?? '',
-			evidence: shortText(previous.dataset.textPreview ?? ''),
-			focus: page.dataset.blockTitle ?? '',
-			nextEvidence: shortText(page.dataset.textPreview ?? ''),
+			previous: page.dataset.sourceTitle ?? '',
+			next: next.dataset.sourceTitle ?? '',
+			evidence: shortText(page.dataset.textPreview ?? ''),
+			focus: next.dataset.blockTitle ?? '',
+			nextEvidence: shortText(next.dataset.textPreview ?? ''),
 		};
 		bridge.className = `story-bridge story-bridge--${direction}`;
 		const label = panel.dataset[`label${suffix}`] ?? '';
