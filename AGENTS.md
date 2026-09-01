@@ -13,9 +13,13 @@
 
 ## 콘텐츠 데이터 관리
 
-- Projects 정보는 가능하면 `src/data/projects.json`에서 관리합니다.
+- Projects 정보는 `src/content/projects/{locale}/` Markdown을 canonical source로 관리합니다.
 - Projects 카드는 가능하면 `src/components/ProjectCard.astro`를 우선 사용합니다.
-- Posts 정보는 가능하면 `src/data/posts.json`에서 관리합니다.
+- Posts 정보는 `src/content/posts/{locale}/` Markdown을 canonical source로 관리합니다.
+- Experience와 Challenge도 각각 `src/content/experiences/`, `src/content/challenges/`에서 관리합니다.
+- 새 콘텐츠에는 `src/i18n/taxonomy.ts`의 role lens, competency, evidence level key와 priority를 지정합니다.
+- Project↔Post related link는 양방향으로 유지하고 `npm run content:validate`로 확인합니다.
+- 콘텐츠 모델은 `docs/portfolio-content-model.md`, 작성법은 `docs/content-authoring-guide.md`, 이미지 규칙은 `docs/portfolio-asset-guide.md`를 따릅니다.
 - 외부 콘텐츠 소스를 붙이더라도 API 응답 원본을 화면에 바로 쓰지 않고, 화면에서 쓰기 쉬운 JSON 구조로 변환해서 사용합니다.
 
 ## 작업 규칙
