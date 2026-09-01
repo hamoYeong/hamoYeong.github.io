@@ -31,20 +31,98 @@ const [projects, posts] = await Promise.all([
 	getProjects({ locale }),
 	getPosts({ locale }),
 ]);
-const featuredProjectKeys = [
-	'learn-with-ai-questioning',
-	'scutta-notion-system',
-	'leaf',
-	'bombaway',
-];
-const featuredProjects = featuredProjectKeys.flatMap((translationKey) => {
-	const project = projects.find(
-		(entry) =>
-			entry.data.featured && entry.data.translationKey === translationKey,
-	);
-
-	return project ? [project] : [];
-});
+const projectByKey = new Map(
+	projects.map((project) => [project.data.translationKey, project]),
+);
+const compact = <T,>(items: Array<T | undefined>) =>
+	items.filter((item): item is T => item !== undefined);
+const leafProject = projectByKey.get('leaf');
+const learnProject = projectByKey.get('learn-with-ai-questioning');
+const scuttaProject = projectByKey.get('scutta-notion-system');
+const evidenceStories = compact([
+	leafProject
+		? {
+				label: t.home.carePoints[0].title,
+				source: leafProject.data.title,
+				meta: leafProject.data.period.label,
+				summary: leafProject.data.summary,
+				facts: compact([
+					leafProject.data.research[1]
+						? { label: t.projects.research, value: leafProject.data.research[1] }
+						: undefined,
+					leafProject.data.outcomes[0]
+						? { label: t.projects.outcomes, value: leafProject.data.outcomes[0] }
+						: undefined,
+					leafProject.data.whatIWouldChange[0]
+						? { label: t.projects.whatIWouldChange, value: leafProject.data.whatIWouldChange[0] }
+						: undefined,
+				]),
+				href: `${localizedPath(locale, `projects/${leafProject.data.slug}`)}#context`,
+			}
+		: undefined,
+	learnProject
+		? {
+				label: t.home.carePoints[1].title,
+				source: learnProject.data.title,
+				meta: learnProject.data.period.label,
+				summary: learnProject.data.summary,
+				facts: compact([
+					learnProject.data.keyDecisions[1]
+						? { label: t.projects.keyDecisions, value: learnProject.data.keyDecisions[1].description }
+						: undefined,
+					learnProject.data.outcomes[1]
+						? { label: t.projects.outcomes, value: learnProject.data.outcomes[1] }
+						: undefined,
+					learnProject.data.validation?.limitations[0]
+						? { label: t.projects.limitation, value: learnProject.data.validation.limitations[0] }
+						: undefined,
+				]),
+				href: `${localizedPath(locale, `projects/${learnProject.data.slug}`)}#decisions`,
+			}
+		: undefined,
+	learnProject
+		? {
+				label: t.home.carePoints[2].title,
+				source: learnProject.data.title,
+				meta: learnProject.data.period.label,
+				summary: learnProject.data.overview,
+				facts: compact([
+					learnProject.data.technicalStructure[2]
+						? { label: t.projects.technicalStructure, value: learnProject.data.technicalStructure[2] }
+						: undefined,
+					learnProject.data.outcomes[2]
+						? { label: t.projects.outcomes, value: learnProject.data.outcomes[2] }
+						: undefined,
+					learnProject.data.validation?.limitations[0]
+						? { label: t.projects.limitation, value: learnProject.data.validation.limitations[0] }
+						: undefined,
+				]),
+				href: `${localizedPath(locale, `projects/${learnProject.data.slug}`)}#structure`,
+			}
+		: undefined,
+	scuttaProject
+		? {
+				label: t.home.carePoints[3].title,
+				source: scuttaProject.data.title,
+				meta: scuttaProject.data.period.label,
+				summary: scuttaProject.data.summary,
+				facts: compact([
+					{ label: t.projects.problem, value: scuttaProject.data.problem },
+					scuttaProject.data.outcomes[0]
+						? { label: t.projects.outcomes, value: scuttaProject.data.outcomes[0] }
+						: undefined,
+					scuttaProject.data.whatIWouldChange[0]
+						? { label: t.projects.whatIWouldChange, value: scuttaProject.data.whatIWouldChange[0] }
+						: undefined,
+				]),
+				href: `${localizedPath(locale, `projects/${scuttaProject.data.slug}`)}#problem`,
+			}
+		: undefined,
+]);
+const featuredProjects = projects
+	.filter((project) => project.data.featured)
+	.sort((left, right) => left.data.priority - right.data.priority)
+	.slice(0, 4);
 const latestPosts = posts.slice(0, 3);
 const githubUrl = 'https://github.com/hamoYeong';
 const linkedinUrl = 'https://www.linkedin.com/in/seoyeong-kim-hamoyeong';
@@ -139,15 +217,26 @@ const publicEmail = 'rlatjdud6573@naver.com';
 			title={t.home.careTitle}
 			description={t.home.careIntro}
 		/>
-		<div class="care-grid">
+		<div class="evidence-grid">
 			{
-				t.home.carePoints.map((point, index) => (
-					<article class="care-card">
-						<p class="care-card__index" aria-hidden="true">
+				evidenceStories.map((story, index) => (
+					<article class="evidence-card">
+						<p class="evidence-card__index" aria-hidden="true">
 							{String(index + 1).padStart(2, '0')}
 						</p>
-						<h3>{point.title}</h3>
-						<p>{point.description}</p>
+						<p class="evidence-card__label">{story.label}</p>
+						<h3>{story.source}</h3>
+						<p class="evidence-card__meta">{story.meta}</p>
+						<p class="evidence-card__summary">{story.summary}</p>
+						<dl>
+							{story.facts.map((fact) => (
+								<div>
+									<dt>{fact.label}</dt>
+									<dd>{fact.value}</dd>
+								</div>
+							))}
+						</dl>
+						<a href={story.href}>{t.portfolioKit.openSource} →</a>
 					</article>
 				))
 			}
@@ -389,14 +478,14 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		padding-top: clamp(var(--space-10), 7vw, var(--space-16));
 	}
 
-	.care-grid {
+	.evidence-grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--space-4);
 		margin-top: var(--space-10);
 	}
 
-	.care-card {
+	.evidence-card {
 		display: flex;
 		flex-direction: column;
 		border: var(--border-default);
@@ -405,22 +494,74 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		background: color-mix(in srgb, var(--color-surface) 72%, transparent);
 	}
 
-	.care-card__index {
+	.evidence-card__index,
+	.evidence-card__label,
+	.evidence-card__meta,
+	.evidence-card__summary {
+		margin: 0;
+	}
+
+	.evidence-card__index {
 		margin: 0;
 		color: var(--color-text-faint);
 		font-family: var(--font-mono);
 		font-size: var(--text-xs);
 	}
 
-	.care-card h3 {
-		margin: var(--space-6) 0 0;
-		font-size: 1.05rem;
+	.evidence-card__label {
+		margin-top: var(--space-5);
+		color: var(--color-accent-strong);
+		font-size: var(--text-xs);
+		font-weight: 900;
 	}
 
-	.care-card > p:last-child {
+	.evidence-card h3 {
+		margin: var(--space-2) 0 0;
+		font-size: var(--text-lg);
+	}
+
+	.evidence-card__meta {
+		margin-top: var(--space-1);
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+	}
+
+	.evidence-card__summary {
 		margin: var(--space-3) 0 0;
 		color: var(--color-text-soft);
 		line-height: var(--leading-body);
+	}
+
+	.evidence-card dl {
+		display: grid;
+		gap: var(--space-4);
+		margin: var(--space-5) 0 0;
+		border-top: var(--border-default);
+		padding-top: var(--space-5);
+	}
+
+	.evidence-card dt {
+		color: var(--color-accent-strong);
+		font-size: var(--text-xs);
+		font-weight: 900;
+	}
+
+	.evidence-card dd {
+		margin: var(--space-2) 0 0;
+		color: var(--color-text-soft);
+		font-size: var(--text-sm);
+		line-height: 1.65;
+	}
+
+	.evidence-card > a {
+		display: inline-flex;
+		min-height: 2.75rem;
+		margin-top: auto;
+		align-items: end;
+		padding-top: var(--space-5);
+		color: var(--color-accent-strong);
+		font-size: var(--text-sm);
+		font-weight: 850;
 	}
 
 	.explore-links {
@@ -525,7 +666,6 @@ const publicEmail = 'rlatjdud6573@naver.com';
 	}
 
 	@media (max-width: 1100px) {
-		.care-grid,
 		.featured-grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
@@ -554,7 +694,7 @@ const publicEmail = 'rlatjdud6573@naver.com';
 		}
 
 		.story-block,
-		.care-grid,
+		.evidence-grid,
 		.featured-grid {
 			grid-template-columns: 1fr;
 		}
