@@ -2,6 +2,22 @@
 slug: academy-c1-setup-guide
 locale: ko
 translationKey: academy-c1-setup-guide
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - ios-software-development
+competencies:
+  - learning-goal-design
+  - curriculum-task-design
+  - data-flow-architecture
+evidenceLevels:
+  - designed
+  - implemented
+priority: 60
+relatedChallenges:
+  - academy-c1
+relatedExperiences:
+  - apple-developer-academy
 title: Academy 생활 설정 안내
 summary: CBL로 팀과 문제를 찾고, 함께 만든 기획을 각자 SwiftUI로 구현하며 문제 해결과 Swift 기초를 함께 배운 C1 프로젝트입니다.
 period:

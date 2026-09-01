@@ -2,6 +2,20 @@
 slug: learning-communities
 locale: en
 translationKey: learning-communities
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+competencies:
+  - beginner-observation
+  - collaboration-facilitation
+  - community-operations
+evidenceLevels:
+  - observed
+  - operated
+priority: 35
+relatedProjects:
+  - computational-thinking-hamo
+  - learn-with-ai-questioning
 title: Flutter and Java Learning Communities
 organization: Independent study groups and Woowacourse Precourse
 summary: Shared Flutter learning projects, then chose a beginner Java group to study alongside first-time learners and observe how they interpreted assignments rather than learn only from already-proficient peers.

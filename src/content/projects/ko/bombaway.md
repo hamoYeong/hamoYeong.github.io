@@ -2,6 +2,20 @@
 slug: bombaway
 locale: ko
 translationKey: bombaway
+roleLenses:
+  - ios-software-development
+competencies:
+  - data-flow-architecture
+  - technical-explanation
+  - collaboration-facilitation
+evidenceLevels:
+  - implemented
+  - operated
+priority: 40
+relatedChallenges:
+  - academy-c3-bombaway
+relatedExperiences:
+  - apple-developer-academy
 title: BombAway
 summary: 같은 공간의 여러 사람이 화면보다 서로의 거리와 방향에 집중해 즐기는 근거리 다인 iPhone 게임입니다.
 period:
@@ -69,7 +83,7 @@ categories:
   - iOS
   - Multiplayer
   - Spatial Computing
-featured: true
+featured: false
 draft: false
 visibility: private-summary
 relatedPosts:

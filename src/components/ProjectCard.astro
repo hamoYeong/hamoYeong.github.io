@@ -13,7 +13,9 @@ interface ProjectImage {
 
 interface Props {
 	title: string;
+	headingLevel?: 'h2' | 'h3';
 	summary?: string;
+	summaryNote?: string;
 	description?: string;
 	href?: string;
 	slug?: string;
@@ -23,11 +25,14 @@ interface Props {
 	facts?: ProjectFact[];
 	actionLabel?: string;
 	image?: ProjectImage;
+	variant?: 'featured' | 'compact';
 }
 
 const {
 	title,
+	headingLevel = 'h2',
 	summary,
+	summaryNote,
 	description,
 	href,
 	slug,
@@ -37,27 +42,25 @@ const {
 	facts = [],
 	actionLabel,
 	image,
+	variant = 'featured',
 } = Astro.props;
 const projectUrl = href ?? `/projects/${slug}/`;
 const projectSummary = summary ?? description ?? '';
 const projectTags = tags ?? tools ?? [];
-const fallbackMark = title.trim().slice(0, 1).toUpperCase();
+const Heading = headingLevel;
 ---
 
-<article class="project-card">
-	<div class="project-card__visual" aria-hidden={image ? undefined : 'true'}>
-		{
-			image ? (
-				<img src={image.src} alt={image.alt} loading="lazy" />
-			) : (
-				<span>{fallbackMark}</span>
-			)
-		}
-	</div>
+<article class:list={['project-card', `project-card--${variant}`]}>
+	{image && (
+		<a class="project-card__visual" href={projectUrl}>
+			<img src={image.src} alt={image.alt} loading="lazy" />
+		</a>
+	)}
 	<div class="project-card__body">
 		{meta && <p class="project-card__meta">{meta}</p>}
-		<h2><a href={projectUrl}>{title}</a></h2>
+		<Heading class="project-card__title"><a href={projectUrl}>{title}</a></Heading>
 		<p class="project-card__description">{projectSummary}</p>
+		{summaryNote && <p class="project-card__note">{summaryNote}</p>}
 		{
 			facts.length > 0 && (
 				<dl class="project-card__facts">
@@ -97,42 +100,9 @@ const fallbackMark = title.trim().slice(0, 1).toUpperCase();
 	}
 
 	.project-card__visual {
-		position: relative;
-		display: grid;
-		min-height: 10rem;
+		display: block;
 		overflow: hidden;
-		place-items: center;
-		background:
-			radial-gradient(circle at 78% 22%, rgb(255 255 255 / 0.65) 0 10%, transparent 11%),
-			linear-gradient(135deg, var(--color-surface-accent), var(--color-surface-muted));
-		color: var(--color-accent-strong);
 		text-decoration: none;
-	}
-
-	.project-card__visual::before,
-	.project-card__visual::after {
-		position: absolute;
-		width: 7rem;
-		height: 7rem;
-		border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
-		border-radius: 50%;
-		content: '';
-	}
-
-	.project-card__visual::before {
-		top: -2.5rem;
-		left: -1.5rem;
-	}
-
-	.project-card__visual::after {
-		right: -2rem;
-		bottom: -3rem;
-	}
-
-	.project-card__visual span {
-		font-family: var(--font-mono);
-		font-size: 2rem;
-		font-weight: 900;
 	}
 
 	.project-card__visual img {
@@ -152,19 +122,19 @@ const fallbackMark = title.trim().slice(0, 1).toUpperCase();
 		font-size: var(--text-sm);
 	}
 
-	h2 {
+	.project-card__title {
 		margin: var(--space-2) 0 0;
 		font-size: var(--text-lg);
 		letter-spacing: -0.015em;
 		word-break: keep-all;
 	}
 
-	h2 a {
+	.project-card__title a {
 		color: var(--color-text);
 		text-decoration: none;
 	}
 
-	h2 a:hover {
+	.project-card__title a:hover {
 		color: var(--color-accent-strong);
 		text-decoration: underline;
 	}
@@ -173,6 +143,13 @@ const fallbackMark = title.trim().slice(0, 1).toUpperCase();
 		margin: var(--space-3) 0 0;
 		color: var(--color-text-soft);
 		line-height: var(--leading-body);
+	}
+
+	.project-card__note {
+		margin: var(--space-2) 0 0;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+		line-height: 1.6;
 	}
 
 	.project-card__facts {
@@ -220,5 +197,31 @@ const fallbackMark = title.trim().slice(0, 1).toUpperCase();
 		color: var(--color-accent-strong);
 		font-size: var(--text-sm);
 		font-weight: 850;
+	}
+
+	.project-card--compact .project-card__body {
+		padding: var(--space-5);
+	}
+
+	.project-card--compact .project-card__description {
+		font-size: 0.96rem;
+	}
+
+	.project-card--compact .project-card__facts {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.project-card--compact .project-card__facts div {
+		display: block;
+	}
+
+	.project-card--compact .project-card__facts dd {
+		margin-top: var(--space-2);
+	}
+
+	@media (max-width: 640px) {
+		.project-card--compact .project-card__facts {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

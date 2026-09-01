@@ -2,6 +2,18 @@
 slug: ai-context-before-code
 locale: en
 translationKey: ai-context-before-code
+roleLenses:
+  - learning-experience
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - self-explanation-transfer
+  - technical-explanation
+  - data-flow-architecture
+evidenceLevels:
+  - designed
+  - observed
+priority: 20
 title: What I Need to Decide Before Asking AI to Implement
 description: Drawing on the Academy and one C4 learner case, I separate what I must decide—problem, data, failure conditions, and evaluation criteria—from implementation AI can support.
 publishedAt: 2026-07-29
@@ -17,6 +29,7 @@ relatedProjects:
   - computational-thinking-hamo
   - dayflow
   - leaf
+  - bombaway
 ---
 
 At the Apple Developer Academy, I saw learners blocked on Swift fundamentals ask AI not only to implement something but also to decide what needed to be thought through. Generated code could remove the immediate block while leaving the learner without criteria for judging the intent and assumptions behind the result.

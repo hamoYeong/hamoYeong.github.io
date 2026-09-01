@@ -2,8 +2,68 @@
 slug: learn-with-ai-questioning
 locale: en
 translationKey: learn-with-ai-questioning
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - self-explanation-transfer
+  - curriculum-task-design
+  - educational-prototyping
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+  - observed
+priority: 10
+relatedChallenges:
+  - academy-c5-learn-with-ai
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - computational-thinking-hamo
+  - leaf
+media:
+  - id: learning-poster
+    section: outcome
+    type: image
+    webSrc: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/01-cover-learning-poster.png
+    alt: Preview of the Turning Stuckness into Questions Learn with AI poster
+    caption: The final C5 artifact brings together the app’s learning flow, the path I actually followed, the questions before and after, and what I learned while working with AI.
+    credit: Seoyeong Kim
+    visibility: public
+  - id: learning-poster-pdf
+    section: outcome
+    type: pdf
+    webSrc: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/02-outcome-learning-poster.pdf
+    alt: Turning Stuckness into Questions Learning Poster PDF
+    visibility: public
+portfolioSections:
+  - field: outcomes
+    kind: outcome
+    evidenceLevels:
+      - designed
+      - implemented
+    assetIds:
+      - learning-poster
+      - learning-poster-pdf
+  - field: limitations
+    kind: limitation
+    evidenceLevels:
+      - hypothesis
+  - field: nextValidation
+    kind: next-step
+    evidenceLevels:
+      - hypothesis
 title: Turning Stuckness into Questions — Learn with AI
-summary: Beginning with observations of Academy beginners and one-to-one learning support in C4, I moved from defining thinking actions to working backward into minimum Swift concepts, separating knowledge and learning systems, and building a macOS prototype. It has not yet been piloted with learners.
+summary: Beginning with observations of Academy beginners and one-to-one learning support in C4, I moved from defining thinking actions to working backward into minimum Swift concepts, separating knowledge and learning systems, and building a macOS prototype.
+summaryNote: It has not yet been piloted with learners.
 period:
   start: '2026-08'
   end: '2026-08'
@@ -20,7 +80,7 @@ team:
 overview: A learning-experience design that helps Swift beginners notice when they are stuck, separate what they know from what they do not, put the unclear point into words, and form a concrete question. During C5, I connected educational study to curriculum, planning, UI/UX, and a macOS prototype, but this is not yet a program with demonstrated learning outcomes.
 problem: At the Academy, I saw learners struggle with Swift fundamentals and delegate not only implementation but the thinking behind it to AI. When “I don’t know,” “Why doesn’t this work?” or “What should I do?” remains undivided—without the learner identifying their current understanding, location, conditions, and attempts—an immediate AI answer can make it easier to skip decomposition and judgment.
 whyItMattered: The goal is not to reduce AI use. I want implementation to benefit from AI while the learner remains responsible for explaining intent and assumptions, finding omissions and errors in a result, and forming the next question.
-context: HamoCom, built in June 2026, began with a tool before defining a learner and curriculum clearly enough, so I stopped the project. In C4, I enjoyed working one-to-one with a teammate on logic, but also saw the limit of doing so without a curriculum. Each explanation kept tracing back to more fundamental concepts, and one explanation did not become a system the learner could retrieve later. C5 therefore began with “What thinking should be practiced?” rather than “How much should I explain?”
+context: I stopped HamoCom because I had built the tool before defining a learner or curriculum. One-to-one learning support in C4 showed both the possibility of change and the limits of one-off explanations. Each explanation led further back into fundamentals, yet a single explanation did not become a thinking system the learner could reuse later. C5 therefore restarted from “What thinking should the learner repeat?”
 user: Beginners learning their first programming language or Swift for the first time who may be able to modify interface code but struggle to explain intent and data flow in their own words.
 contributions:
   - Examined cognitive load, scaffolding, and metacognition while exploring an experience that elicits thought instead of supplying an answer.
@@ -161,14 +221,14 @@ categories:
 featured: true
 draft: false
 coverImage:
-  src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+  src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
   alt: Preview of the Turning Stuckness into Questions Learn with AI poster
 artifacts:
   - title: Turning Stuckness into Questions — Learning Poster
     description: The final C5 artifact brings together the app’s learning flow, the path I actually followed, the questions before and after, and what I learned while working with AI.
     href: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
     previewImage:
-      src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+      src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
       alt: Full C5 Learn with AI Turning Stuckness into Questions learning poster
 visibility: public
 relatedPosts:

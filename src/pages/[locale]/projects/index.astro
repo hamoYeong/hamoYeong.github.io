@@ -21,7 +21,27 @@ if (!isLocale(localeParam)) {
 
 const locale = localeParam;
 const t = getUi(locale);
-const projects = await getProjects({ locale });
+const projects = (await getProjects({ locale })).sort(
+	(left, right) =>
+		left.data.priority - right.data.priority ||
+		right.data.period.start.localeCompare(left.data.period.start),
+);
+const projectGroups = [
+	{
+		key: 'featured',
+		title: t.projects.featuredGalleryTitle,
+		description: t.projects.featuredGalleryIntro,
+		projects: projects.filter((project) => project.data.featured),
+		variant: 'featured' as const,
+	},
+	{
+		key: 'more',
+		title: t.projects.moreGalleryTitle,
+		description: t.projects.moreGalleryIntro,
+		projects: projects.filter((project) => !project.data.featured),
+		variant: 'compact' as const,
+	},
+];
 const getFilterValues = (categories: string[]) => {
 	const normalized = categories.map((category) => category.toLowerCase());
 	const values = [];
@@ -94,28 +114,40 @@ const alternatePaths = Object.fromEntries(
 					</p>
 				</div>
 
-				<div id="project-list" class="card-grid">
-					{projects.map((project) => (
-						<div
-							class="project-entry"
-							data-project-entry
-							data-categories={getFilterValues(project.data.categories).join(' ')}
-						>
-							<ProjectCard
-								title={project.data.title}
-								summary={project.data.summary}
-								meta={`${project.data.period.label} · ${t.projects.statusLabels[project.data.status]}`}
-								tags={project.data.technologies.slice(0, 4)}
-								facts={[
-									{ label: t.projects.problem, value: project.data.problem },
-									{ label: t.projects.role, value: project.data.role.join(', ') },
-									{ label: t.projects.outcomes, value: project.data.outcomes[0] },
-								]}
-								image={project.data.coverImage}
-								href={localizedPath(locale, `projects/${project.data.slug}`)}
-								actionLabel={t.projects.readMore}
-							/>
-						</div>
+				<div id="project-list" class="project-groups">
+					{projectGroups.map((group) => (
+						<section class="project-group" data-project-group>
+							<div class="project-group__heading">
+								<h2>{group.title}</h2>
+								<p>{group.description}</p>
+							</div>
+							<div class="card-grid">
+								{group.projects.map((project) => (
+									<div
+										class="project-entry"
+										data-project-entry
+										data-categories={getFilterValues(project.data.categories).join(' ')}
+									>
+										<ProjectCard
+											title={project.data.title}
+											headingLevel="h3"
+											summary={project.data.summary}
+											summaryNote={project.data.summaryNote}
+											meta={`${project.data.categories[0] ?? ''} · ${project.data.period.label} · ${t.projects.statusLabels[project.data.status]}`}
+											tags={project.data.technologies.slice(0, 3)}
+											facts={[
+												{ label: t.projects.role, value: project.data.role.slice(0, 2).join(', ') },
+												{ label: t.projects.outcomes, value: project.data.outcomes[0] },
+											]}
+											image={project.data.coverImage}
+											href={localizedPath(locale, `projects/${project.data.slug}`)}
+											actionLabel={t.projects.readMore}
+											variant={group.variant}
+										/>
+									</div>
+								))}
+							</div>
+						</section>
 					))}
 				</div>
 			</>
@@ -154,6 +186,13 @@ const alternatePaths = Object.fromEntries(
 					const visible = selected === 'all' || categories.includes(selected);
 					entry.hidden = !visible;
 					if (visible) visibleCount += 1;
+				});
+
+				document.querySelectorAll<HTMLElement>('[data-project-group]').forEach((group) => {
+					const hasVisibleProject = Array.from(
+						group.querySelectorAll<HTMLElement>('[data-project-entry]'),
+					).some((entry) => !entry.hidden);
+					group.hidden = !hasVisibleProject;
 				});
 
 				if (count) {
@@ -213,10 +252,53 @@ const alternatePaths = Object.fromEntries(
 		display: none;
 	}
 
+	.project-groups {
+		display: grid;
+		gap: clamp(var(--space-16), 8vw, var(--space-24));
+	}
+
+	.project-group[hidden] {
+		display: none;
+	}
+
+	.project-group__heading {
+		display: grid;
+		grid-template-columns: minmax(0, 0.7fr) minmax(18rem, 1fr);
+		gap: var(--space-8);
+		align-items: end;
+		border-top: var(--border-default);
+		padding-top: var(--space-8);
+	}
+
+	.project-group__heading h2,
+	.project-group__heading p {
+		margin: 0;
+	}
+
+	.project-group__heading h2 {
+		font-size: var(--text-xl);
+		letter-spacing: -0.025em;
+	}
+
+	.project-group__heading p {
+		max-width: var(--width-reading);
+		color: var(--color-text-soft);
+		line-height: var(--leading-body);
+	}
+
+	.project-group .card-grid {
+		margin-top: var(--space-8);
+	}
+
 	@media (max-width: 640px) {
 		.project-filter {
 			align-items: flex-start;
 			flex-direction: column;
+		}
+
+		.project-group__heading {
+			grid-template-columns: 1fr;
+			gap: var(--space-3);
 		}
 	}
 </style>

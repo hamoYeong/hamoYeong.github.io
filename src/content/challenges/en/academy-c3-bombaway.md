@@ -2,6 +2,16 @@
 slug: academy-c3-bombaway
 locale: en
 translationKey: academy-c3-bombaway
+roleLenses:
+  - ios-software-development
+competencies:
+  - data-flow-architecture
+  - technical-explanation
+  - collaboration-facilitation
+evidenceLevels:
+  - implemented
+  - operated
+priority: 40
 sequence: C3
 title: BombAway
 summary: Implemented state and communication flows for a nearby multiplayer iPhone game played through distance and direction without continuous screen attention.

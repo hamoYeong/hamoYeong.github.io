@@ -2,6 +2,24 @@
 slug: scutta-web-service
 locale: en
 translationKey: scutta-web-service
+roleLenses:
+  - community-program-operations
+  - problem-framing-research
+competencies:
+  - data-flow-architecture
+  - user-research
+  - community-operations
+  - documentation-systemization
+evidenceLevels:
+  - designed
+  - implemented
+  - operated
+  - measured
+priority: 25
+relatedExperiences:
+  - scutta-leadership
+relatedProjects:
+  - scutta-notion-system
 title: SCUTTA Match Record Web Service
 summary: Expanded lessons from the Notion operation into a dedicated web service for match records and participation rules, addressing mobile access and calculation limits.
 period:
@@ -68,7 +86,7 @@ learnings:
 categories:
   - Web
   - Community
-featured: true
+featured: false
 draft: false
 repository: https://github.com/hamoYeong/scutta-2025-1
 visibility: public

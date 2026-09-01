@@ -2,6 +2,22 @@
 slug: scutta-notion-system
 locale: ko
 translationKey: scutta-notion-system
+roleLenses:
+  - community-program-operations
+competencies:
+  - user-research
+  - community-operations
+  - documentation-systemization
+evidenceLevels:
+  - designed
+  - implemented
+  - operated
+  - measured
+priority: 20
+relatedExperiences:
+  - scutta-leadership
+relatedProjects:
+  - scutta-web-service
 title: SCUTTA 경기 기록 Notion 시스템
 summary: 경기 기록과 다양한 참여 지표를 활용해 기존 부원과 신입 부원이 자연스럽게 교류하도록 도운 동아리 운영 시스템입니다.
 period:

@@ -2,8 +2,68 @@
 slug: learn-with-ai-questioning
 locale: ko
 translationKey: learn-with-ai-questioning
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - self-explanation-transfer
+  - curriculum-task-design
+  - educational-prototyping
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+  - observed
+priority: 10
+relatedChallenges:
+  - academy-c5-learn-with-ai
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - computational-thinking-hamo
+  - leaf
+media:
+  - id: learning-poster
+    section: outcome
+    type: image
+    webSrc: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/01-cover-learning-poster.png
+    alt: 막힘을 질문으로 Learn with AI 최종 학습 포스터 미리보기
+    caption: 앱의 학습 흐름, 제가 실제로 배운 경로, 질문의 Before와 After, AI와 함께 하며 배운 점을 한 장에 정리한 C5 최종 결과물입니다.
+    credit: 김서영
+    visibility: public
+  - id: learning-poster-pdf
+    section: outcome
+    type: pdf
+    webSrc: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
+    masterPath: portfolio-assets/projects/learn-with-ai-questioning/masters/02-outcome-learning-poster.pdf
+    alt: 막힘을 질문으로 Learning Poster PDF
+    visibility: public
+portfolioSections:
+  - field: outcomes
+    kind: outcome
+    evidenceLevels:
+      - designed
+      - implemented
+    assetIds:
+      - learning-poster
+      - learning-poster-pdf
+  - field: limitations
+    kind: limitation
+    evidenceLevels:
+      - hypothesis
+  - field: nextValidation
+    kind: next-step
+    evidenceLevels:
+      - hypothesis
 title: 막힘을 질문으로 — Learn with AI
-summary: Academy의 초심자 관찰과 C4의 1:1 학습 지원에서 출발해, 사고 행위 정의·최소 Swift 개념 역산·지식/학습 체계 분리·macOS 프로토타입까지 만든 C5 설계 프로젝트입니다. 실제 학습자 파일럿은 아직 진행하지 않았습니다.
+summary: Academy의 초심자 관찰과 C4의 1:1 학습 지원에서 출발해, 사고 행위 정의·최소 Swift 개념 역산·지식/학습 체계 분리·macOS 프로토타입까지 만든 C5 설계 프로젝트입니다.
+summaryNote: 실제 학습자 파일럿은 아직 진행하지 않았습니다.
 period:
   start: '2026-08'
   end: '2026-08'
@@ -20,7 +80,7 @@ team:
 overview: Swift 초심자가 자신의 막힘을 감지하고, 아는 것과 모르는 것을 분리하고, 막힌 지점을 언어화해 구체적인 질문으로 바꾸도록 돕는 학습 경험 설계입니다. C5 안에서 교육학 탐구를 커리큘럼·기획·UI/UX·macOS 프로토타입으로 연결했지만, 아직 실제 학습자에게 교육 효과를 검증한 프로그램은 아닙니다.
 problem: Academy에서 Swift 기초에 어려움을 겪고 AI에게 구현뿐 아니라 생각까지 맡기는 러너들을 보았습니다. “모르겠어요”, “왜 안 되죠?”, “뭘 해야 하죠?”라는 막힘 안에서 이해한 범위와 막힌 위치·조건·시도를 분리하지 못하면, AI가 곧바로 답을 줄수록 문제를 나누고 결과를 판단하는 사고 과정을 생략하기 쉽습니다.
 whyItMattered: 목표는 AI 사용을 줄이는 것이 아닙니다. 생각은 학습자가 하고 구현은 AI가 도울 수 있도록, 자신의 의도와 가정을 설명하고 AI 결과의 누락과 오류를 판단하며 다음 질문을 만드는 주체를 학습자에게 남기는 일입니다.
-context: 2026년 6월 하모컴은 구체적인 학습자와 커리큘럼 없이 도구부터 만든 macOS 프로토타입이라 중단했습니다. C4에서는 커리큘럼 없이 한 팀원과 1:1로 로직을 함께 살피며 재미와 한계를 모두 느꼈습니다. 설명할수록 더 기초 개념으로 거슬러 올라갔고, 한 번의 설명이 필요할 때 다시 꺼내 쓸 사고 체계가 되지는 못했습니다. 그래서 C5에서는 “무엇을 많이 알려줄까?”보다 “어떤 사고를 반복하게 할까?”에서 다시 시작했습니다.
+context: 학습자와 커리큘럼 없이 도구부터 만든 하모컴 프로젝트는 중단했습니다. C4의 1:1 학습 지원에서 변화의 가능성과 일회성 설명의 한계를 확인했습니다. 설명할수록 더 기초 개념으로 거슬러 올라갔고, 한 번의 설명이 필요할 때 다시 꺼내 쓸 사고 체계가 되지는 못했습니다. 그래서 C5는 “어떤 사고를 반복하게 할까?”에서 다시 시작했습니다.
 user: 프로그래밍 언어를 처음 배우거나 Swift를 처음 배우며, 화면 코드를 따라 수정할 수는 있지만 의도와 데이터 흐름을 자신의 말로 설명하기 어려운 초심자를 우선 대상으로 상정했습니다.
 contributions:
   - 인지 부하, 학습 발판과 메타인지 개념을 살피며 답 대신 사고 과정을 꺼내게 하는 경험을 탐구했습니다.
@@ -161,14 +221,14 @@ categories:
 featured: true
 draft: false
 coverImage:
-  src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+  src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
   alt: 막힘을 질문으로 Learn with AI 최종 학습 포스터 미리보기
 artifacts:
   - title: 막힘을 질문으로 — Learning Poster
     description: 앱의 학습 흐름, 제가 실제로 배운 경로, 질문의 Before와 After, AI와 함께 하며 배운 점을 한 장에 정리한 C5 최종 결과물입니다.
     href: /projects/learn-with-ai-questioning/learn-with-ai-poster.pdf
     previewImage:
-      src: /projects/learn-with-ai-questioning/learn-with-ai-poster.png
+      src: /images/projects/learn-with-ai-questioning/01-cover-learning-poster.webp
       alt: C5 Learn with AI 막힘을 질문으로 학습 포스터 전체
 visibility: public
 relatedPosts:

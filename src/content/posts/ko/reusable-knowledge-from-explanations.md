@@ -2,6 +2,18 @@
 slug: reusable-knowledge-from-explanations
 locale: ko
 translationKey: reusable-knowledge-from-explanations
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - facilitation-mentoring
+competencies:
+  - self-explanation-transfer
+  - technical-explanation
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+priority: 60
 title: 설명 한 번을 다시 꺼내 쓸 수 있는 지식으로 바꾸기
 description: 설명할수록 더 기초 개념으로 거슬러 올라갔던 경험에서 출발해, 일회성 답변과 재사용 가능한 지식 체계의 차이를 묻는 구조화된 초안입니다.
 publishedAt: 2026-08-31

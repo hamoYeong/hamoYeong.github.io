@@ -2,6 +2,19 @@
 slug: chemistry-tutoring
 locale: en
 translationKey: chemistry-tutoring
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+competencies:
+  - beginner-observation
+  - scaffold-design
+  - technical-explanation
+evidenceLevels:
+  - observed
+  - operated
+priority: 30
+relatedProjects:
+  - learn-with-ai-questioning
 title: Chemistry Tutor
 organization: Department of Chemical Engineering, University of Seoul
 summary: Tutored first-year students in chemistry and laboratory courses, tracing questions back to prerequisite concepts and changing the order of explanation to match each learner’s understanding.

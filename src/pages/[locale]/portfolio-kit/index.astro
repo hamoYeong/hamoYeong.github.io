@@ -1,0 +1,583 @@
+---
+import '../../../styles/portfolio-kit.css';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PortfolioStoryPage from '../../../components/PortfolioStoryPage.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import {
+	getLocaleStaticPaths,
+	isLocale,
+	locales,
+	localizedPath,
+	type LocalePaths,
+} from '../../../i18n/config';
+import { getPortfolioStories } from '../../../i18n/portfolio-stories';
+import { getTaxonomy } from '../../../i18n/taxonomy';
+import { getUi } from '../../../i18n/ui';
+import {
+	getChallenges,
+	getExperiences,
+	getPosts,
+	getProjects,
+} from '../../../lib/content';
+import {
+	buildPortfolioKit,
+	type PortfolioBlockKind,
+} from '../../../lib/portfolio';
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const localeParam = Astro.params.locale;
+if (!isLocale(localeParam)) {
+	throw new Error(`Unsupported locale: ${localeParam}`);
+}
+
+const locale = localeParam;
+const t = getUi(locale);
+const taxonomy = getTaxonomy(locale);
+const storyDefinitions = getPortfolioStories(locale);
+const [projects, posts, experiences, challenges] = await Promise.all([
+	getProjects({ locale }),
+	getPosts({ locale }),
+	getExperiences({ locale }),
+	getChallenges({ locale }),
+]);
+const { blocks, assets } = buildPortfolioKit({
+	locale,
+	projects,
+	posts,
+	experiences,
+	challenges,
+});
+const blockById = new Map(blocks.map((block) => [block.id, block]));
+const stories = storyDefinitions.map((story) => ({
+	...story,
+	pages: story.steps.map((step, index) => {
+		const block = blockById.get(step.blockId);
+		if (!block) {
+			throw new Error(`Portfolio story "${story.key}" references missing block "${step.blockId}".`);
+		}
+		return { block, bridge: story.steps[index + 1]?.bridge };
+	}),
+}));
+const sourceTypes = ['project', 'experience', 'challenge', 'post'] as const;
+const roleByKey = new Map(taxonomy.roleLenses.map((item) => [item.key, item]));
+const competencyByKey = new Map(taxonomy.competencies.map((item) => [item.key, item]));
+const evidenceByKey = new Map(taxonomy.evidenceLevels.map((item) => [item.key, item]));
+const roleLabelsFor = (keys: (typeof taxonomy.roleLenses)[number]['key'][]) =>
+	keys.flatMap((key) => {
+		const item = roleByKey.get(key);
+		return item ? [item] : [];
+	});
+const competencyLabelsFor = (keys: (typeof taxonomy.competencies)[number]['key'][]) =>
+	keys.flatMap((key) => {
+		const item = competencyByKey.get(key);
+		return item ? [item] : [];
+	});
+const evidenceLabelsFor = (keys: (typeof taxonomy.evidenceLevels)[number]['key'][]) =>
+	keys.flatMap((key) => {
+		const item = evidenceByKey.get(key);
+		return item ? [item] : [];
+	});
+const assetsForBlock = (block: (typeof blocks)[number]) =>
+	assets.filter(
+		(asset) =>
+			asset.sourceType === block.sourceType &&
+			asset.sourceKey === block.sourceKey &&
+			block.assetIds.includes(asset.id),
+	);
+const kindOrder: Record<PortfolioBlockKind, number> = {
+	summary: 0,
+	problem: 1,
+	context: 2,
+	role: 3,
+	action: 4,
+	decision: 5,
+	'technical-evidence': 6,
+	outcome: 7,
+	learning: 8,
+	limitation: 9,
+	'next-step': 10,
+};
+const customBlocks = blocks.filter((block) => block.sourceType !== 'profile').sort(
+	(left, right) =>
+		left.priority - right.priority ||
+		left.sourceKey.localeCompare(right.sourceKey) ||
+		kindOrder[left.kind] - kindOrder[right.kind],
+);
+const alternatePaths = Object.fromEntries(
+	locales.map((targetLocale) => [
+		targetLocale,
+		localizedPath(targetLocale, 'portfolio-kit'),
+	]),
+) as LocalePaths;
+const pageLabels = {
+	page: t.portfolioKit.page,
+	evidence: t.portfolioKit.evidenceDetails,
+	copy: t.portfolioKit.copy,
+	copied: t.portfolioKit.copied,
+	openSource: t.portfolioKit.openSource,
+	webAsset: t.portfolioKit.webAsset,
+	masterAsset: t.portfolioKit.masterAsset,
+};
+---
+
+<BaseLayout
+	locale={locale}
+	title={`${t.portfolioKit.title} | Hamo`}
+	description={t.portfolioKit.intro}
+	alternatePaths={alternatePaths}
+	noindex
+>
+	<div class="portfolio-kit">
+		<SectionHeading
+			level="h1"
+			eyebrow={t.portfolioKit.eyebrow}
+			title={t.portfolioKit.title}
+			description={t.portfolioKit.intro}
+		/>
+		<p class="kit-note">{t.portfolioKit.note}</p>
+
+		<nav class="story-topics" aria-labelledby="story-topic-title">
+			<div class="story-topics__heading">
+				<h2 id="story-topic-title">{t.portfolioKit.chooseStory}</h2>
+				<p>{t.portfolioKit.chooseStoryIntro}</p>
+			</div>
+			<div class="story-topics__list">
+				{stories.map((story, index) => (
+					<a
+						href={`?story=${story.key}`}
+						data-story-choice={story.key}
+						aria-current={index === 0 ? 'true' : undefined}
+					>
+						<span>{String(index + 1).padStart(2, '0')}</span>
+						<strong>{story.title}</strong>
+					</a>
+				))}
+			</div>
+		</nav>
+
+		<details class="custom-builder" data-custom-builder>
+			<summary>{t.portfolioKit.customStory}</summary>
+			<p>{t.portfolioKit.customStoryIntro}</p>
+			<form id="portfolio-controls" method="get">
+				<input type="hidden" name="story" value="custom" />
+				<div class="filter-grid">
+					<fieldset>
+						<legend>{t.portfolioKit.roleFilter}</legend>
+						<div class="option-list">
+							{taxonomy.roleLenses.map((item) => (
+								<label title={item.description}>
+									<input type="checkbox" name="role" value={item.key} />
+									<span>{item.label}</span>
+								</label>
+							))}
+						</div>
+					</fieldset>
+
+					<fieldset>
+						<legend>{t.portfolioKit.competencyFilter}</legend>
+						<div class="option-list">
+							{taxonomy.competencies.map((item) => (
+								<label title={item.description}>
+									<input type="checkbox" name="competency" value={item.key} />
+									<span>{item.label}</span>
+								</label>
+							))}
+						</div>
+					</fieldset>
+
+					<fieldset>
+						<legend>{t.portfolioKit.contentTypeFilter}</legend>
+						<div class="option-list">
+							{sourceTypes.map((sourceType) => (
+								<label>
+									<input type="checkbox" name="type" value={sourceType} />
+									<span>{t.portfolioKit.sourceTypeLabels[sourceType]}</span>
+								</label>
+							))}
+						</div>
+					</fieldset>
+
+					<fieldset>
+						<legend>{t.portfolioKit.evidenceFilter}</legend>
+						<div class="option-list">
+							{taxonomy.evidenceLevels.map((item) => (
+								<label title={item.description}>
+									<input type="checkbox" name="evidence" value={item.key} />
+									<span>{item.label}</span>
+								</label>
+							))}
+						</div>
+					</fieldset>
+				</div>
+				<div class="custom-builder__actions">
+					<button type="submit">{t.portfolioKit.buildStory}</button>
+					<a href={localizedPath(locale, 'portfolio-kit')}>{t.portfolioKit.reset}</a>
+				</div>
+			</form>
+		</details>
+
+		<div class="story-reader" data-story-reader>
+			{stories.map((story, storyIndex) => (
+				<section
+					class="story-panel"
+					data-story-panel
+					data-story-key={story.key}
+					hidden={storyIndex > 0}
+				>
+					<header class="story-panel__intro">
+						<p>{t.portfolioKit.curatedStory}</p>
+						<h2>{story.title}</h2>
+						<p>{story.description}</p>
+						<aside>
+							<strong>{t.portfolioKit.orderReason}</strong>
+							<span>{story.orderReason}</span>
+						</aside>
+					</header>
+
+					<div class="story-panel__pages">
+						{story.pages.map(({ block, bridge }, pageIndex) => (
+							<PortfolioStoryPage
+								block={block}
+								assets={assetsForBlock(block)}
+								pageNumber={pageIndex + 1}
+								pageCount={story.pages.length}
+								sourceLabel={t.portfolioKit.sourceTypeLabels[block.sourceType]}
+								kindLabel={t.portfolioKit.kindLabels[block.kind]}
+								roleLabels={roleLabelsFor(block.roleLenses)}
+								competencyLabels={competencyLabelsFor(block.competencies)}
+								evidenceLabels={evidenceLabelsFor(block.evidenceLevels)}
+								bridge={bridge ? {
+									direction: bridge.direction,
+									label: t.portfolioKit.directionLabels[bridge.direction],
+									text: bridge.text,
+								} : undefined}
+								labels={pageLabels}
+								initiallyHidden={pageIndex > 0}
+							/>
+						))}
+					</div>
+
+					<nav class="reader-controls" aria-label={t.portfolioKit.pageNavigation}>
+						<button type="button" data-previous disabled>← {t.portfolioKit.previous}</button>
+						<div>
+							<span aria-live="polite"><b data-current-page>1</b> / <b data-total-pages>{story.pages.length}</b></span>
+							<progress value="1" max={story.pages.length}>{1} / {story.pages.length}</progress>
+						</div>
+						<button type="button" data-next>{t.portfolioKit.next} →</button>
+					</nav>
+				</section>
+			))}
+
+			<section
+				class="story-panel"
+				data-story-panel
+				data-story-key="custom"
+				data-bridge-earlier={t.portfolioKit.customBridgeEarlier}
+				data-bridge-later={t.portfolioKit.customBridgeLater}
+				data-bridge-same={t.portfolioKit.customBridgeSame}
+				data-bridge-reflection={t.portfolioKit.customBridgeReflection}
+				data-label-earlier={t.portfolioKit.directionLabels.earlier}
+				data-label-later={t.portfolioKit.directionLabels.later}
+				data-label-same={t.portfolioKit.directionLabels.same}
+				data-label-reflection={t.portfolioKit.directionLabels.reflection}
+				hidden
+			>
+				<header class="story-panel__intro">
+					<p>{t.portfolioKit.customStory}</p>
+					<h2>{t.portfolioKit.customResultTitle}</h2>
+					<p>{t.portfolioKit.customResultIntro}</p>
+					<aside>
+						<strong>{t.portfolioKit.orderReason}</strong>
+						<span>{t.portfolioKit.customOrderReason}</span>
+					</aside>
+				</header>
+
+				<p class="no-results" data-no-results hidden>{t.portfolioKit.noResults}</p>
+				<div class="story-panel__pages">
+					{customBlocks.map((block, pageIndex) => (
+						<PortfolioStoryPage
+							block={block}
+							assets={assetsForBlock(block)}
+							pageNumber={pageIndex + 1}
+							pageCount={customBlocks.length}
+							sourceLabel={t.portfolioKit.sourceTypeLabels[block.sourceType]}
+							kindLabel={t.portfolioKit.kindLabels[block.kind]}
+							roleLabels={roleLabelsFor(block.roleLenses)}
+							competencyLabels={competencyLabelsFor(block.competencies)}
+							evidenceLabels={evidenceLabelsFor(block.evidenceLevels)}
+							dynamicBridge
+							labels={pageLabels}
+							initiallyHidden
+						/>
+					))}
+				</div>
+
+				<nav class="reader-controls" aria-label={t.portfolioKit.pageNavigation} hidden>
+					<button type="button" data-previous disabled>← {t.portfolioKit.previous}</button>
+					<div>
+						<span aria-live="polite"><b data-current-page>0</b> / <b data-total-pages>0</b></span>
+						<progress value="0" max="1">0 / 0</progress>
+					</div>
+					<button type="button" data-next>{t.portfolioKit.next} →</button>
+				</nav>
+			</section>
+		</div>
+
+		<div class="kit-actions">
+			<button type="button" data-print>{t.portfolioKit.print}</button>
+		</div>
+
+		<noscript>
+			<section class="noscript-index">
+				<h2>{t.portfolioKit.noscriptTitle}</h2>
+				<p>{t.portfolioKit.noscriptIntro}</p>
+				<ul>
+					{blocks.map((block) => (
+						<li><a href={block.href}>{block.sourceTitle} · {block.title}</a></li>
+					))}
+				</ul>
+			</section>
+		</noscript>
+	</div>
+</BaseLayout>
+
+<script>
+	const reader = document.querySelector<HTMLElement>('[data-story-reader]');
+	const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-story-panel]'));
+	const choices = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-story-choice]'));
+	const form = document.querySelector<HTMLFormElement>('#portfolio-controls');
+	const customBuilder = document.querySelector<HTMLDetailsElement>('[data-custom-builder]');
+	let activePanel = panels.find((panel) => !panel.hidden) ?? panels[0];
+	let activeIndex = 0;
+
+	const panelPages = (panel: HTMLElement) =>
+		Array.from(panel.querySelectorAll<HTMLElement>('[data-story-page]'))
+			.filter((page) => page.dataset.filteredOut !== 'true');
+
+	const formatPageNumbers = (pages: HTMLElement[]) => {
+		pages.forEach((page, index) => {
+			const number = page.querySelector<HTMLElement>('[data-page-number]');
+			const count = page.querySelector<HTMLElement>('[data-page-count]');
+			if (number) number.textContent = String(index + 1).padStart(2, '0');
+			if (count) count.textContent = String(pages.length).padStart(2, '0');
+		});
+	};
+
+	const fillTemplate = (template: string, values: Record<string, string>) =>
+		Object.entries(values).reduce(
+			(result, [key, value]) => result.replaceAll(`{${key}}`, value),
+			template,
+		);
+
+	const shortText = (value: string) => value.length > 96 ? `${value.slice(0, 96).trim()}…` : value;
+
+	const updateCustomBridge = (panel: HTMLElement, pages: HTMLElement[], index: number) => {
+		const page = pages[index];
+		const bridge = page?.querySelector<HTMLElement>('[data-story-bridge]');
+		if (!page || !bridge || index >= pages.length - 1) {
+			if (bridge) bridge.hidden = true;
+			return;
+		}
+		const next = pages[index + 1];
+		const currentDate = page.dataset.date ?? '';
+		const nextDate = next.dataset.date ?? '';
+		let direction = nextDate > currentDate ? 'later' : nextDate < currentDate ? 'earlier' : 'same';
+		if (next.dataset.kind === 'limitation' || next.dataset.kind === 'next-step') direction = 'reflection';
+		const suffix = `${direction[0].toUpperCase()}${direction.slice(1)}`;
+		const template = panel.dataset[`bridge${suffix}`] ?? '';
+		const values = {
+			previous: page.dataset.sourceTitle ?? '',
+			next: next.dataset.sourceTitle ?? '',
+			evidence: shortText(page.dataset.textPreview ?? ''),
+			focus: next.dataset.blockTitle ?? '',
+			nextEvidence: shortText(next.dataset.textPreview ?? ''),
+		};
+		bridge.className = `story-bridge story-bridge--${direction}`;
+		const label = panel.dataset[`label${suffix}`] ?? '';
+		const labelElement = bridge.querySelector<HTMLElement>('[data-bridge-label]');
+		const textElement = bridge.querySelector<HTMLElement>('[data-bridge-text]');
+		if (labelElement) labelElement.textContent = label;
+		if (textElement) textElement.textContent = fillTemplate(template, values);
+		bridge.hidden = false;
+	};
+
+	const updateControls = (panel: HTMLElement, pages: HTMLElement[]) => {
+		const controls = panel.querySelector<HTMLElement>('.reader-controls');
+		if (!controls) return;
+		controls.hidden = pages.length === 0;
+		const current = controls.querySelector<HTMLElement>('[data-current-page]');
+		const total = controls.querySelector<HTMLElement>('[data-total-pages]');
+		const progress = controls.querySelector<HTMLProgressElement>('progress');
+		if (current) current.textContent = String(activeIndex + 1);
+		if (total) total.textContent = String(pages.length);
+		if (progress) {
+			progress.max = Math.max(pages.length, 1);
+			progress.value = pages.length > 0 ? activeIndex + 1 : 0;
+		}
+		const previous = controls.querySelector<HTMLButtonElement>('[data-previous]');
+		const next = controls.querySelector<HTMLButtonElement>('[data-next]');
+		if (previous) previous.disabled = activeIndex <= 0;
+		if (next) next.disabled = activeIndex >= pages.length - 1;
+	};
+
+	const updateQuery = () => {
+		if (!activePanel) return;
+		const query = new URLSearchParams();
+		query.set('story', activePanel.dataset.storyKey ?? '');
+		if (activeIndex > 0) query.set('page', String(activeIndex + 1));
+		if (activePanel.dataset.storyKey === 'custom' && form) {
+			for (const name of ['role', 'competency', 'type', 'evidence']) {
+				form.querySelectorAll<HTMLInputElement>(`[name="${name}"]:checked`).forEach((input) => query.append(name, input.value));
+			}
+		}
+		window.history.replaceState({}, '', `${window.location.pathname}?${query}`);
+	};
+
+	const showPage = (nextIndex: number, direction: 'forward' | 'backward' = 'forward', updateUrl = true) => {
+		if (!activePanel) return;
+		const pages = panelPages(activePanel);
+		if (pages.length === 0) return;
+		const safeIndex = Math.max(0, Math.min(nextIndex, pages.length - 1));
+		pages.forEach((page, index) => {
+			page.hidden = index !== safeIndex;
+			page.classList.remove('is-entering-forward', 'is-entering-backward');
+		});
+		activeIndex = safeIndex;
+		const activePage = pages[activeIndex];
+		activePage.classList.add(direction === 'forward' ? 'is-entering-forward' : 'is-entering-backward');
+		window.setTimeout(() => activePage.classList.remove('is-entering-forward', 'is-entering-backward'), 320);
+		if (activePanel.dataset.storyKey === 'custom') updateCustomBridge(activePanel, pages, activeIndex);
+		updateControls(activePanel, pages);
+		if (updateUrl) {
+			updateQuery();
+			activePage.querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
+		}
+	};
+
+	const selectStory = (key: string, page = 0, updateUrl = true) => {
+		const nextPanel = panels.find((panel) => panel.dataset.storyKey === key) ?? panels[0];
+		panels.forEach((panel) => { panel.hidden = panel !== nextPanel; });
+		activePanel = nextPanel;
+		activeIndex = 0;
+		choices.forEach((choice) => {
+			if (choice.dataset.storyChoice === key) choice.setAttribute('aria-current', 'true');
+			else choice.removeAttribute('aria-current');
+		});
+		showPage(page, page > 0 ? 'forward' : 'backward', updateUrl);
+	};
+
+	panels.forEach((panel) => {
+		panel.querySelector('[data-previous]')?.addEventListener('click', () => showPage(activeIndex - 1, 'backward'));
+		panel.querySelector('[data-next]')?.addEventListener('click', () => showPage(activeIndex + 1, 'forward'));
+	});
+
+	choices.forEach((choice) => {
+		choice.addEventListener('click', (event) => {
+			event.preventDefault();
+			selectStory(choice.dataset.storyChoice ?? '', 0);
+			reader?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+		});
+	});
+
+	const validValues = (name: string) => new Set(
+		Array.from(form?.querySelectorAll<HTMLInputElement>(`[name="${name}"]`) ?? []).map((input) => input.value),
+	);
+
+	const selectedValues = (name: string) => new Set(
+		Array.from(form?.querySelectorAll<HTMLInputElement>(`[name="${name}"]:checked`) ?? []).map((input) => input.value),
+	);
+
+	const matches = (page: HTMLElement, selected: Set<string>, attribute: string) => {
+		if (selected.size === 0) return true;
+		const values = new Set((page.dataset[attribute] ?? '').split('|').filter(Boolean));
+		return [...selected].some((value) => values.has(value));
+	};
+
+	const applyCustomFilters = (page = 0, updateUrl = true) => {
+		const panel = panels.find((item) => item.dataset.storyKey === 'custom');
+		if (!panel || !form) return;
+		const roles = selectedValues('role');
+		const competencies = selectedValues('competency');
+		const types = selectedValues('type');
+		const evidence = selectedValues('evidence');
+		const allPages = Array.from(panel.querySelectorAll<HTMLElement>('[data-story-page]'));
+		for (const item of allPages) {
+			const visible =
+				matches(item, roles, 'role') &&
+				matches(item, competencies, 'competency') &&
+				(types.size === 0 || types.has(item.dataset.sourceType ?? '')) &&
+				matches(item, evidence, 'evidence');
+			item.dataset.filteredOut = visible ? 'false' : 'true';
+			item.hidden = true;
+		}
+		const pages = panelPages(panel);
+		formatPageNumbers(pages);
+		const noResults = panel.querySelector<HTMLElement>('[data-no-results]');
+		if (noResults) noResults.hidden = pages.length > 0;
+		selectStory('custom', Math.min(page, Math.max(pages.length - 1, 0)), updateUrl);
+	};
+
+	form?.addEventListener('submit', (event) => {
+		event.preventDefault();
+		applyCustomFilters();
+		reader?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+	});
+
+	document.addEventListener('keydown', (event) => {
+		const target = event.target as HTMLElement;
+		if (target.closest('input, select, textarea, summary')) return;
+		if (event.key === 'ArrowRight') showPage(activeIndex + 1, 'forward');
+		if (event.key === 'ArrowLeft') showPage(activeIndex - 1, 'backward');
+	});
+
+	document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+
+	const legacyCopy = (value: string) => {
+		const textarea = document.createElement('textarea');
+		textarea.value = value;
+		textarea.setAttribute('readonly', '');
+		textarea.style.position = 'fixed';
+		textarea.style.opacity = '0';
+		document.body.append(textarea);
+		textarea.select();
+		const copied = document.execCommand('copy');
+		textarea.remove();
+		return copied;
+	};
+
+	document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+		button.addEventListener('click', async () => {
+			const value = button.dataset.copyValue;
+			if (!value) return;
+			let copied = false;
+			try {
+				if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+				await navigator.clipboard.writeText(value);
+				copied = true;
+			} catch {
+				copied = legacyCopy(value);
+			}
+			if (!copied) return;
+			button.textContent = button.dataset.copiedLabel ?? 'Copied';
+			window.setTimeout(() => { button.textContent = button.dataset.copyLabel ?? 'Copy'; }, 1500);
+		});
+	});
+
+	const query = new URLSearchParams(window.location.search);
+	for (const name of ['role', 'competency', 'type', 'evidence']) {
+		const valid = validValues(name);
+		query.getAll(name).filter((value) => valid.has(value)).forEach((value) => {
+			const input = form?.querySelector<HTMLInputElement>(`[name="${name}"][value="${CSS.escape(value)}"]`);
+			if (input) input.checked = true;
+		});
+	}
+	const initialPage = Math.max(Number.parseInt(query.get('page') ?? '1', 10) - 1, 0);
+	const initialStory = query.get('story') ?? panels[0]?.dataset.storyKey ?? '';
+	if (initialStory === 'custom') {
+		if (customBuilder) customBuilder.open = true;
+		applyCustomFilters(initialPage, false);
+	} else {
+		selectStory(initialStory, initialPage, false);
+	}
+</script>

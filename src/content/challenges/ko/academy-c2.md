@@ -2,6 +2,16 @@
 slug: academy-c2
 locale: ko
 translationKey: academy-c2
+roleLenses:
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - educational-prototyping
+  - data-flow-architecture
+evidenceLevels:
+  - hypothesis
+  - implemented
+priority: 70
 sequence: C2
 title: Academy 혜택 탐색 프로토타입
 summary: 흩어진 Academy 혜택을 모으는 아이디어를 개인으로 발전시키되, 사용자 필요에 대한 확신이 없음을 인정하고 아키텍처 학습에 집중했습니다.

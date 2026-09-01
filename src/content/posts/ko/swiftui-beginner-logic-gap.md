@@ -2,6 +2,16 @@
 slug: swiftui-beginner-logic-gap
 locale: ko
 translationKey: swiftui-beginner-logic-gap
+roleLenses:
+  - learning-experience
+  - ios-software-development
+competencies:
+  - beginner-observation
+  - data-flow-architecture
+evidenceLevels:
+  - hypothesis
+  - observed
+priority: 50
 title: SwiftUI 화면부터 배운 초심자는 왜 로직에서 막히는가
 description: SwiftUI의 빠른 시각적 피드백이 만드는 흥미와 화면 뒤 데이터·책임 흐름 사이의 학습 공백을 C4 한 학습자 사례로 살펴보는 구조화된 초안입니다.
 publishedAt: 2026-08-31

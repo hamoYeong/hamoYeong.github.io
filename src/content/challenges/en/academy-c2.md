@@ -2,6 +2,16 @@
 slug: academy-c2
 locale: en
 translationKey: academy-c2
+roleLenses:
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - educational-prototyping
+  - data-flow-architecture
+evidenceLevels:
+  - hypothesis
+  - implemented
+priority: 70
 sequence: C2
 title: Academy Benefits Discovery Prototype
 summary: I developed an idea for gathering scattered Academy benefits as a personal project, while acknowledging uncertainty about the user need and focusing on architecture learning.

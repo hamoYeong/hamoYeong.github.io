@@ -2,6 +2,18 @@
 slug: academy-c1
 locale: en
 translationKey: academy-c1
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - ios-software-development
+competencies:
+  - learning-goal-design
+  - curriculum-task-design
+  - data-flow-architecture
+evidenceLevels:
+  - designed
+  - implemented
+priority: 60
 sequence: C1
 title: Academy Setup Guide Prototype
 summary: My first challenge combined CBL-based team problem finding with an individual SwiftUI implementation, teaching problem solving and Swift fundamentals together.

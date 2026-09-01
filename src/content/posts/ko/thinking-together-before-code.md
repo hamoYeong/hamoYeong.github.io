@@ -2,6 +2,16 @@
 slug: thinking-together-before-code
 locale: ko
 translationKey: thinking-together-before-code
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - collaboration-facilitation
+evidenceLevels:
+  - observed
+priority: 25
 title: 완성된 코드를 주는 대신, 함께 사고하는 방법
 description: 프로젝트 완성과 학습이라는 서로 다른 성공 기준을 공동 언어로 맞추고, 한 학습자와 데이터 흐름·의도·다음 질문을 함께 찾은 과정과 한계를 돌아봅니다.
 publishedAt: 2026-07-29

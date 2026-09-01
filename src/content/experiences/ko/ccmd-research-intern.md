@@ -2,6 +2,13 @@
 slug: ccmd-research-intern
 locale: ko
 translationKey: ccmd-research-intern
+roleLenses:
+  - problem-framing-research
+competencies:
+  - documentation-systemization
+evidenceLevels:
+  - implemented
+priority: 80
 title: 연구인턴
 organization: 서울시립대학교 화학공학과 CCMD 연구실
 summary: 암모니아 분해 촉매 성능 개선을 위한 선행 연구 조사와 촉매 공정 시뮬레이션 결과 분석을 지원했습니다.

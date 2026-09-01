@@ -2,6 +2,13 @@
 slug: wellness-center-intern
 locale: ko
 translationKey: wellness-center-intern
+roleLenses:
+  - community-program-operations
+competencies:
+  - community-operations
+evidenceLevels:
+  - operated
+priority: 90
 title: 직장체험인턴
 organization: 서울시립대학교 웰니스센터
 summary: 회원 응대와 교내 실외 테니스장 운영을 지원하며 이용자가 시설을 사용하는 현장의 흐름을 경험했습니다.

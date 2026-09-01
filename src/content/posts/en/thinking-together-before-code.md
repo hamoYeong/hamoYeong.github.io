@@ -2,6 +2,16 @@
 slug: thinking-together-before-code
 locale: en
 translationKey: thinking-together-before-code
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - collaboration-facilitation
+evidenceLevels:
+  - observed
+priority: 25
 title: Thinking Together Instead of Handing Over Finished Code
 description: A reflection on naming different success criteria, finding data flow and intent with one learner, and the limits of one-off explanations.
 publishedAt: 2026-07-29

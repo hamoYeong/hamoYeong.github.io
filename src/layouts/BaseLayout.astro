@@ -14,11 +14,13 @@ interface Props {
 	description?: string;
 	locale?: Locale;
 	alternatePaths?: Partial<LocalePaths>;
+	noindex?: boolean;
 }
 
 const {
 	locale = defaultLocale,
 	alternatePaths,
+	noindex = false,
 } = Astro.props;
 const t = getUi(locale);
 const title = Astro.props.title ?? t.site.defaultTitle;
@@ -33,6 +35,7 @@ const description = Astro.props.description ?? t.site.defaultDescription;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<title>{title}</title>
 	</head>
 	<body>

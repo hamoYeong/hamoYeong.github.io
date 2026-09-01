@@ -2,6 +2,23 @@
 slug: computational-thinking-hamo
 locale: en
 translationKey: computational-thinking-hamo
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - learning-goal-design
+  - educational-prototyping
+  - data-flow-architecture
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+priority: 35
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - learn-with-ai-questioning
 title: HamoCom
 summary: I stopped this macOS code-reading prototype after recognizing that I had built the tool before defining a learner and curriculum; that failure became the starting point for rebuilding Learn with AI from education and thinking actions.
 period:

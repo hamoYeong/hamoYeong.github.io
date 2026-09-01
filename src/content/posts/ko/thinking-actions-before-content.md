@@ -2,6 +2,17 @@
 slug: thinking-actions-before-content
 locale: ko
 translationKey: thinking-actions-before-content
+roleLenses:
+  - curriculum-design
+  - learning-experience
+competencies:
+  - learning-goal-design
+  - scaffold-design
+  - curriculum-task-design
+evidenceLevels:
+  - hypothesis
+  - designed
+priority: 40
 title: 무엇을 가르칠지보다 어떤 사고를 하게 할지
 description: 컴퓨팅 사고력을 지식 목록으로 설명하는 한계를 넘어, 사고 행위를 먼저 정의하고 최소 Swift 개념을 역산한 C5 과정을 정리하는 구조화된 초안입니다.
 publishedAt: 2026-08-31

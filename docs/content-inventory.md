@@ -48,7 +48,7 @@
 - Astro `6.3.2`, Node `22.12.0` 이상을 사용하는 정적 사이트다.
 - 파일 기반 라우팅으로 `/`, `/about/`, `/projects/`, `/posts/`와 프로젝트 상세 2개를 제공한다.
 - 공통 레이아웃과 Header, Navigation, Footer는 `src/layouts/BaseLayout.astro`에 있다.
-- 프로젝트와 글은 각각 `src/data/projects.json`, `src/data/posts.json`에 있다.
+- 프로젝트와 글의 현재 canonical source는 각각 `src/content/projects/`, `src/content/posts/`의 locale별 Markdown이다. `src/data/projects.json`, `src/data/posts.json`은 이전 구조의 호환 자료다.
 - 프로젝트 목록은 `src/components/ProjectCard.astro`를 사용한다.
 - 현재 콘텐츠는 한국어 단일 언어이며 Astro Content Collections는 아직 사용하지 않는다.
 
@@ -448,6 +448,6 @@ private 저장소는 공개 저장소인 이 문서에 식별자를 남기지 �
 - Home은 SCUTTA, Academy, 컴퓨팅 사고력 경험을 서로 다른 역할로 배치한다.
 - Projects의 featured는 쑥쑥, BombAway와 SCUTTA Notion 시스템을 우선한다.
 - SCUTTA Notion 시스템은 웹 서비스의 전 단계로 연결하되 독립 case study도 가능하다.
-- Academy C1-C4는 About에서 요약하고, 전체 Problem/Action/Result와 회고는 Projects 상세에 둔다.
+- Academy C1-C5는 About에서 요약하고, 전체 Problem/Action/Result와 회고는 Projects 상세에 둔다.
 - Posts는 구현 방법만이 아니라 사용자 규칙, 아키텍처 설명, 공동 이해, 책임 있는 AI 활용을 중심으로 작성한다.
 - private 팀 프로젝트는 팀 승인 전까지 링크와 원본 이미지를 공개하지 않는다.

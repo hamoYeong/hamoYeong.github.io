@@ -2,6 +2,23 @@
 slug: academy-c4-leaf
 locale: en
 translationKey: academy-c4-leaf
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - data-flow-architecture
+  - user-research
+  - collaboration-facilitation
+evidenceLevels:
+  - designed
+  - implemented
+  - observed
+  - measured
+priority: 30
 sequence: C4
 title: Ssukssuk - Recording the Restorative Garden Experience
 summary: A User Experience-focused team project shaped by an interview and a 47-person survey, where I led domain modeling and supported shared team understanding.

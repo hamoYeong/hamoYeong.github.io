@@ -2,6 +2,23 @@
 slug: academy-c4-leaf
 locale: ko
 translationKey: academy-c4-leaf
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - data-flow-architecture
+  - user-research
+  - collaboration-facilitation
+evidenceLevels:
+  - designed
+  - implemented
+  - observed
+  - measured
+priority: 30
 sequence: C4
 title: 쑥쑥 - 텃밭의 치유를 기록하는 앱
 summary: 인터뷰와 47명 설문으로 텃밭의 치유에 집중하고, 모델 설계와 팀의 공동 이해를 맡은 User Experience 중심 팀 프로젝트입니다.

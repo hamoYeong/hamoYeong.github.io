@@ -2,6 +2,24 @@
 slug: academy-c5-learn-with-ai
 locale: en
 translationKey: academy-c5-learn-with-ai
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - beginner-observation
+  - learning-goal-design
+  - scaffold-design
+  - self-explanation-transfer
+  - curriculum-task-design
+  - educational-prototyping
+  - documentation-systemization
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+  - observed
+priority: 10
 sequence: C5
 title: Learn with AI — Turning Stuckness into Questions
 summary: An individual learning project where I designed an experience that turns a Swift beginner’s stuckness into a question and used AI less as an answer generator than as a tool for externalizing thought and refining questions.

@@ -2,6 +2,18 @@
 slug: ai-context-before-code
 locale: ko
 translationKey: ai-context-before-code
+roleLenses:
+  - learning-experience
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - self-explanation-transfer
+  - technical-explanation
+  - data-flow-architecture
+evidenceLevels:
+  - designed
+  - observed
+priority: 20
 title: AI에게 구현을 맡기기 전에 내가 정해야 하는 것
 description: Academy와 C4의 한 학습자 사례를 바탕으로, AI를 덜 쓰는 대신 문제·데이터·실패 조건·평가 기준을 먼저 내 언어로 정하는 방법을 기록합니다.
 publishedAt: 2026-07-29
@@ -17,6 +29,7 @@ relatedProjects:
   - computational-thinking-hamo
   - dayflow
   - leaf
+  - bombaway
 ---
 
 Apple Developer Academy에서 Swift 기초에 막힌 러너가 구현뿐 아니라 무엇을 생각해야 하는지까지 AI에게 바로 묻는 모습을 보았습니다. AI가 빠르게 만든 코드는 당장의 막힘을 없애지만, 학습자가 어떤 의도와 가정으로 그 결과를 판단해야 하는지는 남겨둘 수 있습니다.

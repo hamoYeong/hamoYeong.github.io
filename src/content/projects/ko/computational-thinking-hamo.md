@@ -2,6 +2,23 @@
 slug: computational-thinking-hamo
 locale: ko
 translationKey: computational-thinking-hamo
+roleLenses:
+  - curriculum-design
+  - learning-experience
+  - educational-software
+competencies:
+  - learning-goal-design
+  - educational-prototyping
+  - data-flow-architecture
+evidenceLevels:
+  - hypothesis
+  - designed
+  - implemented
+priority: 35
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - learn-with-ai-questioning
 title: 하모컴
 summary: 학습자와 커리큘럼 없이 코드 리딩 도구부터 만든 한계를 확인해 중단한 macOS 프로토타입이며, 이 실패가 교육학과 사고 행동부터 다시 설계한 Learn with AI의 출발점이 됐습니다.
 period:

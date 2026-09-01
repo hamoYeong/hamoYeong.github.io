@@ -2,6 +2,22 @@
 slug: scutta-notion-system
 locale: en
 translationKey: scutta-notion-system
+roleLenses:
+  - community-program-operations
+competencies:
+  - user-research
+  - community-operations
+  - documentation-systemization
+evidenceLevels:
+  - designed
+  - implemented
+  - operated
+  - measured
+priority: 20
+relatedExperiences:
+  - scutta-leadership
+relatedProjects:
+  - scutta-web-service
 title: SCUTTA Match Record System in Notion
 summary: A club operations system that used match records and participation signals to help existing and new members interact more naturally.
 period:

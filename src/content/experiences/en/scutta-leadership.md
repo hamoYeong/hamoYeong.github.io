@@ -2,6 +2,22 @@
 slug: scutta-leadership
 locale: en
 translationKey: scutta-leadership
+roleLenses:
+  - facilitation-mentoring
+  - community-program-operations
+competencies:
+  - beginner-observation
+  - collaboration-facilitation
+  - community-operations
+  - documentation-systemization
+evidenceLevels:
+  - observed
+  - operated
+  - measured
+priority: 20
+relatedProjects:
+  - scutta-notion-system
+  - scutta-web-service
 title: From Training Lead to Treasurer
 organization: SCUTTA, University of Seoul Table Tennis Club
 summary: As training lead, I observed beginners and entrenched habits over time and adjusted explanations; later roles connected that approach to a 100+ member community and its operations tools.

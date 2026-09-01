@@ -2,6 +2,22 @@
 slug: scutta-leadership
 locale: ko
 translationKey: scutta-leadership
+roleLenses:
+  - facilitation-mentoring
+  - community-program-operations
+competencies:
+  - beginner-observation
+  - collaboration-facilitation
+  - community-operations
+  - documentation-systemization
+evidenceLevels:
+  - observed
+  - operated
+  - measured
+priority: 20
+relatedProjects:
+  - scutta-notion-system
+  - scutta-web-service
 title: 훈련부장부터 총무까지
 organization: 서울시립대학교 중앙 탁구 동아리 SCUTTA
 summary: 훈련부장으로 초심자와 굳어진 습관을 오래 관찰해 설명을 조정했고, 이후 회장·홍보부장·총무로 100명+ 커뮤니티와 운영 도구를 이어서 운영했습니다.

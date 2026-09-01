@@ -2,6 +2,13 @@
 slug: university-of-seoul
 locale: ko
 translationKey: university-of-seoul
+roleLenses:
+  - problem-framing-research
+competencies:
+  - documentation-systemization
+evidenceLevels:
+  - observed
+priority: 100
 title: 화학공학과
 organization: 서울시립대학교
 summary: 화학공학을 공부하며 연구와 데이터 분석을 경험했고, 이후 소프트웨어로 문제를 구조화하는 방향으로 배움을 확장했습니다.

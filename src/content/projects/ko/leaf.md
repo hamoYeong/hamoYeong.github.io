@@ -2,6 +2,29 @@
 slug: ssukssuk
 locale: ko
 translationKey: leaf
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+  - problem-framing-research
+competencies:
+  - beginner-observation
+  - technical-explanation
+  - data-flow-architecture
+  - user-research
+  - collaboration-facilitation
+evidenceLevels:
+  - designed
+  - implemented
+  - observed
+  - measured
+priority: 30
+relatedChallenges:
+  - academy-c4-leaf
+relatedExperiences:
+  - apple-developer-academy
+relatedProjects:
+  - learn-with-ai-questioning
 title: 쑥쑥
 summary: 팀은 사용자 리서치로 텃밭의 치유 경험을 정의했고, 저는 iOS 기록·데이터 흐름을 구현하며 한 팀원이 로직과 AI 결과를 스스로 설명하도록 1:1로 지원했습니다.
 period:
@@ -59,7 +82,8 @@ technologies:
   - SwiftData
   - USDZ
 outcomes:
-  - 개인 기여로 기록·메인 홈의 데이터 흐름을 구현했고, 한 팀원이 자신의 의도를 표현하고 AI 결과가 놓친 전제를 설명하는 변화를 관찰했습니다. 한 학습자 사례이므로 교육 효과로 일반화하지 않습니다.
+  - 데이터 모델링과 Repository 설계, 시간 기록 Service와 메인 홈의 데이터 흐름을 구현했습니다. 한 팀원이 자신의 의도를 표현하도록 도왔고, 그 팀원이 AI 결과에서 누락된 전제를 설명하는 변화를 관찰했습니다.
+  - 한 학습자 사례이므로 교육 효과로 일반화하지 않습니다.
   - 시청 담당자 인터뷰와 47명 설문을 바탕으로 제품 방향을 텃밭의 치유 경험에 맞췄습니다.
   - 온보딩, 현재 텃밭, 활동 타이머, 성장 로드맵과 물 주기·수확 기록 흐름을 구현했습니다.
   - 메모리 기반 PreviewModelContainer와 mock data로 실제 저장 데이터 없이 주요 화면 상태를 재현할 수 있습니다.

@@ -2,6 +2,19 @@
 slug: protocol-preview-service-flow
 locale: en
 translationKey: protocol-preview-service-flow
+roleLenses:
+  - learning-experience
+  - facilitation-mentoring
+  - ios-software-development
+competencies:
+  - beginner-observation
+  - scaffold-design
+  - technical-explanation
+  - data-flow-architecture
+evidenceLevels:
+  - implemented
+  - observed
+priority: 30
 title: Understanding Data Flow Through Protocol → PreviewService → Service
 description: How Protocol → PreviewService → Service became a scaffold for one learner to see the larger data flow, and why I adjusted the size and order of that scaffold in C5.
 publishedAt: 2026-07-29
